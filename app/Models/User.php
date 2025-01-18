@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +43,38 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function teacher()
+    {
+       return $this->belongsTo(Teacher::class);
+    }
+    public function student()
+    {
+       return $this->belongsTo(student::class);
+    }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+    public function schedules()
+    {
+        return $this->hasMany(schedules::class);
+    }
+    public function liveClasses()
+    {
+        return $this->hasMany(LiveClass::class);
+    }
+    public function examMarks()
+    {
+        return $this->hasMany(ExamMark::class);
+    }
+    public function caMarks()
+    {
+        return $this->hasMany(caMark::class);
+    }
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

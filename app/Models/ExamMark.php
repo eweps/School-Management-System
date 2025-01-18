@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamMark extends Model
 {
-    //
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+    public function course()
+    {
+        return $this->belongsTo(course::class);
+    }
 }
