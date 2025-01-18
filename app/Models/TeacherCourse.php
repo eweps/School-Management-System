@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LearningResource extends Model
+class TeacherCourse extends Model
 {
-    public function teacher() 
+    public function teacher()
     {
         return $this->belongsTo(Teacher::class);
     }
@@ -15,6 +15,4 @@ class LearningResource extends Model
     {
         return $this->belongsTo(Course::class);
     }
-
-    
 }
