@@ -10,4 +10,5 @@ class LiveClass extends Model
     {
         return $this->belongTo(user::class);
     }
+    
 }
