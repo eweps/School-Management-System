@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
+use App\Models\CourseSession;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CourseSessionSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class CourseSessionSeeder extends Seeder
      */
     public function run(): void
     {
-    $session = [
+    $sessions = [
         [
             'name'=>'Morning Session',
             'start_time'=>Carbon::today()->setTime(8,0),
@@ -21,7 +23,7 @@ class CourseSessionSeeder extends Seeder
         ],
         [
             'name'=>'Evening Session',
-            'sart_time'=>Carbon::today()->setTime(16,0),
+            'start_time'=>Carbon::today()->setTime(16,0),
             'end_time'=>Carbon::today()->setTime(20,0),
                     ]
         ];
