@@ -2,8 +2,8 @@
     class="min-h-screen w-72 bg-primary-dark text-white px-5 py-8 overflow-y-auto h-full transition-all duration-300 ease-in-out fixed top-[68px] left-0">
     <ul id="sidebar-nav" class="mb-20 space-y-4">
         <!-- Navitem with link -->
-        <li class="nav-item mb-2 group active">
-            <a href="#"
+        <li class="nav-item mb-2 group {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('admin.dashboard') }}"
                 class="text-gray-300 hover:text-white flex items-center gap-3 text-lg font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light group-[.active]:text-white group-[.selected]:bg-primary-light group-[.selected]:text-gray-100 hover:bg-primary-lighter">
                 <i class="ri-home-2-line"></i>
                 <span>Dashboard</span>

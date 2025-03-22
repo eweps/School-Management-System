@@ -33,7 +33,7 @@
                 @include('layouts.sidebar')
 
                 <!-- Content -->
-                <section id="content" class="ml-72 min-h-screen w-full py-8 px-8">
+                <section id="content" class="ml-72 min-h-screen w-full py-8 px-8 transition-all ease-in-out duration-300">
 
                     {{ $slot }}
 

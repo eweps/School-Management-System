@@ -1,13 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@theme {
-    --color-primary: #053985;
-    --color-primary-dark: #052f6b;
-    --color-primary-light: #1c56aa;
-    --color-primary-lighter: #3062aa;
-    --color-primary-lightest: #85b8ff;
-    --color-secondary: #fc712c;
-}
-
