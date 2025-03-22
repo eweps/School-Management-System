@@ -30,7 +30,9 @@
             <!-- Page Content -->
             <main class="flex item-center">
                 @include('layouts.sidebar')
-                <section id="content" class="ml-72 min-h-screen w-full">
+
+                {{-- content --}}
+                <section id="content" class="ml-72 min-h-screen w-full py-8 px-8 transition-all ease-in-out duration-300">
                 {{ $slot }}
                 </section>
             </main>
