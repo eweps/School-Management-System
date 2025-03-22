@@ -8,7 +8,10 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+safelist:[
+    'w-0',
+    'px-0'
+],
     theme: {
         extend: {
             fontFamily: {
