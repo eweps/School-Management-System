@@ -23,8 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 subNavItem.classList.toggle("hidden");
                 dropdownItem.classList.toggle("selected");
             });
+              //if the sidebar dropdown item has a class of active then show the sub dropdown items
+        if(dropdownItem.classList.contains('active')){
+            subNavItem.classList.remove('hidden');
+            dropdownItem.classList.add('selected');
+        }
         });
-
+      
         // on click of he button toggle the sidebar
         sidebarToggle.addEventListener("click", function () {
             let sidebarState = sidebarToggle.getAttribute("data-sidebar-state");

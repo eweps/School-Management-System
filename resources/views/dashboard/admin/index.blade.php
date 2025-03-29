@@ -11,7 +11,8 @@
                 <header class="mb-8">
                     <h1 class="text-3xl">Dashboard / Analytics</h1>
                 </header>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="w-full overflow-x-auto py-5 px-4 bg-white shadow rounded-lg">
+                
                     <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
                       <div>
                         <p class="text-xl fon-semibold">50</p>

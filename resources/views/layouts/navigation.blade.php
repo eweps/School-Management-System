@@ -8,7 +8,7 @@
 
 
     <a href="#">
-        <span class="uppercase tracking-wider font-semibold text-white text-xl">School System</span>
+        <span class="uppercase tracking-wider font-semibold text-white text-xl">Higher Institute Management Seystem</span>
     </a>
     </div>
     <div class="nav-right flex items-center gap-3"> 

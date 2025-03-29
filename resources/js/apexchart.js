@@ -35,45 +35,49 @@ const data = [
 
 
   const element = document.querySelector('#transactionChart');
+  if(element!== null){
+    let options = {
+        chart: {
+            type: 'area',
+            height: 550,
+            toolbar:{
+                show: false
+            }
+        },
+        markers:{
+            size:10
+        },
+    
+        plotOptions:{
+            bar: {
+                horizontal: false,
+                endingShape:'rounded'
+            }
+        },
+    
+        dataLabels: {
+            enabled: false
+        },
+        colors: ['#fc712c'],
+        series: [ {
+            name: 'Transaction in FCFA',
+            data: amounts
+        }],
+    
+        xaxis: {
+            categories: dates
+        },
+    
+        yaxis: {
+            title: {
+                text: 'Amount FCFA'
+            }
+        },
+    };
+    
+    let chart = new Apexcharts(element , options);
+    chart.render();
 
-  let options = {
-    chart: {
-        type: 'area',
-        height: 550,
-        toolbar:{
-            show: false
-        }
-    },
-    markers:{
-        size:10
-    },
+  }
 
-    plotOptions:{
-        bar: {
-            horizontal: false,
-            endingShape:'rounded'
-        }
-    },
-
-    dataLabels: {
-        enabled: false
-    },
-    colors: ['#fc712c'],
-    series: [ {
-        name: 'Transaction in FCFA',
-        data: amounts
-    }],
-
-    xaxis: {
-        categories: dates
-    },
-
-    yaxis: {
-        title: {
-            text: 'Amount FCFA'
-        }
-    },
-};
-
-let chart = new Apexcharts(element , options);
-chart.render();
+ 
