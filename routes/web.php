@@ -5,11 +5,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
 
-Route::get('/contact', [PageController::class, 'contact']);
-Route::get('/about', [PageController::class, 'aboutUs']);
+// Route::get('/contact', [PageController::class, 'contact']);
+// Route::get('/about', [PageController::class, 'aboutUs']);
 
 
 /* Route::get('/dashboard', function () {

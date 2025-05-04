@@ -77,5 +77,7 @@ let options = {
     },
 };
 
-let chart = new ApexCharts(element, options);
-chart.render();
+if(element !== null) {
+    let chart = new ApexCharts(element, options);
+    chart.render();
+}

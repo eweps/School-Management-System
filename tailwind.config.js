@@ -27,6 +27,7 @@ export default {
                 'primary-lighter': '#3062aa',
                 'primary-lightest': '#85b8ff',
                 'secondary': '#fc712c',
+                'secondary-dark': "#fb5604"
             }
         },
 

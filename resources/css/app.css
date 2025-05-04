@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-rough {
+    background-image: url("/public/images/roughbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
