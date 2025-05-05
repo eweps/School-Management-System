@@ -6,7 +6,9 @@
         </button>
 
         <a href="#">
-            <span class="uppercase tracking-wider font-semibold text-white text-2xl">School System</span>
+            <span class="uppercase tracking-wider font-semibold text-white text-2xl">
+                <x-application-logo class="w-32 inline-block" />
+            </span>
         </a>
     </div>
 

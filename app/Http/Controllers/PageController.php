@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function contact()
+    public function index()
     {
-        return view('pages/contact');
+        return view('pages.index');
     }
 
-    public function aboutUs()
+    public function apply()
     {
-        return view('pages/about');
+        return view('pages.apply');
     }
 }

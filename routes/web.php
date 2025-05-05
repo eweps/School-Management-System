@@ -4,9 +4,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/apply', [PageController::class, 'apply'])->name('apply');
 
 // Route::get('/contact', [PageController::class, 'contact']);
 // Route::get('/about', [PageController::class, 'aboutUs']);
