@@ -7,7 +7,6 @@
         <a class="text-neutral-600 dark:text-neutral-200 dark:hover:text-secondary-dark hover:text-primary-dark font-semibold flex-shrink-0 {{ request()->routeIs('home') ? "text-primary dark:text-secondary" : '' }}" href="{{ route('home') }}">Home</a>
         <a class="text-neutral-600 dark:text-neutral-200 dark:hover:text-secondary-dark hover:text-primary-dark font-semibold flex-shrink-0" href="#">About Us</a>
         <a class="text-neutral-600 dark:text-neutral-200 dark:hover:text-secondary-dark hover:text-primary-dark font-semibold flex-shrink-0" href="#">Features</a>
-        <a class="text-neutral-600 dark:text-neutral-200 dark:hover:text-secondary-dark hover:text-primary-dark font-semibold flex-shrink-0" href="#">Contact</a>
     </nav>
 
     <a href="{{ route('apply') }}" class="bg-primary hover:bg-primary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Apply Now</a>

@@ -18,14 +18,14 @@
                 <p class="text-neutral-600 dark:text-neutral-300 mb-8">If you're facing problems managing your school. Worry no more, because our system <br /> got you covered with all important features.</p>
 
                 <div class="flex items-center justify-center lg:justify-start gap-3">
-                    <a href="#" class="text-white bg-primary rounded-lg block w-fit py-2 px-3 hover:bg-primary-dark transition-all ease-in-out">Apply Now</a>
+                    <a href="#" class="text-white bg-primary rounded-lg block w-full py-2 px-3 hover:bg-primary-dark transition-all ease-in-out max-w-32 text-center">Apply</a>
 
                     @guest
-                     <a href="{{ route('login') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Login</a>
+                     <a href="{{ route('login') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-full flex-shrink-0 max-w-32 text-center">Login</a>
                     @endguest
         
                     @auth
-                     <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+                     <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-full flex-shrink-0 max-w-32 text-center">Dashboard</a>
                     @endauth
                 </div>
 
@@ -33,7 +33,9 @@
             </div>
 
             <div class="basis-1/2">
-                <img src="{{ asset('images/hero.png') }}" class="w-full cursor-pointer transition-all ease-in-out hover:scale-95" alt="The Hero Image" title="Need Help? No worries we can help you" />
+                <img src="{{ asset('images/herolight.png') }}" class=" dark:hidden w-full cursor-pointer transition-all ease-in-out hover:scale-95" alt="The Hero Image" title="Need Help? No worries we can help you" />
+
+                <img src="{{ asset('images/herodark.png') }}" class="hidden dark:block w-full cursor-pointer transition-all ease-in-out hover:scale-95" alt="The Hero Image" title="Need Help? No worries we can help you" />
             </div>
 
        </div>

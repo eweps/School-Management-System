@@ -2,21 +2,19 @@
 
 
     <header class="w-full py-5 px-8 xl:px-0 mb-8">
-        
         @include('pages.partials.navigation')
-
     </header>
 
     
-    <div class="max-w-lg mx-auto">
+    <div class="max-w-3xl mx-auto px-8 xl:px-0 mb-20">
 
-        <header>
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Profile Information') }}
-            </h2>
+        <header class="text-center">
+            <h1 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {{ __('Apply') }}
+            </h1>
     
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {{ __("Update your account's profile information and email address.") }}
+                {{ __("Fill in the required fields below to apply.") }}
             </p>
         </header>
         
