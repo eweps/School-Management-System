@@ -11,7 +11,10 @@ export default {
     
     safelist: [
         'w-0',
-        'px-0'
+        'px-0',
+        'ml-60',
+        'w-[100%]',
+        '!w-[calc(100%-15rem)]'
     ],
 
     theme: {

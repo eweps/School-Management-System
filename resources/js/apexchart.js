@@ -38,6 +38,7 @@ let options = {
 
     chart: {
         type: 'area',
+        width: '100%',
         height: 500,
         toolbar: {
             show: false

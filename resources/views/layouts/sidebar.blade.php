@@ -1,5 +1,5 @@
 <aside id="sidebar"
-    class="min-h-screen w-60 bg-primary-dark text-white px-5 py-8 overflow-y-auto h-full transition-all duration-300 ease-in-out fixed top-[55px] left-0">
+    class="min-h-screen w-60 bg-primary-dark text-white px-5 py-8 overflow-y-auto h-full transition-all duration-300 ease-in-out fixed top-[80px] sm:top-[55px] left-0">
     <ul id="sidebar-nav" class="mb-20 space-y-2">
 
         <!-- Navitem with link -->

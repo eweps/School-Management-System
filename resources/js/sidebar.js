@@ -38,18 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let sidebarState = sidebarToggle.getAttribute('data-sidebar-state');
 
-            // If sidebar is open close it else open it
+            // If sidebar is open close it
             if(sidebarState === 'open'){
                 sidebar.classList.remove('w-60', 'px-5');
                 sidebar.classList.add('w-0', 'px-0');
                 sidebarToggle.setAttribute('data-sidebar-state', 'closed');
-                contentSection.classList.remove('ml-60');
+                contentSection.classList.remove('ml-60', '!w-[calc(100%-15rem)]');
+                contentSection.classList.add('w-[100%]');
             }
-            else {
-                sidebar.classList.add('w-60', 'px-5');
+
+            // If sidebar is closed open it
+            if(sidebarState === 'closed') {
                 sidebar.classList.remove('w-0', 'px-0');
+                sidebar.classList.add('w-60', 'px-5');
                 sidebarToggle.setAttribute('data-sidebar-state', 'open');
-                contentSection.classList.add('ml-60');
+                contentSection.classList.remove('w-[100%]');
+                contentSection.classList.add('ml-60', '!w-[calc(100%-15rem)]');
             }
 
         });

@@ -14,18 +14,18 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3  flex items-center justify-between text-base">
-                        <div>
+                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
+                        <div class="flex-shrink-0">
                             <p class="font-semibold">50</p>
                             <h3 class="text-amber-700 font-semibold">Total Teachers</h3>
                         </div>
 
-                        <div>
+                        <div class="flex-shrink-0">
                             <i class="ri-group-line bg-amber-100 py-2 px-3 rounded-lg text-amber-700"></i>
                         </div>
                 </div>
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3  flex items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
                     <div>
                         <p class="font-semibold">50</p>
                         <h3 class="text-blue-700 font-semibold">Total Students</h3>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
           
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3  flex items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
                     <div>
                         <p class="font-semibold">50</p>
                         <h3 class="text-green-700 font-semibold">Total Applications</h3>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
                     <div>
                         <p class="font-semibold">300,000 FCFA</p>
                         <h3 class="text-red-700 font-semibold">Annual Fee</h3>
@@ -60,9 +60,10 @@
             
             </div>
 
-            <div class="bg-white py-5 px-8 rounded-lg my-8 shadow">
-                <h4 class="text-xl uppercase tracking-wider font-semibold">Transactions</h4>
-                <div id="transactionChart"></div>
+            
+            <h4 class="text-base md:text-lg uppercase tracking-wider font-semibold mt-10 dark:text-neutral-200">Monthly Transactions</h4>
+            <div class="bg-white py-5 px-8 rounded-lg mt-4 mb-8 shadow overflow-hidden">
+                <div id="transactionChart" class="!w-[100%]"></div>
             </div>
 
 
