@@ -1,11 +1,11 @@
-<nav class="nav py-2 px-8 bg-primary flex items-center justify-between border-b border-b-neutral-100 sticky top-0 z-20 shrink-0 h-20 sm:h-auto">
+<nav class="nav py-2 px-8 bg-primary flex items-center justify-between sticky top-0 z-20 shrink-0 h-20 sm:h-auto">
     <div class="nav-left">
 
         <button id="sidebarToggle" data-sidebar-state="open" class="bg-primary-light text-white rounded-lg px-3 py-2 me-2">
             <i class="ri-menu-line" class="text-4xl"></i>
         </button>
 
-        <a href="#">
+        <a href="{{ route('admin.dashboard') }}">
             <span class="uppercase tracking-wider font-semibold text-white text-2xl">
                 <x-application-logo class="w-32 inline-block" />
             </span>
@@ -14,8 +14,8 @@
 
     <div class="nav-right flex items-center gap-3">
 
-        <a href="#">
-            <i class="ri-notification-line text-white text-2xl"></i>
+        <a href="#" class="transition-transform delay-150 ease-in-out hover:scale-110">
+            <i class="ri-notification-line text-white text-lg"></i>
             <span class="sr-only">Notification</span>
         </a>
 
@@ -26,8 +26,8 @@
                 <x-slot name="trigger">
                    
                     <button type="button"
-                    class="flex items-center gap-3 border border-neutral-100 py-2 px-3 rounded-lg text-white">
-                        <img src="https://placehold.co/600x600" class="w-8 h-8 rounded-full object-cover" alt="profile image" />
+                    class="flex items-center gap-3 rounded-lg text-white text-sm">
+                        <img src="https://placehold.co/600x600" class="w-6 h-6 rounded-full object-cover" alt="profile image" />
                 
                         <span>{{ Auth::user()->name }}</span>
                 

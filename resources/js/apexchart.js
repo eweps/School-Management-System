@@ -38,14 +38,14 @@ let options = {
 
     chart: {
         type: 'area',
-        height: 550,
+        height: 500,
         toolbar: {
             show: false
         }
     },
 
     markers: {
-        size: 10
+        size: 6
     },
 
     plotOptions:{

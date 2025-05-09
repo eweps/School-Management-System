@@ -40,16 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // If sidebar is open close it else open it
             if(sidebarState === 'open'){
-                sidebar.classList.remove('w-72', 'px-5');
+                sidebar.classList.remove('w-60', 'px-5');
                 sidebar.classList.add('w-0', 'px-0');
                 sidebarToggle.setAttribute('data-sidebar-state', 'closed');
-                contentSection.classList.remove('ml-72');
+                contentSection.classList.remove('ml-60');
             }
             else {
-                sidebar.classList.add('w-72', 'px-5');
+                sidebar.classList.add('w-60', 'px-5');
                 sidebar.classList.remove('w-0', 'px-0');
                 sidebarToggle.setAttribute('data-sidebar-state', 'open');
-                contentSection.classList.add('ml-72');
+                contentSection.classList.add('ml-60');
             }
 
         });
