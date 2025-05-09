@@ -5,19 +5,19 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
             
-            <header class="mb-8 dark:text-white">
-                <h1 class="text-3xl">Dashboard / Analytics</h1>
+            <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
+                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.dashboard') }}">Analytics</a></h1>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                         <div class="flex-shrink-0">
                             <p class="font-semibold">50</p>
-                            <h3 class="text-amber-700 font-semibold">Total Teachers</h3>
+                            <h3 class="text-neutral-500 font-medium">Total Teachers</h3>
                         </div>
 
                         <div class="flex-shrink-0">
@@ -25,10 +25,10 @@
                         </div>
                 </div>
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                     <div>
                         <p class="font-semibold">50</p>
-                        <h3 class="text-blue-700 font-semibold">Total Students</h3>
+                        <h3 class="text-neutral-500 font-medium">Total Students</h3>
                     </div>
 
                     <div>
@@ -36,10 +36,10 @@
                     </div>
                 </div>
           
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                     <div>
                         <p class="font-semibold">50</p>
-                        <h3 class="text-green-700 font-semibold">Total Applications</h3>
+                        <h3 class="text-neutral-500 font-medium">Total Applications</h3>
                     </div>
 
                     <div>
@@ -47,10 +47,10 @@
                     </div>
                 </div>
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base">
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                     <div>
                         <p class="font-semibold">300,000 FCFA</p>
-                        <h3 class="text-red-700 font-semibold">Annual Fee</h3>
+                        <h3 class="text-neutral-500 font-medium">Annual Fee</h3>
                     </div>
 
                     <div>

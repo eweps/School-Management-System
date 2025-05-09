@@ -39,7 +39,7 @@ let options = {
     chart: {
         type: 'area',
         width: '100%',
-        height: 500,
+        height: 550,
         toolbar: {
             show: false
         }
