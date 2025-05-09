@@ -29,11 +29,11 @@ return new class extends Migration
     {
         Schema::table('applications', function (Blueprint $table) {
             if(!Schema::hasColumn('applications', 'department_id')) {
-                $table->foreignId('department_id')->constrained();
+                $table->foreignId('department_id')->after('id_card_number')->constrained();
             }
 
             if(!Schema::hasColumn('applications', 'level_id')) {
-                $table->foreignId('level_id')->constrained();
+                $table->foreignId('level_id')->after('id_card_number')->constrained();
             }
             
         });

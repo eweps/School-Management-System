@@ -25,8 +25,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('applications', function (Blueprint $table) {
-            $table->string('firstname', 255);
-            $table->string('lastname', 255);
+
+            if(!Schema::hasColumn('applications', 'firstname')) {
+                $table->string('firstname', 255)->after('id');
+            }
+           
+            if(!Schema::hasColumn('applications', 'lastname')) {
+                $table->string('lastname', 255)->after('id');
+            }
+            
         });
     }
 };
