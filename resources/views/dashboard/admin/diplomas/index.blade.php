@@ -9,7 +9,7 @@
         <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.departments') }}" class="text-secondary">Departments</a></h1>
+                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.diplomas') }}" class="text-secondary">Diplomas</a></h1>
             </header>
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white shadow rounded-lg">
@@ -20,7 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -29,8 +29,8 @@
 
                         <tr>
                             <td>1</td>
-                            <td>John Micheal</td>
-                            <td>john@email.com</td>
+                            <td>HND</td>
+                            <td>The Higher National Diploma</td>
                             <td></td>
                         </tr>
 
@@ -40,7 +40,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

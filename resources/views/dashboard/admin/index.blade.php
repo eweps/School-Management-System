@@ -9,7 +9,7 @@
         <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.dashboard') }}">Analytics</a></h1>
+                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.dashboard') }}" class="text-secondary">Analytics</a></h1>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
