@@ -12,7 +12,7 @@
                 <h1 class="text-xl">Dashboard / <a href="{{ route('admin.departments') }}" class="text-secondary">Departments</a></h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-4 bg-white shadow rounded-lg">
+            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">
 
                 <table class="dt-table display">
 

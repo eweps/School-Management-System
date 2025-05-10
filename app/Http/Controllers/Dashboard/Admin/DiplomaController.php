@@ -11,7 +11,7 @@ class DiplomaController extends Controller
     public function index()
     {
         return view('dashboard.admin.diplomas.index', [
-            'diplomas' => Diploma::all()
+            'diplomas' => Diploma::orderBy('id', 'DESC')->get()
         ]);
     }
 
@@ -31,4 +31,34 @@ class DiplomaController extends Controller
 
         return back()->with(['status' => 'diploma-created']);
     }
+
+    public function edit(int $id)
+    {
+        return view('dashboard.admin.diplomas.edit', [
+            'diploma' => Diploma::findOrFail($id)
+        ]);
+    }
+
+    public function update(Request $request , int $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $diploma = Diploma::findOrFail($id);
+        $diploma->update($validated);
+        return back()->with(['status' => 'diploma-updated']);
+    }
+
+    public function destroy(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required',
+        ]);
+
+        $diploma = Diploma::findOrFail($validated['id']);
+        $diploma->delete();
+        return back()->with(['status' => 'diploma-deleted']);
+    }   
 }
