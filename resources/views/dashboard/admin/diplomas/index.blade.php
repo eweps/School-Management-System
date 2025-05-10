@@ -27,12 +27,18 @@
 
                     <tbody>
 
-                        <tr>
-                            <td>1</td>
-                            <td>HND</td>
-                            <td>The Higher National Diploma</td>
-                            <td></td>
-                        </tr>
+                       @isset($diplomas)
+
+                            @foreach ($diplomas as $diploma)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $diploma->name }}</td>
+                                    <td> {{ \Illuminate\Support\Str::limit($diploma->description, 20) }}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                       
+                       @endisset
 
                     </tbody>
 

@@ -14,10 +14,15 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     Route::get('/diplomas', [DiplomaController::class , 'index'])
         ->name('admin.diplomas');
 
+    Route::get('/diplomas/create', [DiplomaController::class , 'create'])
+        ->name('admin.diplomas.create');
+
+    Route::post('/diplomas/store', [DiplomaController::class , 'store'])
+        ->name('admin.diplomas.store');
+
+
     Route::get('/departments', [DepartmentController::class, 'index'])
         ->name('admin.departments');
-
-    
 
 });
 

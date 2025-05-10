@@ -9,3 +9,7 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+select.dt-input{
+    width: 60px!important;
+}

@@ -39,11 +39,19 @@
             </a>
 
             <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.diplomas*') ? '' : 'hidden' }}">
-                <li class="mb-4 group {{ request()->routeIs('admin.diplomas*') ? 'active' : '' }}">
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.diplomas') ? 'active' : '' }}">
                     <a href="{{ route('admin.diplomas') }}"
-                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]:text-primary-lightest group-[.active]:font-bold">
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                         All Diplomas</a>
                 </li>
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.diplomas.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.diplomas.create') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Add Diploma</a>
+                </li>
+
             </ul>
         </li>
 
