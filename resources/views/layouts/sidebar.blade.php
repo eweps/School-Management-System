@@ -11,6 +11,24 @@
             </a>
         </li>
 
+         <!-- Navitem with sub items -->
+         <li class="nav-dropdown group {{ request()->routeIs('admin.departments*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light group-[.active]:text-white group-[.selected]:bg-primary-light group-[.selected]:text-gray-100 hover:bg-primary-lighter">
+                <i class="ri-group-line"></i>
+                <span>Departments</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.departments*') ? '' : 'hidden' }}">
+                <li class="mb-4 group {{ request()->routeIs('admin.departments*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.departments') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]:text-primary-lightest group-[.active]:font-bold">
+                        All Departments</a>
+                </li>
+            </ul>
+        </li>
+
 
         <!-- Navitem with sub items -->
         <li class="nav-dropdown group {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
