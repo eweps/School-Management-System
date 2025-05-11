@@ -5,11 +5,11 @@
         </h2>
     </x-slot>
 
-    <div class="py-2">
-        <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.departments') }}" class="text-secondary">Departments</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.departments') }}" class="text-secondary">Departments</a></h1>
             </header>
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">

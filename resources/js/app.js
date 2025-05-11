@@ -2,7 +2,8 @@ import './bootstrap';
 import 'remixicon/fonts/remixicon.css'
 import './sidebar'
 import './datatable';
-import './apexchart';
+import './transaction-chart';
+import './browser-chart';
 
 import Alpine from 'alpinejs';
 

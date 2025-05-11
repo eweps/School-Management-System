@@ -20,7 +20,7 @@ const data = [
     { date: '2025-03-17', amount: 110000 },
     { date: '2025-03-18', amount: 120000 },
     { date: '2025-03-19', amount: 300000 },
-    { date: '2025-03-20', amount: 150000 }
+    { date: '2025-03-20', amount: 150000 },
   ];
 
 let amounts = [];
@@ -39,7 +39,7 @@ let options = {
     chart: {
         type: 'area',
         width: '100%',
-        height: 550,
+        height: 400,
         toolbar: {
             show: false
         }
@@ -68,7 +68,19 @@ let options = {
     }],
 
     xaxis: {
-        categories: dates
+        categories: dates,
+        labels: {
+                formatter: function(value) {
+                const dateObj = new Date(value);
+                const dateValue = dateObj.getDate();
+
+                if(dateValue === 1 || dateValue === 21 || dateValue === 31) return `${dateValue}st`;
+                if(dateValue === 2 || dateValue === 22) return `${dateValue}nd`;
+                if(dateValue === 3 || dateValue === 23) return `${dateValue}rd`;
+ 
+                return `${dateValue}th`;
+            }
+        }
     },
 
     yaxis: {

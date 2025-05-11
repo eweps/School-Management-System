@@ -5,11 +5,11 @@
         </h2>
     </x-slot>
 
-    <div class="py-2">
-        <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-xl">Dashboard / <a href="{{ route('admin.dashboard') }}" class="text-secondary">Analytics</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.dashboard') }}" class="text-secondary">Analytics</a></h1>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
@@ -61,10 +61,21 @@
             </div>
 
             
-            <h4 class="text-base md:text-lg uppercase tracking-wider font-semibold mt-10 dark:text-neutral-200">Monthly Transactions</h4>
-            <div class="bg-white py-5 px-8 rounded-lg mt-4 mb-8 shadow overflow-hidden">
-                <div id="transactionChart" class="!w-[100%]"></div>
-            </div>
+           <div class="grid grid-cols-1 xl:grid-cols-5 gap-y-20 gap-x-0 xl:gap-y-0 xl:gap-x-5 mt-20">
+               <div class="col-span-1 xl:col-span-3">
+                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Monthly Transactions</h4>
+                    <div class="bg-white py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full">
+                        <div id="transactionChart" class="!w-[100%]"></div>
+                    </div>
+               </div>
+
+                <div class="col-span-1 xl:col-span-2">
+                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Browser Usage</h4>
+                    <div class="bg-white py-5 px-8 rounded-lg mt-4 shadow overflow-hidden flex items-center justify-center h-full">
+                        <div id="browserChart" class="!w-[100%] mb-8"></div>
+                    </div>
+               </div>
+           </div>
 
 
         </div>

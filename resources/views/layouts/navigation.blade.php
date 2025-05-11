@@ -27,7 +27,7 @@
                    
                     <button type="button"
                     class="flex items-center gap-3 rounded-lg text-white text-sm">
-                        <img src="https://placehold.co/600x600" class="w-6 h-6 rounded-full object-cover" alt="profile image" />
+                        <img src="https://placehold.co/600x600" class="w-7 h-7 rounded-full object-cover" alt="profile image" />
                 
                         <span>{{ Auth::user()->name }}</span>
                         <i class="ri-arrow-down-s-line text-xl"></i>
