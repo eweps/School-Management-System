@@ -25,13 +25,13 @@
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="email" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            {{-- @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Your email address is unverified.') }}
+                        {{ __('This email address is unverified.') }}
 
                         <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                             {{ __('Click here to re-send the verification email.') }}
@@ -44,7 +44,17 @@
                         </p>
                     @endif
                 </div>
-            @endif
+            @endif --}}
+        </div>
+
+         <div>
+            <x-input-label for="status" :value="__('Status')" />
+            <x-select-input id="status" name="status" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a status') }}</option>
+                <option value="1" {{ $user->is_active == true ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ $user->is_active == false ? 'selected' : '' }}>Not Active</option>
+            </x-select-input>
+             <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
         <div class="flex items-center gap-4">

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Events\UserCreated;
 use App\Models\User;
+use App\Events\UserCreated;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -79,23 +80,37 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProfileUpdateRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
-            $validated = $request->validated();
-            $user = User::find($id);
+        $user = User::findOrFail($id);
 
-            $user->name = $validated['name'];
-            $user->email = $validated['email'];
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                Rule::unique(User::class)->ignore($user->id),
+            ],
+            'status' => 'required'
+        ]);
+        
 
-            // Now check if email is dirty
-            if ($user->isDirty('email')) {
-                $user->email_verified_at = null;
-            }
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->is_active = $validated['status'];
 
-            // Save changes to the database
-            $user->save();
+        // Now check if email is dirty
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
 
-            return redirect()->back()->with('status', 'profile-updated');
+        // Save changes to the database
+        $user->save();
+
+        return redirect()->back()->with('status', 'profile-updated');
     }
 
     public function updatePassword(Request $request, int $id)
