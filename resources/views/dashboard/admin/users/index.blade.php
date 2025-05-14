@@ -42,7 +42,11 @@
                                     <td>{{ $user->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-                                            <x-primary-linkbutton href="{{ route('admin.users.edit', $user->id) }}"> Edit </x-primary-linkbutton>
+                                            @if($user->id !== auth()->user()->id)
+                                                 <x-primary-linkbutton href="{{ route('admin.users.edit', $user->id) }}"> Edit </x-primary-linkbutton>
+                                            @else
+                                                  <x-primary-linkbutton href="{{ route('profile.edit') }}"> Profile </x-primary-linkbutton>
+                                            @endif
 
                                             {{-- <form action="{{ route('admin.diplomas.delete') }}" method="POST">
                                                 @csrf

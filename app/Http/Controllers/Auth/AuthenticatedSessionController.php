@@ -28,8 +28,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(Auth::user()->hasRole('admin')) {
+        if(Auth::user()->hasRole('admin') && Auth::user()->is_active) {
             return redirect()->intended(route('admin.dashboard', absolute: false));
+        }
+        elseif(Auth::user()->hasRole('teacher') && Auth::user()->is_active) {
+           // TODO
+        }
+        elseif(Auth::user()->hasRole('student') && Auth::user()->is_active) {
+            // TODO
+        }
+        else {
+            $this->destroy($request);
+            return redirect()->back()->with('status', 'Authentication not successful please contact the administrator');
         }
 
     }
