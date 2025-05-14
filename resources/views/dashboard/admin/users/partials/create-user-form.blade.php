@@ -33,6 +33,16 @@
             </x-select-input>
              <x-input-error class="mt-2" :messages="$errors->get('role')" />
         </div>
+
+          <div>
+            <x-input-label for="gender" :value="__('Gender')" />
+            <x-select-input id="gender" name="gender" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a gender') }}</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </x-select-input>
+             <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+        </div>
         
         <div>
             <x-input-label for="update_password_password" :value="__('New Password')" />

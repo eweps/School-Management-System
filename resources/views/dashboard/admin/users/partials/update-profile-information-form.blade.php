@@ -57,6 +57,16 @@
              <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
+          <div>
+            <x-input-label for="gender" :value="__('Gender')" />
+            <x-select-input id="gender" name="gender" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a gender') }}</option>
+                <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
+                <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</option>
+            </x-select-input>
+             <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

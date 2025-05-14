@@ -42,13 +42,15 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'gender' => ['required', 'string']
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'gender' => $request->gender
         ]);
 
         $user->assignRole($request->role);
@@ -94,13 +96,15 @@ class UserController extends Controller
                 'max:255',
                 Rule::unique(User::class)->ignore($user->id),
             ],
-            'status' => 'required'
+            'status' => 'required',
+            'gender' => ['required', 'string']
         ]);
         
 
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->is_active = $validated['status'];
+        $user->gender = $validated['gender'];
 
         // Now check if email is dirty
         if ($user->isDirty('email')) {
