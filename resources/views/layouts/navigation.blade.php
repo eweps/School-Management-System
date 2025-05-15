@@ -1,7 +1,7 @@
-<nav class="nav py-2 px-8 bg-primary flex items-center justify-between sticky top-0 z-20 shrink-0 h-20 sm:h-auto">
+<nav class="nav py-2 px-8 bg-primary dark:bg-gray-800 flex items-center justify-between sticky top-0 z-20 shrink-0 h-20 sm:h-auto border-b border-b-primary-lightest dark:border-b-gray-800">
     <div class="nav-left">
 
-        <button id="sidebarToggle" data-sidebar-state="open" class="bg-primary-light text-white rounded-lg px-3 py-2 me-2">
+        <button id="sidebarToggle" data-sidebar-state="open" class="bg-primary-light dark:bg-slate-700 text-white rounded-lg px-3 py-2 me-2">
             <i class="ri-menu-line" class="text-4xl"></i>
         </button>
 
