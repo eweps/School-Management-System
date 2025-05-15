@@ -6,7 +6,7 @@ use App\Http\Controllers\Dashboard\Admin\UserController;
 use App\Http\Controllers\Dashboard\Admin\DiplomaController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
-
+use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
  
@@ -58,6 +58,14 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             Route::put('/update/password/{id}',
             [UserController::class, 'updatePassword'])
                 ->name('.update-password');    
+    });
+
+
+    Route::prefix('/settings')->as('admin.settings')->group(function() {
+
+        Route::get('/system', [SystemSettingController::class, 'edit'])
+            ->name('.system');
+
     });
 
     Route::get('/departments', [DepartmentController::class, 'index'])
