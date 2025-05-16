@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Admin\UserController;
 use App\Http\Controllers\Dashboard\Admin\DiplomaController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
+use App\Http\Controllers\Dashboard\Admin\SemesterController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
@@ -62,6 +63,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     });
 
 
+    // Setting Routes
     Route::prefix('/settings')->as('admin.settings')->group(function() {
 
         Route::get('/system', [SystemSettingController::class, 'edit'])
@@ -72,6 +74,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     });
 
 
+    // Course Session Routes
     Route::prefix('/course-sessions')->as('admin.course-sessions')->group(function() {
         Route::get('', [CourseSessionController::class, 'index'])
             ->name('');
@@ -91,6 +94,29 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
          Route::delete('/delete', [CourseSessionController::class , 'destroy'])
             ->name('.delete');
     });
+
+
+    // Semesters
+    Route::prefix('/semesters')->as('admin.semesters')->group(function() {
+        Route::get('', [SemesterController::class, 'index'])
+            ->name('');
+
+        Route::get('/edit/{id}', [SemesterController::class, 'edit'])
+            ->name('.edit');
+
+        Route::patch('/update/{id}', [SemesterController::class, 'update'])
+            ->name('.update');
+
+        Route::get('/create', [SemesterController::class, 'create'])
+            ->name('.create');
+
+        Route::post('/store', [SemesterController::class, 'store'])
+            ->name('.store');
+
+         Route::delete('/delete', [SemesterController::class , 'destroy'])
+            ->name('.delete');
+    });
+
 
     
 
