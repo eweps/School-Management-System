@@ -42,17 +42,14 @@ class SystemSettingController extends Controller
                 $rules[$setting->name] = 'required';    
                 $messages["{$setting->name}.required"] = 'This field is required.';
             }
+            else{
+                $rules[$setting->name] = 'boolean';    
+                $messages["{$setting->name}.boolean"] = 'This field must be true or false.';
+            }
         }
 
         $request->validate($rules, $messages);
 
-        // dd($request->all("FILL_EXAM_MARKS")["FILL_EXAM_MARKS"]);
-
-        // $setting->name = 'FILL_EXAM_MARKS';
-
-        // dd($setting->name, $request->has($setting->name), $request->input($setting->name), $request->all());
-
-        
         foreach ($settings as $setting) {
              $value = $request->input($setting->name);
              Setting::where('name', $setting->name)->update(['value' => $value]);
