@@ -20,7 +20,7 @@
                 @if($setting->type === 'text')
 
                     <div>
-                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper(str_replace('_',' ', $setting->name)))" />
                         <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="text" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
                         <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
                     </div>
@@ -29,7 +29,7 @@
                 @elseif($setting->type === 'int')
 
                     <div>
-                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper(str_replace('_',' ', $setting->name)))" />
                         <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="number" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
                         <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
                     </div>
@@ -37,7 +37,7 @@
                 @elseif($setting->type === 'boolean')
 
                     <div>
-                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper(str_replace('_',' ', $setting->name)))" />
                         <x-select-input  id="{{ $setting->name }}" name="{{ $setting->name }}" class="mt-1 block w-full">
                             <option class="{{ $setting->value === NULL ? '' : 'hidden' }}" {{ $setting->value === NULL ? 'selected disabled': '' }}>Select a Value</option>
                             <option value="1" {{ $setting->value === '1' ? 'selected' : '' }}>True</option>
