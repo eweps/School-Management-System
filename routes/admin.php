@@ -76,8 +76,17 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('', [CourseSessionController::class, 'index'])
             ->name('');
 
+        Route::get('/edit/{id}', [CourseSessionController::class, 'edit'])
+            ->name('.edit');
+
+        Route::patch('/update/{id}', [CourseSessionController::class, 'update'])
+            ->name('.update');
+
         Route::get('/create', [CourseSessionController::class, 'create'])
             ->name('.create');
+
+        Route::post('/store', [CourseSessionController::class, 'store'])
+            ->name('.store');
     });
 
     
