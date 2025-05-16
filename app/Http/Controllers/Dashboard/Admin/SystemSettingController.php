@@ -32,34 +32,30 @@ class SystemSettingController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
-
         $settings = Setting::all();
 
         $rules = [];
         $messages = [];
 
         foreach ($settings as $setting) {
-            // if($setting->type === 'boolean') {
-            //     $rules[$setting->name] = '';
-            //     // $messages["{$setting->name}.boolean"] = 'This field must either be true or false.';
-            // }
             if($setting->type !== 'boolean') {
                 $rules[$setting->name] = 'required';    
                 $messages["{$setting->name}.required"] = 'This field is required.';
             }
         }
 
-        // dd($rules);
-
         $request->validate($rules, $messages);
 
-        // dd($request->all());
+        // dd($request->all("FILL_EXAM_MARKS")["FILL_EXAM_MARKS"]);
+
+        // $setting->name = 'FILL_EXAM_MARKS';
+
+        // dd($setting->name, $request->has($setting->name), $request->input($setting->name), $request->all());
 
         
         foreach ($settings as $setting) {
-            $value = $request->all($setting->name)[$setting->name];
-            Setting::where('name', $setting->name)->update(['value' => $value]);
+             $value = $request->input($setting->name);
+             Setting::where('name', $setting->name)->update(['value' => $value]);
         }
 
         return back()->with(['status' => 'settings-updated']);

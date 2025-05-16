@@ -39,8 +39,9 @@
                     <div>
                         <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
                         <x-select-input  id="{{ $setting->name }}" name="{{ $setting->name }}" class="mt-1 block w-full">
-                            <option value="1" {{ $setting->value == '1' ? 'selected' : '' }}>True</option>
-                            <option value="0" {{ $setting->value == '0' ? 'selected' : '' }}>False</option>
+                            <option class="{{ $setting->value === NULL ? '' : 'hidden' }}" {{ $setting->value === NULL ? 'selected disabled': '' }}>Select a Value</option>
+                            <option value="1" {{ $setting->value === '1' ? 'selected' : '' }}>True</option>
+                            <option value="0" {{ $setting->value === '0' ? 'selected' : '' }}>False</option>
                         </x-select-input>
                         <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
                     </div>

@@ -70,7 +70,7 @@ class SettingSeeder extends Seeder
 
         foreach($settings as $setting) {
             Setting::firstOrCreate([
-                "name" => $setting['name'],
+                "name" => trim($setting['name']),
                 "type" => $setting['type'],
                 "value" => $setting['value']
             ]);
