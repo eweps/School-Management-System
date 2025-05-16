@@ -17,11 +17,36 @@
 
             @foreach($settings as $setting)
 
-            <div>
-                <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
-                <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="text" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
-                <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
-            </div>
+                @if($setting->type === 'text')
+
+                    <div>
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="text" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
+                        <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
+                    </div>
+
+
+                @elseif($setting->type === 'int')
+
+                    <div>
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="number" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
+                        <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
+                    </div>
+
+                @elseif($setting->type === 'boolean')
+
+                    <div>
+                        <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
+                        <x-select-input  id="{{ $setting->name }}" name="{{ $setting->name }}" class="mt-1 block w-full">
+                            <option value="1" {{ $setting->value == '1' ? 'selected' : '' }}>True</option>
+                            <option value="0" {{ $setting->value == '0' ? 'selected' : '' }}>False</option>
+                        </x-select-input>
+                        <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
+                    </div>
+
+                @endif
+            
             
             @endforeach
 

@@ -32,36 +32,36 @@ class SystemSettingController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request);
+
         $settings = Setting::all();
 
         $rules = [];
         $messages = [];
 
-        $booleanFields = [
-            'FILL_CA_MARKS',
-            'FILL_EXAM_MARKS '
-        ];
-
         foreach ($settings as $setting) {
-            if(in_array($setting->name, $booleanFields)) {
-                $rules[$setting->name] = 'required|boolean';
-                $messages["{$setting->name}.required"] = 'This field is required.';
-                $messages["{$setting->name}.boolean"] = 'This field must either be 1 or 0.';
-            }
-            else {
+            // if($setting->type === 'boolean') {
+            //     $rules[$setting->name] = '';
+            //     // $messages["{$setting->name}.boolean"] = 'This field must either be true or false.';
+            // }
+            if($setting->type !== 'boolean') {
                 $rules[$setting->name] = 'required';    
                 $messages["{$setting->name}.required"] = 'This field is required.';
             }
         }
 
-        $validation = $request->validate($rules, $messages);
+        // dd($rules);
 
-        dd($validation);
+        $request->validate($rules, $messages);
+
+        // dd($request->all());
+
         
-        // foreach ($settings as $setting) {
-        //     Setting::where('name', $setting->name)->update(['value' => $setting->value]);
-        // }
+        foreach ($settings as $setting) {
+            $value = $request->all($setting->name)[$setting->name];
+            Setting::where('name', $setting->name)->update(['value' => $value]);
+        }
 
-        // return back()->with(['status' => 'settings-updated']);
+        return back()->with(['status' => 'settings-updated']);
     }
 }
