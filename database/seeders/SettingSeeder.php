@@ -44,6 +44,11 @@ class SettingSeeder extends Seeder
                 "name" => "TOTAL_EXAM_MARK",
                 "value" => 70
             ],
+
+            [
+                "name" => "MATRICULE_PREFIX",
+                "value" => "SM"
+            ]
             
         ];
 
