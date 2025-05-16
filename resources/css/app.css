@@ -31,7 +31,7 @@ select.dt-input{
 }
 
 .dataTable td {
-    @apply px-3 py-2;
+    @apply px-3 py-2 text-center;
 }
 
 .dataTable thead, 
@@ -40,7 +40,7 @@ select.dt-input{
 }
 
 .dataTable th{
-    @apply px-3 py-5 border-y border-y-zinc-200 text-start;
+    @apply px-3 py-5 border-y border-y-zinc-200 text-center;
 }
 
 .dataTable tr:nth-child(even) {
