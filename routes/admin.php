@@ -96,8 +96,30 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     });
 
 
-    // Semesters
+    // Semester Routes
     Route::prefix('/semesters')->as('admin.semesters')->group(function() {
+        Route::get('', [SemesterController::class, 'index'])
+            ->name('');
+
+        Route::get('/edit/{id}', [SemesterController::class, 'edit'])
+            ->name('.edit');
+
+        Route::patch('/update/{id}', [SemesterController::class, 'update'])
+            ->name('.update');
+
+        Route::get('/create', [SemesterController::class, 'create'])
+            ->name('.create');
+
+        Route::post('/store', [SemesterController::class, 'store'])
+            ->name('.store');
+
+         Route::delete('/delete', [SemesterController::class , 'destroy'])
+            ->name('.delete');
+    });
+
+
+    // Level Routes
+    Route::prefix('/levels')->as('admin.levels')->group(function() {
         Route::get('', [SemesterController::class, 'index'])
             ->name('');
 
