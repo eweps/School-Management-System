@@ -87,6 +87,9 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
         Route::post('/store', [CourseSessionController::class, 'store'])
             ->name('.store');
+
+         Route::delete('/delete', [CourseSessionController::class , 'destroy'])
+            ->name('.delete');
     });
 
     

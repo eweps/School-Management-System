@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\CourseSession;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\CourseSession;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
 
 class CourseSessionController extends Controller
 {
@@ -60,8 +61,22 @@ class CourseSessionController extends Controller
         return back()->with(['status' => 'course-session-updated']);
     }
 
-    public function destroy(int $id)
+    public function destroy(Request $request)
     {
-        
+        $validated = $request->validate([
+            'id' => 'required',
+        ]);
+
+        try {
+            $courseSession = CourseSession::findOrFail($validated['id']);
+            $courseSession->delete();
+
+            return back()->with(['status' => 'course-session-deleted']);
+        } 
+        catch (QueryException $e) {
+            return redirect()->back()->withErrors([
+                'delete' => 'Cannot delete: This record is being used in another table.'
+            ]);
+        }
     }
 }

@@ -44,12 +44,12 @@
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.course-sessions.edit', $courseSession->id) }}"> Edit </x-primary-linkbutton>
 
-                                            {{-- <form action="{{ route('admin.diplomas.delete') }}" method="POST">
+                                            <form action="{{ route('admin.course-sessions.delete') }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <input type="hidden" name="id" value="{{ $diploma->id }}">
+                                                <input type="hidden" name="id" value="{{ $courseSession->id }}">
                                                 <x-danger-button> Del</x-danger-button>
-                                            </form> --}}
+                                            </form>
                                        </div>
                                     </td>
                                 </tr>

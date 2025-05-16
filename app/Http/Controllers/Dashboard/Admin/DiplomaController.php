@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class DiplomaController extends Controller
 {
@@ -57,8 +58,18 @@ class DiplomaController extends Controller
             'id' => 'required',
         ]);
 
-        $diploma = Diploma::findOrFail($validated['id']);
-        $diploma->delete();
-        return back()->with(['status' => 'diploma-deleted']);
+        try {
+            $diploma = Diploma::findOrFail($validated['id']);
+            $diploma->delete();
+
+            return back()->with(['status' => 'diploma-deleted']);
+        } 
+        catch (QueryException $e) {
+            return redirect()->back()->withErrors([
+                'delete' => 'Cannot delete: This record is being used in another table.'
+            ]);
+        }
+
+
     }   
 }
