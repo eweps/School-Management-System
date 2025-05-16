@@ -14,7 +14,7 @@ class ActivityController extends Controller
     public function __invoke(Request $request)
     {
         return view('dashboard.admin.settings.activity', [
-            'activities' => AuthLog::all()
+            'activities' => AuthLog::orderBy('id', 'DESC')->get()
         ]);
     }
 }

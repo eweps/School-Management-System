@@ -18,13 +18,13 @@
 
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>User</th>
-                            <th>IP Address</th>
-                            <th>User Agent</th>
-                            <th>Login</th>
-                            <th>Auth Status </th>
-                            <th>Logout</th>
+                            <th class="w-10">#</th>
+                            <th class="w-10">User</th>
+                            <th class="w-10">IP Address</th>
+                            <th class="w-10">User Agent</th>
+                            <th class="w-10">Login</th>
+                            <th class="w-10">Auth Status </th>
+                            <th class="w-10">Logout</th>
                         </tr>
                     </thead>
 
@@ -37,7 +37,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $activity->authenticatable_type::find($activity->authenticatable_id)->name }}</td>
                                     <td> {{ $activity->ip_address }} </td>
-                                    <td> {{ \Illuminate\Support\Str::limit($activity->user_agent, 30) }}</td>
+                                    <td> {{ $activity->user_agent }}</td>
                                     <td> {{ $activity->login_at?->diffForHumans() }} </td>
                                     <td> {{ $activity->login_successful == 1 ? 'success' : 'failed' }}  </td>
                                     <td> {{ $activity->logout_at?->diffForHumans() }}
