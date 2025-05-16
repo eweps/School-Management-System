@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Dashboard\Admin\ActivityController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Admin\UserController;
@@ -71,8 +72,13 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.system');
         Route::patch('/system/update', [SystemSettingController::class, 'update'])
             ->name('.system.update');
-
     });
+
+    
+    // Auth Activity Log
+    Route::get('/activities', ActivityController::class)
+            ->name('admin.activities');
+
 
 
     // Course Session Routes
