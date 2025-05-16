@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Admin\UserController;
 use App\Http\Controllers\Dashboard\Admin\DiplomaController;
@@ -69,6 +70,17 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.system.update');
 
     });
+
+
+    Route::prefix('/course-sessions')->as('admin.course-sessions')->group(function() {
+        Route::get('', [CourseSessionController::class, 'index'])
+            ->name('');
+
+        Route::get('/create', [CourseSessionController::class, 'create'])
+            ->name('.create');
+    });
+
+    
 
     Route::get('/departments', [DepartmentController::class, 'index'])
         ->name('admin.departments');
