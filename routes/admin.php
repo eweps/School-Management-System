@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Admin\UserController;
 use App\Http\Controllers\Dashboard\Admin\DiplomaController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
+use App\Http\Controllers\Dashboard\Admin\LevelController;
 use App\Http\Controllers\Dashboard\Admin\SemesterController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
@@ -120,22 +121,22 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
     // Level Routes
     Route::prefix('/levels')->as('admin.levels')->group(function() {
-        Route::get('', [SemesterController::class, 'index'])
+        Route::get('', [LevelController::class, 'index'])
             ->name('');
 
-        Route::get('/edit/{id}', [SemesterController::class, 'edit'])
+        Route::get('/edit/{id}', [LevelController::class, 'edit'])
             ->name('.edit');
 
-        Route::patch('/update/{id}', [SemesterController::class, 'update'])
+        Route::patch('/update/{id}', [LevelController::class, 'update'])
             ->name('.update');
 
-        Route::get('/create', [SemesterController::class, 'create'])
+        Route::get('/create', [LevelController::class, 'create'])
             ->name('.create');
 
-        Route::post('/store', [SemesterController::class, 'store'])
+        Route::post('/store', [LevelController::class, 'store'])
             ->name('.store');
 
-         Route::delete('/delete', [SemesterController::class , 'destroy'])
+         Route::delete('/delete', [LevelController::class , 'destroy'])
             ->name('.delete');
     });
 

@@ -2,49 +2,48 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Models\Semester;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 
-class SemesterController extends Controller
+class LevelController extends Controller
 {
-    
+
     public function index()
     {
-        return view("dashboard.admin.semesters.index", [
-            'semesters' => Semester::orderBy('id', 'DESC')->get()
+        return view("dashboard.admin.levels.index", [
+            'levels' => Level::orderBy('id', 'DESC')->get()
         ]);
     }
 
-
     public function create()
     {
-        return view('dashboard.admin.semesters.create');
+        return view('dashboard.admin.levels.create');
     }
 
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
-        Semester::create($validated);
+        Level::create($validated);
 
-        return back()->with(['status' => 'semester-created']);
+        return back()->with(['status' => 'level-created']);
     }
 
 
     public function edit(int $id)
     {
-        return view('dashboard.admin.semesters.edit', [
-             'semester' => Semester::findOrFail($id)
+        return view('dashboard.admin.levels.edit', [
+             'level' => Level::findOrFail($id)
         ]);
     }
 
-
+  
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
@@ -52,12 +51,11 @@ class SemesterController extends Controller
             'description' => 'required|string',
         ]);
 
-        $semester = Semester::findOrFail($id);
+        $semester = Level::findOrFail($id);
         $semester->update($validated);
-        return back()->with(['status' => 'semester-updated']);
+        return back()->with(['status' => 'level-updated']);
     }
 
- 
     public function destroy(Request $request)
     {
         $validated = $request->validate([
@@ -65,10 +63,10 @@ class SemesterController extends Controller
         ]);
 
         try {
-            $semester = Semester::findOrFail($validated['id']);
-            $semester->delete();
+            $level = Level::findOrFail($validated['id']);
+            $level->delete();
 
-            return back()->with(['status' => 'semester-deleted']);
+            return back()->with(['status' => 'level-deleted']);
         } 
         catch (QueryException $e) {
             return redirect()->back()->withErrors([

@@ -60,21 +60,21 @@
 
 
          <!-- Navitem with sub items -->
-        <li class="nav-dropdown group {{ request()->routeIs('admin.semesters*') ? 'active' : '' }}">
+        <li class="nav-dropdown group {{ request()->routeIs('admin.levels*') ? 'active' : '' }}">
             <a href="#"
                 class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
                 <i class="ri-stairs-line"></i>
                 <span>Levels</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
-            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.semesters*') ? '' : 'hidden' }}">
-                <li class="mb-4 group/item {{ request()->routeIs('admin.semesters') ? 'active' : '' }}">
-                    <a href="{{ route('admin.semesters') }}"
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.levels*') ? '' : 'hidden' }}">
+                <li class="mb-4 group/item {{ request()->routeIs('admin.levels') ? 'active' : '' }}">
+                    <a href="{{ route('admin.levels') }}"
                         class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                         All Levels</a>
                 </li>
-                <li class="mb-4 group/item {{ request()->routeIs('admin.semesters.create') ? 'active' : '' }}">
-                    <a href="{{ route('admin.semesters.create') }}"
+                <li class="mb-4 group/item {{ request()->routeIs('admin.levels.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.levels.create') }}"
                         class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                         Add Level</a>
                 </li>
@@ -87,7 +87,7 @@
             <a href="#"
                 class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
                 <i class="ri-time-line"></i>
-                <span>Course Sessions</span>
+                <span>Sessions</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
             <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.course-sessions*') ? '' : 'hidden' }}">
@@ -182,6 +182,12 @@
                     <a href="{{ route('admin.settings.system') }}"
                         class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                         System</a>
+                </li>
+
+                 <li class="mb-4 group/item">
+                    <a href="{{ route('admin.settings.system') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Activity</a>
                 </li>
             </ul>
         </li>
