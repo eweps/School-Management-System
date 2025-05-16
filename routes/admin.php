@@ -65,6 +65,8 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
         Route::get('/system', [SystemSettingController::class, 'edit'])
             ->name('.system');
+        Route::patch('/system/update', [SystemSettingController::class, 'update'])
+            ->name('.system.update');
 
     });
 

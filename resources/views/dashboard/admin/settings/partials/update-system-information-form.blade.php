@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form method="post" action="#" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('admin.settings.system.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -19,8 +19,8 @@
 
             <div>
                 <x-input-label for="{{ $setting->name }}" class="cursor-pointer" :value="__(strtoupper($setting->name))" />
-                <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="text" class="mt-1 block w-full" :value="old('{{ $setting->name }}', $setting->value)" required autofocus />
-                <x-input-error class="mt-2" :messages="$errors->get('{{ $setting->name }}')" />
+                <x-text-input id="{{ $setting->name }}" name="{{ $setting->name }}" type="text" class="mt-1 block w-full" :value="old($setting->name, $setting->value)" required autofocus />
+                <x-input-error class="mt-2" :messages="$errors->get($setting->name)" />
             </div>
             
             @endforeach
@@ -30,7 +30,7 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
+            @if (session('status') === 'settings-updated')
                 <p
                     x-data="{ show: true }"
                     x-show="show"
