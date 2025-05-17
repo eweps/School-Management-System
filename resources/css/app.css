@@ -17,6 +17,9 @@ select.dt-input{
     width: 60px!important;
 }
 
+.dt-input {
+    @apply dark:!bg-neutral-100 dark:!border dark:!border-neutral-400;
+}
 
 .dt-paging-button {
     @apply px-3 py-0.5 cursor-pointer;
