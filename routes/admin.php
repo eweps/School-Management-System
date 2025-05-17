@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Dashboard\Admin\ActivityController;
-use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\Admin\UserController;
-use App\Http\Controllers\Dashboard\Admin\DiplomaController;
-use App\Http\Controllers\Dashboard\Admin\OverviewController;
-use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\LevelController;
+use App\Http\Controllers\Dashboard\Admin\DiplomaController;
+use App\Http\Controllers\Dashboard\Admin\ActivityController;
+use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\SemesterController;
+use App\Http\Controllers\Dashboard\Admin\DepartmentController;
+use App\Http\Controllers\Dashboard\Admin\ApplicationController;
+use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
@@ -145,12 +146,10 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
          Route::delete('/delete', [LevelController::class , 'destroy'])
             ->name('.delete');
     });
-
-
     
 
-    Route::get('/departments', [DepartmentController::class, 'index'])
-        ->name('admin.departments');
+    Route::get('/applications', [ApplicationController::class, 'index'])
+        ->name('admin.applications');
 
 });
 

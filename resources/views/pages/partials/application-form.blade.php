@@ -1,51 +1,56 @@
 <section>
-    @php
-        $user = new stdClass();
-        $user->name = 'Alice';
-        $user->email = 'alice@example.com';
-    @endphp
 
+    @if (session('status') === 'application-successful')
+            <div
+                x-data="{ show: true }"
+                x-show="show"
+                x-transition
+                x-init="setTimeout(() => show = false, 2000)"
+                class="w-full bg-green-500 text-white py-2 px-3 my-3 text-center rounded-lg"
+            >{{ __('Application Submitted Successfully.') }}</div>
+    @endif
 
-    <form method="post" action="#" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('apply.store') }}" class="mt-6 space-y-6">
         @csrf
         <div>
             <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Salutation *</h4>
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="miss" value="miss">
+                    <input type="radio" name="salutation" id="miss" value="miss" {{ old('salutation') == 'miss' ? 'checked' : '' }}>
                     <x-input-label for="miss" class="inline-block cursor-pointer" :value="__('Miss')"/>
                 </div>
-    
+
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="mr" value="mr">
+                    <input type="radio" name="salutation" id="mr" value="mr" {{ old('salutation') == 'mr' ? 'checked' : '' }}>
                     <x-input-label for="mr" class="inline-block cursor-pointer" :value="__('Mr')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="mrs" value="mrs">
+                    <input type="radio" name="salutation" id="mrs" value="mrs" {{ old('salutation') == 'mrs' ? 'checked' : '' }}>
                     <x-input-label for="mrs" class="inline-block cursor-pointer" :value="__('Mrs')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="dr" value="dr">
+                    <input type="radio" name="salutation" id="dr" value="dr" {{ old('salutation') == 'dr' ? 'checked' : '' }}>
                     <x-input-label for="dr" class="inline-block cursor-pointer" :value="__('Dr')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="prof" value="prof">
+                    <input type="radio" name="salutation" id="prof" value="prof" {{ old('salutation') == 'prof' ? 'checked' : '' }}>
                     <x-input-label for="prof" class="inline-block cursor-pointer" :value="__('Prof')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="chief" value="chief">
+                    <input type="radio" name="salutation" id="chief" value="chief" {{ old('salutation') == 'chief' ? 'checked' : '' }}>
                     <x-input-label for="chief" class="inline-block cursor-pointer" :value="__('Chief')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="salutation" id="engr" value="engr">
+                    <input type="radio" name="salutation" id="engr" value="engr" {{ old('salutation') == 'engr' ? 'checked' : '' }}>
                     <x-input-label for="engr" class="inline-block cursor-pointer" :value="__('Engr')"/>    
                 </div>
+
             </div>
 
             <x-input-error class="mt-2" :messages="$errors->get('salutation')" />
@@ -90,12 +95,12 @@
                 <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Preferred Language *</h4>
                 <div class="radio-group flex items-center gap-x-3 flex-wrap">
                     <div class="item flex-shrink-0">
-                        <input type="radio" name="preferredLanguage" id="english" value="english">
+                        <input type="radio" name="preferredLanguage" id="english" value="english" {{ old('preferredLanguage') == 'english' ? 'checked' : '' }}>
                         <x-input-label for="english" class="inline-block cursor-pointer" :value="__('English')"/>
                     </div>
         
                     <div class="item flex-shrink-0">
-                        <input type="radio" name="preferredLanguage" id="french" value="french">
+                        <input type="radio" name="preferredLanguage" id="french" value="french" {{ old('preferredLanguage') == 'french' ? 'checked' : '' }}>
                         <x-input-label for="french" class="inline-block cursor-pointer" :value="__('French')"/>    
                     </div>
                 </div>
@@ -106,12 +111,12 @@
                 <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Sex *</h4>
                 <div class="radio-group flex items-center gap-x-3 flex-wrap">
                     <div class="item flex-shrink-0">
-                        <input type="radio" name="gender" id="male" value="male">
+                        <input type="radio" name="gender" id="male" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
                         <x-input-label for="male" class="inline-block cursor-pointer" :value="__('Male')"/>
                     </div>
         
                     <div class="item flex-shrink-0">
-                        <input type="radio" name="gender" id="female" value="female">
+                        <input type="radio" name="gender" id="female" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
                         <x-input-label for="female" class="inline-block cursor-pointer" :value="__('Female')"/>    
                     </div>
                 </div>
@@ -126,24 +131,20 @@
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="maritalStatus" id="single" value="single">
+                    <input type="radio" name="maritalStatus" id="single" value="single" {{ old('maritalStatus') == 'single' ? 'checked' : '' }}>
                     <x-input-label for="single" class="inline-block cursor-pointer" :value="__('Single')"/>
                 </div>
-    
+
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="maritalStatus" id="married" value="married">
+                    <input type="radio" name="maritalStatus" id="married" value="married" {{ old('maritalStatus') == 'married' ? 'checked' : '' }}>
                     <x-input-label for="married" class="inline-block cursor-pointer" :value="__('Married')"/>    
                 </div>
 
                 <div class="item flex-shrink-0">
-                    <input type="radio" name="maritalStatus" id="seperated" value="seperated">
-                    <x-input-label for="seperated" class="inline-block cursor-pointer" :value="__('Seperated')"/>    
-                </div>
-
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="maritalStatus" id="divorced" value="divorced">
+                    <input type="radio" name="maritalStatus" id="divorced" value="divorced" {{ old('maritalStatus') == 'divorced' ? 'checked' : '' }}>
                     <x-input-label for="divorced" class="inline-block cursor-pointer" :value="__('Divorced')"/>    
                 </div>
+
 
             </div>
 
@@ -168,13 +169,13 @@
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
-                <x-input-label for="academicDiplomas" :value="__('Academic Diplomas *')" />
+                <x-input-label for="academicDiplomas" :value="__('Academic Diplomas')" />
                 <x-textarea id="academicDiplomas" name="academicDiplomas" class="mt-1 block w-full">{{ old('academicDiplomas') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('academicDiplomas')" />
             </div>
 
             <div class="w-full">
-                <x-input-label for="professionalDiplomas" :value="__('Professional Diplomas *')" />
+                <x-input-label for="professionalDiplomas" :value="__('Professional Diplomas')" />
                 <x-textarea id="professionalDiplomas" name="professionalDiplomas" class="mt-1 block w-full">{{ old('professionalDiplomas') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('professionalDiplomas')" />
             </div>
@@ -182,13 +183,13 @@
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
-                <x-input-label for="professionalExperience" :value="__('Professional Experience *')" />
+                <x-input-label for="professionalExperience" :value="__('Professional Experience')" />
                 <x-textarea id="professionalExperience" name="professionalExperience" class="mt-1 block w-full">{{ old('professionalExperience') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('professionalExperience')" />
             </div>
 
             <div class="w-full">
-                <x-input-label for="otherRelevantInformation" :value="__('Other Relevant Information *')" />
+                <x-input-label for="otherRelevantInformation" :value="__('Other Relevant Information')" />
                 <x-textarea id="otherRelevantInformation" name="otherRelevantInformation" class="mt-1 block w-full">{{ old('otherRelevantInformation') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('otherRelevantInformation')" />
             </div>
@@ -204,15 +205,17 @@
             <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Preferred Session *</h4>
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="preferredSession" id="morning" value="morning">
-                    <x-input-label for="morning" class="inline-block cursor-pointer" :value="__('Mon to Fri 8:00am  12:00 noon (Morning)')"/>
-                </div>
-    
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="preferredSession" id="evening" value="evening">
-                    <x-input-label for="evening" class="inline-block cursor-pointer" :value="__(' Mon to Fri 4:30pm  8:30pm (Evening)')"/>    
-                </div>
+
+                @isset($courseSessions)
+
+                    @foreach ($courseSessions as $courseSession)
+                        <div class="item flex-shrink-0">
+                            <input type="radio" name="preferredSession" id="csession{{ $courseSession->id }}" value="{{ $courseSession->id }}" {{ old('preferredSession') == $courseSession->id ? 'checked' : '' }}>
+                            <x-input-label for="csession{{ $courseSession->id }}" class="inline-block cursor-pointer" :value="__($courseSession->description)"/>
+                        </div>
+                    @endforeach
+
+                @endisset
 
             </div>
 
@@ -225,30 +228,15 @@
             <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Type of Diploma *</h4>
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="diploma" id="professionalDiplomas" value="professional_diplomas">
-                    <x-input-label for="professionalDiplomas" class="inline-block cursor-pointer" :value="__('Professional Diplomas')"/>
-                </div>
-    
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="diploma" id="higherNationalDiploma" value="higher_national_diploma">
-                    <x-input-label for="higherNationalDiploma" class="inline-block cursor-pointer" :value="__('Higher National Diploma')"/>    
-                </div>
 
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="diploma" id="professionalBachelorsDegree" value="professional_bachelors_degree">
-                    <x-input-label for="professionalBachelorsDegree" class="inline-block cursor-pointer" :value="__('Professional Bachelors Degree')"/>    
-                </div>
-
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="diploma" id="internationalCertifications" value="international_certifications">
-                    <x-input-label for="internationalCertifications" class="inline-block cursor-pointer" :value="__('International Certifications')"/>    
-                </div>
-
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="diploma" id="professionalMastersDegree" value="professional_masters_degree">
-                    <x-input-label for="professionalMastersDegree" class="inline-block cursor-pointer" :value="__('Professional Masters Degree')"/>    
-                </div>
+                @isset($diplomas)
+                    @foreach ($diplomas as $diploma )
+                        <div class="item flex-shrink-0">
+                            <input type="radio" name="diploma" id="diploma{{ $diploma->id }}" value="{{ $diploma->id }}" {{ old('diploma') == $diploma->id ? 'checked' : '' }}>
+                            <x-input-label for="diploma{{ $diploma->id }}" class="inline-block cursor-pointer" :value="__($diploma->name)"/>
+                        </div>
+                    @endforeach
+                @endisset
 
             </div>
 
@@ -258,16 +246,6 @@
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Submit Your Application') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
-            @endif
         </div>
     </form>
 </section>
