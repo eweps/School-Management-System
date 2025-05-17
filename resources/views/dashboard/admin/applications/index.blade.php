@@ -20,7 +20,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>IdCard</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -28,24 +30,19 @@
 
                     <tbody>
 
-                       @isset($semesters)
+                       @isset($applications)
 
-                            @foreach ($semesters as $semester)
+                            @foreach ($applications as $application)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $semester->name }}</td>
-                                    <td> {{ \Illuminate\Support\Str::limit($semester->description, 20) }}</td>
-                                    <td>{{ $semester->created_at->diffForHumans() }}</td>
+                                    <td>{{ $application->name }}</td>
+                                    <td>{{ $application->email }}</td>
+                                    <td>{{ $application->gender }}</td>
+                                    <td>{{ $application->id_card_number }}</td>
+                                    <td>{{ $application->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-                                            <x-primary-linkbutton href="{{ route('admin.semesters.edit', $semester->id) }}"> Edit </x-primary-linkbutton>
-
-                                            <form action="{{ route('admin.semesters.delete') }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <input type="hidden" name="id" value="{{ $semester->id }}">
-                                                <x-danger-button> Del</x-danger-button>
-                                            </form>
+                                            <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}"> See More </x-primary-linkbutton>
                                        </div>
                                     </td>
                                 </tr>
@@ -59,7 +56,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Address</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>

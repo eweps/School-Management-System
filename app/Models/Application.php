@@ -25,4 +25,14 @@ class Application extends Model
         'professional_experience',
         'other_relevant_info',
     ];
+
+    public function diploma()
+    {
+        return $this->belongsTo(Diploma::class);
+    }
+
+    public function courseSession()
+    {
+        return $this->belongsTo(CourseSession::class);
+    }
 }

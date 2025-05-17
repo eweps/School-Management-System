@@ -148,8 +148,15 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     });
     
 
-    Route::get('/applications', [ApplicationController::class, 'index'])
-        ->name('admin.applications');
+    Route::prefix('/applications')->as('admin.applications')->group(function() {
+
+        Route::get('', [ApplicationController::class, 'index'])
+        ->name('');
+
+        Route::get('/{id}', [ApplicationController::class, 'show'])
+        ->name('.show');
+
+    });
 
 });
 

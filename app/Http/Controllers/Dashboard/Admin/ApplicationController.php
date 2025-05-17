@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ApplicationController extends Controller
 {
@@ -12,47 +13,19 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        return view('dashboard.admin.applications.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('dashboard.admin.applications.index', [
+            'applications' => Application::orderBy('id', 'DESC')->get()
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return view('dashboard.admin.applications.show', [
+            'application' => Application::findOrFail($id)
+        ]);
     }
 
     /**

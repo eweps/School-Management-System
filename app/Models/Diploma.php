@@ -18,4 +18,9 @@ class Diploma extends Model
     {
         return $this->hasMany(Department::class);
     }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

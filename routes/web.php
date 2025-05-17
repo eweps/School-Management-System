@@ -20,8 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/apply', [PageController::class, 'apply'])->name('apply');
 Route::middleware('guest')->group(function() {
-    Route::get('/apply', [PageController::class, 'apply'])->name('apply');
     Route::post('/apply/store', [PageController::class, 'storeApplication'])->name('apply.store');
 });
 

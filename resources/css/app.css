@@ -43,7 +43,7 @@ select.dt-input{
 }
 
 .dataTable th{
-    @apply px-3 py-5 border-y border-y-zinc-200 text-center;
+    @apply px-3 py-5 border-y border-y-zinc-200 !text-center;
 }
 
 .dataTable tr:nth-child(even) {
@@ -72,3 +72,19 @@ select.dt-input{
     }
 }
  
+
+#applicationForm{
+    @apply w-full text-start;
+
+    tr {
+        @apply border-b border-b-slate-400;
+    }
+
+    th, td {
+        @apply py-2.5 px-2 text-start border;
+    }
+
+    .theading {
+        @apply text-center;
+    }
+}

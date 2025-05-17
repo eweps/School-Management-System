@@ -21,4 +21,10 @@ class CourseSession extends Model
         'end_time' => 'datetime:H:i:s'
     ];
 
+    
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
 }
