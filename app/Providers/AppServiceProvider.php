@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if(Schema::hasTable('settings') && Schema::hasColumn('settings', 'name')){
+           $systemName = Setting::where('name', 'system_name')->value('value');
+
+            if ($systemName) {
+                Config::set('app.name', $systemName);
+            }
+        }
     }
 }

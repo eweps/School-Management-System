@@ -1,3 +1,90 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html[data-loading] * {
+    transition: none !important;
+}
+
+.bg-rough {
+    background-image: url("/public/images/roughbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+select.dt-input{
+    width: 60px!important;
+}
+
+.dt-input {
+    @apply dark:!bg-neutral-100 dark:!border dark:!border-neutral-400;
+}
+
+.dt-paging-button {
+    @apply px-3 py-0.5 cursor-pointer;
+}
+
+.dt-paging-button.current, .dt-paging-button.next, .dt-paging-button.last {
+    @apply bg-zinc-200;
+}
+
+.dt-paging-button:hover{
+    @apply !bg-zinc-200;
+}
+
+.dataTable td {
+    @apply px-3 py-2 text-center;
+}
+
+.dataTable thead, 
+.dataTable tfoot {
+    @apply uppercase text-sm;
+}
+
+.dataTable th{
+    @apply px-3 py-5 border-y border-y-zinc-200 !text-center;
+}
+
+.dataTable tr:nth-child(even) {
+    @apply bg-zinc-200;
+}
+
+
+.dt-layout-row {
+    @apply w-full flex items-center justify-between mb-4 mt-4;
+}
+
+.dt-layout-full{
+   @apply w-full;
+}
+.dt-input {
+    @apply border border-zinc-200 rounded py-1 px-0.5;
+}
+
+.dt-empty {
+    @apply text-center;
+}
+
+@media screen and (max-width: 600px) {
+    .dt-layout-row {
+        @apply w-full flex flex-col gap-8 items-center justify-between mb-4 mt-4;
+    }
+}
+ 
+
+#applicationForm{
+    @apply w-full text-start;
+
+    tr {
+        @apply border-b border-b-slate-400;
+    }
+
+    th, td {
+        @apply py-2.5 px-2 text-start border;
+    }
+
+    .theading {
+        @apply text-center;
+    }
+}
