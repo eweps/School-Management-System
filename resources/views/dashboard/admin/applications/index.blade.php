@@ -16,7 +16,6 @@
 
             <div class="flex justify-center items-center">
                   <x-primary-linkbutton href="{{ route('admin.applications.empty.pdf') }}">
-                    <img src="{{ asset('images/pdf.svg') }}" class="me-1" />
                     Get Empty Form
                   </x-primary-linkbutton>
             </div>
@@ -50,7 +49,7 @@
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}">
-                                                <img src="{{ asset('images/eye.svg') }}" />
+                                                View
                                             </x-primary-linkbutton>
                                        </div>
                                     </td>
