@@ -14,6 +14,13 @@
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">
 
+            <div class="flex justify-center items-center">
+                  <x-primary-linkbutton href="{{ route('admin.applications.empty.pdf') }}">
+                    <img src="{{ asset('images/pdf.svg') }}" class="me-1" />
+                    Get Empty Form
+                  </x-primary-linkbutton>
+            </div>
+
                 <table class="dt-table display">
 
                     <thead>
@@ -42,7 +49,9 @@
                                     <td>{{ $application->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-                                            <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}"> See More </x-primary-linkbutton>
+                                            <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}">
+                                                <img src="{{ asset('images/eye.svg') }}" />
+                                            </x-primary-linkbutton>
                                        </div>
                                     </td>
                                 </tr>

@@ -5,7 +5,6 @@ import './theme';
 import './datatable';
 import './transaction-chart';
 import './browser-chart';
-import './timezone';
 
 import Alpine from 'alpinejs';
 

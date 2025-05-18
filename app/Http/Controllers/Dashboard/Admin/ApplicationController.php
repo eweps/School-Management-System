@@ -39,6 +39,13 @@ class ApplicationController extends Controller
         return $pdf->download($fileName);
     }
 
+    public function generateEmptyPdf()
+    {
+        $pdf = Pdf::loadView('pdf.application-empty');
+        $fileName = strtoupper(Str::random() . time()). ".pdf";
+        return $pdf->download($fileName);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
