@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerifyEmailController extends Controller
 {
@@ -16,16 +17,20 @@ class VerifyEmailController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
 
-            if($request->user()->hasRole('admin')) {
-                 return redirect()->intended(route('admin.dashboard', absolute: false).'?verified=1');
-            }
-            else if($request->user()->hasRole('teacher')) {
+            if ($request->user()->hasRole('admin') && Auth::user()->is_active) {
+
+                return redirect()->intended(route('admin.dashboard', absolute: false));
+            } elseif ($request->user()->hasRole('teacher') && Auth::user()->is_active) {
+
+                return redirect()->intended(route('teacher.dashboard', absolute: false));
+            } elseif ($request->user()->hasRole('student') && Auth::user()->is_active) {
                 // TODO
+            } else {
+                Auth::guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()->with('status', 'Authentication not successful please contact the administrator');
             }
-            else {
-                // TODO
-            }
-           
         }
 
         if ($request->user()->markEmailAsVerified()) {
@@ -33,15 +38,19 @@ class VerifyEmailController extends Controller
         }
 
 
-        if($request->user()->hasRole('admin')) {
-             return redirect()->intended(route('admin.dashboard', absolute: false).'?verified=1');
-        }
-        else if($request->user()->hasRole('teacher')) {
+        if ($request->user()->hasRole('admin') && Auth::user()->is_active) {
+
+            return redirect()->intended(route('admin.dashboard', absolute: false));
+        } elseif ($request->user()->hasRole('teacher') && Auth::user()->is_active) {
+
+            return redirect()->intended(route('teacher.dashboard', absolute: false));
+        } elseif ($request->user()->hasRole('student') && Auth::user()->is_active) {
             // TODO
+        } else {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->back()->with('status', 'Authentication not successful please contact the administrator');
         }
-        else {
-            // TODO
-        }
-       
     }
 }

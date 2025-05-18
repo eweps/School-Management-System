@@ -16,7 +16,13 @@
    @endguest
 
    @auth
-    <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @if(auth()->user()->hasRole('admin'))
+            <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @endif
+
+        @if(auth()->user()->hasRole('teacher'))
+            <a href="{{ route('teacher.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @endif
    @endauth
 </div>
 

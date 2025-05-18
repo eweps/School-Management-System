@@ -28,3 +28,4 @@ Route::post('/apply/store', [PageController::class, 'storeApplication'])->name('
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+require __DIR__.'/teacher.php';
