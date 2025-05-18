@@ -43,14 +43,14 @@ class UserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required', 'string'],
-            'gender' => ['required', 'string']
+            'gender' => ['required', 'string'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'gender' => $request->gender
+            'gender' => $request->gender,
         ]);
 
         $user->assignRole($request->role);
@@ -97,7 +97,7 @@ class UserController extends Controller
                 Rule::unique(User::class)->ignore($user->id),
             ],
             'status' => 'required',
-            'gender' => ['required', 'string']
+            'gender' => ['required', 'string'],
         ]);
         
 
