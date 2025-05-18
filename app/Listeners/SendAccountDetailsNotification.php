@@ -11,6 +11,8 @@ class SendAccountDetailsNotification implements ShouldQueue
 {
 
     public $delay = 60;
+    public $tries = 3;
+
 
     /**
      * Create the event listener.

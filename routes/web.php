@@ -21,9 +21,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/apply', [PageController::class, 'apply'])->name('apply');
-Route::middleware('guest')->group(function() {
-    Route::post('/apply/store', [PageController::class, 'storeApplication'])->name('apply.store');
-});
+Route::post('/apply/store', [PageController::class, 'storeApplication'])->name('apply.store');
+// Route::middleware('guest')->group(function() {
+    
+// });
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

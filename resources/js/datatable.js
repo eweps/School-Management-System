@@ -6,5 +6,12 @@ const selectors = document.querySelectorAll('.dt-table');
 
 // Initialize datatable for all selectors
 selectors.forEach(selector => {
-    const table = new DataTable(selector);
+    const table = new DataTable(selector, {
+        columnDefs: [
+            { 
+                targets: 0, 
+                orderable: false 
+            }
+        ]
+    });
 })

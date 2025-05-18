@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Diploma;
 use App\Models\Application;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\CourseSession;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
+use App\Events\ApplicationSubmitted;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -32,7 +36,7 @@ class PageController extends Controller
         // dd($request);
 
         $validated = $request->validate([
-            'salutation' => 'required|in:mr,mrs,miss,ms,dr',
+            'salutation' => 'required|in:mr,mrs,miss,dr,prof,chief,engr',
             'name' => 'required|string|max:255',
             'idCardNumber' => 'required|string|max:50',
             'email' => [
@@ -58,7 +62,7 @@ class PageController extends Controller
 
        
         try {
-                Application::create( [
+            $application = Application::create( [
                 'salutation' => $validated['salutation'],
                 'name' => $validated['name'],
                 'id_card_number' => $validated['idCardNumber'],
@@ -78,8 +82,10 @@ class PageController extends Controller
                 'diploma_id' => $validated['diploma']
             ]);
 
+            $fileName = $this->generatePdf($application);
+            ApplicationSubmitted::dispatch($application, $fileName);
 
-        return redirect()->back()->with(['status' => 'application-successful']);
+            return redirect()->back()->with(['status' => 'application-successful']);
 
         } catch (\Exception $e) {
 
@@ -88,5 +94,20 @@ class PageController extends Controller
             ]);
            
         }
+    }
+
+
+    private function generatePdf(Application $application): string|bool
+    {
+        $pdf = Pdf::loadView('pdf.application', ['application' => $application]);
+        $fileName = strtoupper(str_replace(' ', '_', $application->name) . "_" . Str::random() . time()). ".pdf";
+        Storage::disk('local')->put( $fileName, $pdf->output());
+
+        if(Storage::disk('local')->exists($fileName)) {
+            // return Storage::url($fileName);
+            return $fileName;
+        }
+
+        return false;
     }
 }

@@ -28,7 +28,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Gender</th>
-                            <th>IdCard</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
@@ -44,8 +43,10 @@
                                     <td>{{ $application->name }}</td>
                                     <td>{{ $application->email }}</td>
                                     <td>{{ $application->gender }}</td>
-                                    <td>{{ $application->id_card_number }}</td>
-                                    <td>{{ $application->created_at->diffForHumans() }}</td>
+                                    <td>
+                                        {{ $application->created_at->diffForHumans() }}
+                                        <div> {{ $application->created_at->toDayDateTimeString() }} </div>
+                                    </td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}">
@@ -66,7 +67,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Gender</th>
-                            <th>Address</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
