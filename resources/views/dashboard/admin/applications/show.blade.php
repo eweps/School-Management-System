@@ -16,7 +16,7 @@
 
                <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
                      <h2 class="text-center uppercase tracking-widest">{{ $application->name }} - <span class="font-semibold">Application Form</span></h2>
-                     <x-primary-linkbutton href="#">
+                     <x-primary-linkbutton href="{{ route('admin.applications.pdf', $application->id) }}">
                         <i class="ri-file-pdf-2-line text-base me-1"></i>
                         Generate PDF 
                     </x-primary-linkbutton>

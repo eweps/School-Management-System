@@ -156,6 +156,9 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('/{id}', [ApplicationController::class, 'show'])
         ->name('.show');
 
+        
+        Route::get('/generate-pdf/{id}', [ApplicationController::class, 'generatePdf'])
+        ->name('.pdf');
     });
 
 });

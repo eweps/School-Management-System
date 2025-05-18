@@ -23,7 +23,7 @@
                             <th>Email</th>
                             <th>Gender</th>
                             <th>IdCard</th>
-                            <th>Created</th>
+                            <th>Submitted</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -59,7 +59,7 @@
                             <th>Email</th>
                             <th>Gender</th>
                             <th>Address</th>
-                            <th>Created</th>
+                            <th>Submitted</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

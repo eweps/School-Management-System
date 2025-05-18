@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\Application;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 
 class ApplicationController extends Controller
@@ -26,6 +28,15 @@ class ApplicationController extends Controller
         return view('dashboard.admin.applications.show', [
             'application' => Application::findOrFail($id)
         ]);
+    }
+
+    public function generatePdf(int $id)
+    {
+        $application = Application::findOrFail($id);
+
+        $pdf = Pdf::loadView('pdf.application', ['application' => $application])->setPaper('a4', 'portrait');
+        $fileName = strtoupper(str_replace(' ', '_', $application->name) . "_" . Str::random() . time()). ".pdf";
+        return $pdf->download($fileName);
     }
 
     /**
