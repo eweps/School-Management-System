@@ -1,4 +1,4 @@
-<div class="container mx-auto lg:flex lg:items-center lg:justify-between lg:gap-3 text-center">
+<div class="container max-w-7xl mx-auto lg:flex lg:items-center lg:justify-between lg:gap-3 text-center">
     <a href="{{ route('home') }}" class="block w-48 flex-shrink-0 mx-auto mb-8 lg:mb-0">
         <img class="w-full" src="{{ asset('images/logo.png') }}" alt="Logo">
     </a>
