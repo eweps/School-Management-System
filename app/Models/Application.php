@@ -24,6 +24,7 @@ class Application extends Model
         'professional_diplomas',
         'professional_experience',
         'other_relevant_info',
+        'status'
     ];
 
     public function diploma()
@@ -34,5 +35,20 @@ class Application extends Model
     public function courseSession()
     {
         return $this->belongsTo(CourseSession::class);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where(['status' => 'pending']);
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where(['status' => 'approved']);
+    }
+
+    public function scopeRejected($query)
+    {
+        return $query->where(['status' => 'rejected']);
     }
 }
