@@ -16,7 +16,7 @@
 
                 <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                         <div class="flex-shrink-0">
-                            <p class="font-semibold">50</p>
+                            <p class="font-semibold">{{ $totalTeachers }}</p>
                             <h3 class="text-neutral-500 font-medium">Total Teachers</h3>
                         </div>
 
@@ -27,7 +27,7 @@
 
                 <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
                     <div>
-                        <p class="font-semibold">50</p>
+                        <p class="font-semibold">{{ $totalStudents }}</p>
                         <h3 class="text-neutral-500 font-medium">Total Students</h3>
                     </div>
 

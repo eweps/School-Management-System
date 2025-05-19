@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OverviewController extends Controller
@@ -12,6 +13,10 @@ class OverviewController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('dashboard.admin.index');
+        return view('dashboard.admin.index', [
+            'totalTeachers' => User::role('teacher')->count(),
+            'totalStudents' => User::role('student')->count(),
+            
+        ]);
     }
 }
