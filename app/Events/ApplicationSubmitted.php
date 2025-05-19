@@ -19,8 +19,7 @@ class ApplicationSubmitted
      * Create a new event instance.
      */
     public function __construct(
-        public Application $application,
-        public string $fileName
+        public Application $application
     ){}
 
     /**

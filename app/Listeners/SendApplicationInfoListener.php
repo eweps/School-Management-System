@@ -2,8 +2,10 @@
 
 namespace App\Listeners;
 
+use App\Models\Application;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 use App\Events\ApplicationSubmitted;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApplicationSubmittedMail;
@@ -29,6 +31,8 @@ class SendApplicationInfoListener implements ShouldQueue
      */
     public function handle(ApplicationSubmitted $event): void
     {
-        Mail::to($event->application->email)->send( new ApplicationSubmittedMail($event->application, $event->fileName));
+        app(\App\Services\HandleApplicationSubmission::class)->process($event->application);
     }
+
+ 
 }

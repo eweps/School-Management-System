@@ -57,7 +57,8 @@ class PageController extends Controller
             'professionalExperience' => 'nullable|string|max:1000',
             'otherRelevantInformation' => 'nullable|string|max:1000',
             'preferredSession' => 'required',
-            'diploma' => 'required'
+            'diploma' => 'required',
+            'timezone' => 'required|timezone'
         ]);
 
        
@@ -79,11 +80,11 @@ class PageController extends Controller
                 'professional_experience' => $validated['professionalExperience'] ?? null,
                 'other_relevant_info' => $validated['otherRelevantInformation'] ?? null,
                 'course_session_id' => $validated['preferredSession'],
-                'diploma_id' => $validated['diploma']
+                'diploma_id' => $validated['diploma'],
+                'timezone' => $validated['timezone']
             ]);
 
-            $fileName = $this->generatePdf($application);
-            ApplicationSubmitted::dispatch($application, $fileName);
+            ApplicationSubmitted::dispatch($application);
 
             return redirect()->back()->with(['status' => 'application-successful']);
 
@@ -96,18 +97,4 @@ class PageController extends Controller
         }
     }
 
-
-    private function generatePdf(Application $application): string|bool
-    {
-        $pdf = Pdf::loadView('pdf.application', ['application' => $application]);
-        $fileName = strtoupper(str_replace(' ', '_', $application->name) . "_" . Str::random() . time()). ".pdf";
-        Storage::disk('local')->put( $fileName, $pdf->output());
-
-        if(Storage::disk('local')->exists($fileName)) {
-            // return Storage::url($fileName);
-            return $fileName;
-        }
-
-        return false;
-    }
 }

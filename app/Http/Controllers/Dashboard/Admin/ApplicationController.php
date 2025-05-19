@@ -34,14 +34,14 @@ class ApplicationController extends Controller
     {
         $application = Application::findOrFail($id);
 
-        $pdf = Pdf::loadView('pdf.application', ['application' => $application])->setPaper('a4', 'portrait');
+        $pdf = Pdf::loadView('pdf.application', ['application' => $application, "timezone" => auth()->user()->timezone])->setPaper('a4', 'portrait');
         $fileName = strtoupper(str_replace(' ', '_', $application->name) . "_" . Str::random() . time()). ".pdf";
         return $pdf->download($fileName);
     }
 
     public function generateEmptyPdf()
     {
-        $pdf = Pdf::loadView('pdf.application-empty');
+        $pdf = Pdf::loadView('pdf.application-empty', ["timezone" => auth()->user()->timezone]);
         $fileName = strtoupper(Str::random() . time()). ".pdf";
         return $pdf->download($fileName);
     }

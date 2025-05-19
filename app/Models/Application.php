@@ -24,7 +24,8 @@ class Application extends Model
         'professional_diplomas',
         'professional_experience',
         'other_relevant_info',
-        'status'
+        'status',
+        'timezone'
     ];
 
     public function diploma()

@@ -244,6 +244,8 @@
             
         </div>
 
+        <input type="hidden" name="timezone" id="timezone" />
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Submit Your Application') }}</x-primary-button>
         </div>
