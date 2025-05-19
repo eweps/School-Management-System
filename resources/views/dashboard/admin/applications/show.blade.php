@@ -9,7 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a> -
+                    @if($application->status === 'pending')
+                        <span class="bg-orange-200 text-orange-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                    @endif
+
+                    @if($application->status === 'approved')
+                        <span class="bg-green-200 text-green-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                    @endif
+
+                    @if($application->status === 'rejected')
+                        <span class="bg-red-200 text-red-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                    @endif
+                </h1>
             </header>
 
             <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-100 shadow rounded-lg">

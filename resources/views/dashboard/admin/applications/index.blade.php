@@ -26,8 +26,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Gender</th>
+                            <th>Status</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
@@ -41,8 +41,21 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $application->name }}</td>
-                                    <td>{{ $application->email }}</td>
                                     <td>{{ $application->gender }}</td>
+                                    <td>
+                                        @if($application->status === 'pending')
+                                            <span class="bg-orange-200 text-orange-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                        @endif
+
+                                        @if($application->status === 'approved')
+                                            <span class="bg-green-200 text-green-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                        @endif
+
+                                        @if($application->status === 'rejected')
+                                            <span class="bg-red-200 text-red-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                        @endif
+
+                                    </td>
                                     <td>
                                         {{ $application->created_at->diffForHumans() }}
                                         <div> {{ $application->created_at->toDayDateTimeString() }} </div>
@@ -65,8 +78,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Gender</th>
+                            <th>Status</th>
                             <th>Submitted</th>
                             <th>Action</th>
                         </tr>
