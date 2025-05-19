@@ -44,15 +44,15 @@
                                     <td>{{ $application->gender }}</td>
                                     <td>
                                         @if($application->status === 'pending')
-                                            <span class="bg-orange-200 text-orange-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                          <x-badge type="warning">{{  $application->status }} </x-badge>
                                         @endif
 
                                         @if($application->status === 'approved')
-                                            <span class="bg-green-200 text-green-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                            <x-badge type="success">{{  $application->status }} </x-badge>
                                         @endif
 
                                         @if($application->status === 'rejected')
-                                            <span class="bg-red-200 text-red-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                                            <x-badge type="danger">{{  $application->status }} </x-badge>
                                         @endif
 
                                     </td>

@@ -11,15 +11,15 @@
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a> -
                     @if($application->status === 'pending')
-                        <span class="bg-orange-200 text-orange-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                        <x-badge type="warning">{{  $application->status }} </x-badge>
                     @endif
 
                     @if($application->status === 'approved')
-                        <span class="bg-green-200 text-green-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                        <x-badge type="success">{{  $application->status }} </x-badge>
                     @endif
 
                     @if($application->status === 'rejected')
-                        <span class="bg-red-200 text-red-800 py-1 px-2 rounded-lg">{{ $application->status }}</span>
+                        <x-badge type="danger">{{  $application->status }} </x-badge>
                     @endif
                 </h1>
             </header>
