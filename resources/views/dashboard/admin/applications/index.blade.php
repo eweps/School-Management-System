@@ -12,7 +12,7 @@
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">Applications</a></h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">
+            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
             <div class="flex justify-center items-center">
                   <x-primary-linkbutton href="{{ route('admin.applications.empty.pdf') }}">

@@ -18,11 +18,14 @@ select.dt-input{
 }
 
 .dt-input {
-    @apply dark:!bg-neutral-100 dark:!border dark:!border-neutral-400;
+    @apply dark:!bg-gray-700 dark:!text-neutral-200 dark:!border dark:!border-gray-700;
+}
+.dt-container label, .dt-info {
+    @apply dark:!text-neutral-200;
 }
 
 .dt-paging-button {
-    @apply px-3 py-0.5 cursor-pointer;
+    @apply px-3 py-0.5 cursor-pointer dark:!text-neutral-200;
 }
 
 .dt-paging-button.current, .dt-paging-button.next, .dt-paging-button.last {
@@ -30,7 +33,11 @@ select.dt-input{
 }
 
 .dt-paging-button:hover{
-    @apply !bg-zinc-200;
+    @apply !bg-zinc-200 dark:!bg-gray-800;
+}
+
+.dataTable {
+@apply dark:!bg-gray-800 dark:!text-neutral-200;
 }
 
 .dataTable td {
@@ -46,9 +53,9 @@ select.dt-input{
     @apply px-3 py-5 border-y border-y-zinc-200 !text-center;
 }
 
-.dataTable tr:nth-child(even) {
-    @apply bg-zinc-200;
-}
+ .dataTable tr:nth-child(even) {
+    @apply bg-zinc-200 dark:!bg-transparent;
+} 
 
 
 .dt-layout-row {
@@ -77,11 +84,11 @@ select.dt-input{
     @apply w-full text-start;
 
     tr {
-        @apply border-b border-b-slate-400;
+        @apply border-b border-b-slate-400 dark:border-b-gray-700;
     }
 
     th, td {
-        @apply py-2.5 px-2 text-start border;
+        @apply py-2.5 px-2 text-start border dark:border-gray-700;
     }
 
     .theading {

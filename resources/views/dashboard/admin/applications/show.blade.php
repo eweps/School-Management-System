@@ -24,7 +24,7 @@
                 </h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-100 shadow rounded-lg">
+            <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-800 dark:text-neutral-200 shadow rounded-lg">
 
                <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
                      <h2 class="text-center uppercase tracking-widest">{{ $application->name }} - <span class="font-semibold">Application Form</span></h2>
@@ -36,7 +36,7 @@
                 <table id="applicationForm">
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Personal Information</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Personal Information</th>
                         </tr>
 
                         <tr class="border-b">
@@ -73,7 +73,7 @@
                         </tr>
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Program Selection</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Program Selection</th>
                         </tr>
 
                         <tr>
@@ -87,7 +87,7 @@
                         </tr>
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Academic Information</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Academic Information</th>
                         </tr>
 
 

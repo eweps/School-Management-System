@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\Admin\SemesterController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
+use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
@@ -124,6 +125,29 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
          Route::delete('/delete', [SemesterController::class , 'destroy'])
             ->name('.delete');
     });
+
+
+     // LiveClass Routes
+    Route::prefix('/liveclass')->as('admin.liveclasses')->group(function() {
+        Route::get('', [LiveClassController::class, 'index'])
+            ->name('');
+
+        Route::get('/edit/{id}', [LiveClassController::class, 'edit'])
+            ->name('.edit');
+
+        Route::patch('/update/{id}', [LiveClassController::class, 'update'])
+            ->name('.update');
+
+        Route::get('/create', [LiveClassController::class, 'create'])
+            ->name('.create');
+
+        Route::post('/store', [LiveClassController::class, 'store'])
+            ->name('.store');
+
+         Route::delete('/delete', [LiveClassController::class , 'destroy'])
+            ->name('.delete');
+    });
+
 
 
     // Level Routes

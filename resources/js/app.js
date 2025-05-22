@@ -6,6 +6,8 @@ import './datatable';
 import './transaction-chart';
 import './browser-chart';
 import './timezone';
+import 'flowbite';
+import './clipboard';
 
 import Alpine from 'alpinejs';
 

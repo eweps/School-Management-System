@@ -23,4 +23,4 @@
 @endphp
 
 
-<span {{ $attributes->merge(["class" => "$classString py-1 px-2 rounded-lg"]) }}>{{ $slot }}</span>
+<span {{ $attributes->merge(["class" => "$classString py-1 px-2 rounded-lg uppercase tracking-widest text-xs font-semibold"]) }}>{{ $slot }}</span>
