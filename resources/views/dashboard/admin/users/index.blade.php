@@ -21,7 +21,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Status</th>
                             <th>Verified</th>
                             <th>Role </th>
                             <th>Gender</th>
@@ -38,7 +38,13 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td> {{ $user->email }}</td>
+                                    <td>
+                                        @if ($user->is_active)
+                                            <x-badge type="success">{{ __('active') }} </x-badge>
+                                        @else
+                                            <x-badge type="danger">{{ __('not active') }} </x-badge>
+                                        @endif
+                                    </td>
                                     <td> {{ $user->email_verified_at !== null ? 'yes' : 'no' }} </td>
                                     <td>{{ $user->roles()->first()->name }}</td>
                                     <td>{{ $user->gender }}</td>
@@ -52,6 +58,37 @@
                                                 <x-primary-linkbutton href="{{ route('profile.edit') }}"> Profile
                                                 </x-primary-linkbutton>
                                             @endif
+
+                                            <x-view-modal key="{{ $user->id }}" heading="User Details" button="More">
+                                                <div class="overflow-x-auto">
+                                                    <table
+                                                        class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm">
+                                                        <tbody class="divide-y divide-gray-700 text-sm text-gray-700 dark:text-neutral-200">
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 w-1/3 uppercase">Name</td>
+                                                                <td class="px-4 py-3">{{ $user->name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Email</td>
+                                                                <td class="px-4 py-3">{{ $user->email }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Gender</td>
+                                                                <td class="px-4 py-3 capitalize">{{ $user->gender }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Timezone</td>
+                                                                <td class="px-4 py-3">{{ $user->timezone }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Created</td>
+                                                                <td class="px-4 py-3">{{ $user->created_at->toFormattedDayDateString() }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </x-view-modal>
+
 
                                             {{-- <form action="{{ route('admin.diplomas.delete') }}" method="POST">
                                                 @csrf
@@ -72,7 +109,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Status</th>
                             <th>Verified</th>
                             <th>Role</th>
                             <th>Gender</th>

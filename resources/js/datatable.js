@@ -12,7 +12,7 @@ tables.forEach(tableEl => {
         ]
     });
 
-    // ✅ Delegate submit events for delete forms inside the table
+    //Delegate submit events for delete forms inside the table
     tableEl.addEventListener('submit', function (e) {
         const form = e.target.closest('.delete-form');
         if (!form) return;
