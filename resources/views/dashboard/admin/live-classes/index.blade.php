@@ -21,7 +21,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Link</th>
+                            <th>Status</th>
                             <th>Start Date </th>
                             <th>Created</th>
                             <th>Action</th>
@@ -118,7 +118,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Link</th>
+                            <th>Status</th>
                             <th>Start Date </th>
                             <th>Created</th>
                             <th>Action</th>
