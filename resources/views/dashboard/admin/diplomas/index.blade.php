@@ -40,7 +40,7 @@
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.diplomas.edit', $diploma->id) }}"> Edit </x-primary-linkbutton>
 
-                                            <form action="{{ route('admin.diplomas.delete') }}" method="POST">
+                                            <form class="delete-form" action="{{ route('admin.diplomas.delete') }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="hidden" name="id" value="{{ $diploma->id }}">

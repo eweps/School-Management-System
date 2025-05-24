@@ -26,7 +26,7 @@ class ExpiredLiveClassesJob implements ShouldQueue
     {
         $now = Carbon::now();
 
-        LiveClass::where('is_expired', false)
+        LiveClass::where(['is_expired' => false])
                     ->where('date', '<', $now)
                     ->update(['is_expired' => true]);
     }

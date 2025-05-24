@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\LiveClass;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class LiveClassController extends Controller
 {
@@ -80,8 +81,22 @@ class LiveClassController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+         $validated = $request->validate([
+            'id' => 'required',
+        ]);
+
+        try {
+            $liveClass = LiveClass::findOrFail($validated['id']);
+            $liveClass->delete();
+
+            return back()->with(['status' => 'liveclass-deleted']);
+        } 
+        catch (QueryException $e) {
+            return redirect()->back()->withErrors([
+                'delete' => 'Cannot delete: This record is being used in another table.'
+            ]);
+        }
     }
 }

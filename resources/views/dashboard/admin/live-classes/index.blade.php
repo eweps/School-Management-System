@@ -97,6 +97,13 @@
                                             <x-primary-linkbutton href="{{ route('admin.liveclasses.edit', ['id' => $liveClass->id]) }}">
                                                 {{ __('Edit') }}                      
                                             </x-primary-linkbutton>
+
+                                            <form  id="delete-{{ $liveClass->id }}" class="delete-form" action="{{ route('admin.liveclasses.delete') }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="id" value="{{ $liveClass->id }}">
+                                                <x-danger-button> Del</x-danger-button>
+                                            </form>
                                         </div>
 
                                     </td>
