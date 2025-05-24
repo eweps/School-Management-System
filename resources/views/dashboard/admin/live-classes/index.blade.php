@@ -55,7 +55,7 @@
 
                                                 <h3 class="dark:text-neutral-200">Start Time</h3>
                                                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                    {{ $liveClass->start_time->format('h:m a') }}
+                                                    {{ $liveClass->start_time->format('H:i a') }}
                                                 </p>
 
                                                 <div class="mb-3">
