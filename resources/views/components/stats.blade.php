@@ -8,6 +8,6 @@
      </div>
 
      <div class="flex-shrink-0">
-         <i {{ $attributes->merge(['class' => 'py-2 px-3 rounded-lg']) }}></i>
+         <i {{ $attributes->merge(['class' => 'py-2 px-3 rounded-lg block mb-3 sm:mb-0']) }}></i>
      </div>
  </div>

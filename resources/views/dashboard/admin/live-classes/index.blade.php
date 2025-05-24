@@ -40,52 +40,59 @@
                                     <td>{{ $liveClass->date->diffForHumans() }}</td>
                                     <td>{{ $liveClass->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <x-view-modal key="{{ $liveClass->id }}" heading="Live Class Description"
-                                            button="View">
+                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+                                            <x-view-modal key="{{ $liveClass->id }}" heading="Live Class Description" button="View">
 
-                                            <h3 class="dark:text-neutral-200">Description</h3>
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {{ $liveClass->description }}
-                                            </p>
+                                                <h3 class="dark:text-neutral-200">Description</h3>
+                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                    {{ $liveClass->description }}
+                                                </p>
 
-                                            <h3 class="dark:text-neutral-200">Start Date</h3>
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {{ $liveClass->date->toFormattedDayDateString() }}
-                                            </p>
+                                                <h3 class="dark:text-neutral-200">Start Date</h3>
+                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                    {{ $liveClass->date->toFormattedDayDateString() }}
+                                                </p>
 
-                                            <h3 class="dark:text-neutral-200">Start Time</h3>
-                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {{ $liveClass->start_time->format('h:m a') }}
-                                            </p>
+                                                <h3 class="dark:text-neutral-200">Start Time</h3>
+                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                    {{ $liveClass->start_time->format('h:m a') }}
+                                                </p>
 
-                                            <div class="mb-3">
-                                                <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy and
-                                                    Share Live Class Link
-                                                </h3>
+                                                <div class="mb-3">
+                                                    <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy and
+                                                        Share Live Class Link
+                                                    </h3>
 
-                                                <div class="flex items-center gap-2">
-                                                    <!-- Target -->
-                                                    <input id="clipboardCopy{{ $liveClass->id }}"
-                                                        value="{{ $liveClass->link }}"
-                                                        class="clipboardCopy w-full rounded-lg border read-only:bg-slate-200"
-                                                        readonly>
+                                                    <div class="flex items-center gap-2">
+                                                        <!-- Target -->
+                                                        <input id="clipboardCopy{{ $liveClass->id }}"
+                                                            value="{{ $liveClass->link }}"
+                                                            class="clipboardCopy w-full rounded-lg border read-only:bg-slate-200 dark:text-neutral-900"
+                                                            readonly>
 
-                                                    <!-- Trigger -->
-                                                    <button
-                                                        class="clipBtn py-3 px-1 w-10 h-full t bg-blue-800 hover:bg-blue-950 text-white rounded-lg"
-                                                        data-clipboard-target="#clipboardCopy{{ $liveClass->id }}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                            height="16" fill="currentColor"
-                                                            class="bi bi-clipboard mx-auto" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
-                                                            <path
-                                                                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
-                                                        </svg>
-                                                    </button>
+                                                        <!-- Trigger -->
+                                                        <button
+                                                            class="clipBtn py-3 px-1 w-10 h-full t bg-primary hover:bg-primary-dark text-white rounded-lg"
+                                                            data-clipboard-target="#clipboardCopy{{ $liveClass->id }}">
+                                                            
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor"
+                                                                class="bi bi-clipboard mx-auto" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                                                                <path
+                                                                    d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </x-view-modal>
+                                            </x-view-modal>
+
+                                            <x-primary-linkbutton href="{{ route('admin.liveclasses.edit', ['id' => $liveClass->id]) }}">
+                                                {{ __('Edit') }}                      
+                                            </x-primary-linkbutton>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @endforeach

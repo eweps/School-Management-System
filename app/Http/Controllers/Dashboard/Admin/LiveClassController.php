@@ -45,28 +45,36 @@ class LiveClassController extends Controller
        return back()->with(['status' => 'liveclass-created']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
+    public function edit(int $id)
     {
-        //
+        return view('dashboard.admin.live-classes.edit', [
+             'liveClass' => LiveClass::findOrFail($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required|max:255',
+            'link' => 'required|url',
+            'date' => 'required|date',
+            'start_time' => 'required'
+       ]);
+       $validated["user_id"] = auth()->user()->id;
+
+        $liveClass = LiveClass::findOrFail($id);
+        $liveClass->update($validated);
+
+        return back()->with(['status' => 'liveclass-updated']);
     }
 
     /**
