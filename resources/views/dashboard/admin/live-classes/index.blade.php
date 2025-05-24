@@ -43,7 +43,7 @@
                                             <x-badge type="success">{{ __('active') }} </x-badge>
                                         @endif
                                     </td>
-                                    <td>{{ $liveClass->date->diffForHumans() }}</td>
+                                    <td>{{ $liveClass->date->toDateString() }}</td>
                                     <td>{{ $liveClass->created_at->diffForHumans() }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">

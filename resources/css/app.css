@@ -36,6 +36,14 @@ select.dt-input{
     @apply !bg-zinc-200 dark:!bg-gray-800;
 }
 
+.dt-paging {
+    nav {
+        button {
+            @apply !text-white;
+        }
+    }
+}
+
 .dataTable {
 @apply dark:!bg-gray-800 dark:!text-neutral-200;
 }
@@ -78,7 +86,6 @@ select.dt-input{
         @apply w-full flex flex-col gap-8 items-center justify-between mb-4 mt-4;
     }
 }
- 
 
 #applicationForm{
     @apply w-full text-start;
