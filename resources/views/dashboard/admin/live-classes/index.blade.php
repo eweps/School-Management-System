@@ -36,7 +36,13 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $liveClass->title }}</td>
-                                    <td>{{ $liveClass->link }}</td>
+                                    <td>
+                                        @if($liveClass->is_expired)
+                                            <x-badge type="danger">{{ __('expired') }} </x-badge>
+                                        @else
+                                            <x-badge type="success">{{ __('active') }} </x-badge>
+                                        @endif
+                                    </td>
                                     <td>{{ $liveClass->date->diffForHumans() }}</td>
                                     <td>{{ $liveClass->created_at->diffForHumans() }}</td>
                                     <td>

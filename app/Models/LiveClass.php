@@ -12,12 +12,14 @@ class LiveClass extends Model
         'description',
         'link',
         'date',
-        'start_time'
+        'start_time',
+        'is_expired'
     ];
 
     protected $casts = [
         'date' => 'date',
-        'start_time' => 'datetime'
+        'start_time' => 'datetime',
+        'is_expired' => 'boolean'
     ];
 
     public function user()
