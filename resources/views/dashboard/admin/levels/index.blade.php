@@ -12,6 +12,8 @@
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.levels') }}" class="text-secondary">Levels</a></h1>
             </header>
 
+            <x-session-error />
+
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
                 <table class="dt-table display">

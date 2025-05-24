@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\CourseSession;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Services\ResourceDeleteService;
 use Illuminate\Database\QueryException;
+use App\Services\ResourceDeletionService;
+use App\Exceptions\CannotDeleteUsedResourceException;
 
 class CourseSessionController extends Controller
 {
@@ -61,7 +65,7 @@ class CourseSessionController extends Controller
         return back()->with(['status' => 'course-session-updated']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, ResourceDeleteService $deleteWorker)
     {
         $validated = $request->validate([
             'id' => 'required',
@@ -69,14 +73,14 @@ class CourseSessionController extends Controller
 
         try {
             $courseSession = CourseSession::findOrFail($validated['id']);
-            $courseSession->delete();
-
+            $deleteWorker->checkAndDeleteCourseSessionInApplicationsTable($courseSession);
             return back()->with(['status' => 'course-session-deleted']);
         } 
-        catch (QueryException $e) {
-            return redirect()->back()->withErrors([
-                'delete' => 'Cannot delete: This record is being used in another table.'
-            ]);
+        catch (CannotDeleteUsedResourceException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+        catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
     }
 }

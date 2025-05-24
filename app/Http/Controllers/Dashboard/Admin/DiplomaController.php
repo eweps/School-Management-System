@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use Exception;
 use App\Models\Diploma;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\ResourceDeleteService;
 use Illuminate\Database\QueryException;
+use App\Exceptions\CannotDeleteUsedResourceException;
 
 class DiplomaController extends Controller
 {
@@ -52,7 +55,7 @@ class DiplomaController extends Controller
         return back()->with(['status' => 'diploma-updated']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, ResourceDeleteService $deleteWorker)
     {
         $validated = $request->validate([
             'id' => 'required',
@@ -60,16 +63,15 @@ class DiplomaController extends Controller
 
         try {
             $diploma = Diploma::findOrFail($validated['id']);
-            $diploma->delete();
-
+            $deleteWorker->checkAndDeleteDiplomaInApplicationsTable($diploma);
             return back()->with(['status' => 'diploma-deleted']);
         } 
-        catch (QueryException $e) {
-            return redirect()->back()->withErrors([
-                'delete' => 'Cannot delete: This record is being used in another table.'
-            ]);
+        catch (CannotDeleteUsedResourceException $e) {
+                return back()->with('error', $e->getMessage());
         }
-
+        catch (Exception $e) {
+                return back()->with('error', $e->getMessage());
+        }
 
     }   
 }

@@ -1,14 +1,6 @@
 <section>
 
-    @if (session('status') === 'application-successful')
-            <div
-                x-data="{ show: true }"
-                x-show="show"
-                x-transition
-                x-init="setTimeout(() => show = false, 2000)"
-                class="w-full bg-green-500 text-white py-2 px-3 my-3 text-center rounded-lg"
-            >{{ __('Application Submitted Successfully.') }}</div>
-    @endif
+    <x-session-status key="application-successful" message="Application Submitted Successfully" />
 
     <form method="post" action="{{ route('apply.store') }}" class="mt-6 space-y-6">
         @csrf
