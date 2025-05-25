@@ -46,6 +46,38 @@ class ApplicationController extends Controller
         return $pdf->download($fileName);
     }
 
+
+    public function approve(Request $request)
+    {
+        $validated = $request->validate([
+            'application' => 'required',
+        ]);
+
+        $application = Application::findOrFail($validated['application']);
+    
+
+        $application->update([
+            'status' =>  'approved'
+        ]);
+
+        return redirect()->back()->with('status', 'application-approved');
+    }
+
+    public function reject(Request $request)
+    {
+        $validated = $request->validate([
+            'application' => 'required',
+        ]);
+
+        $application = Application::findOrFail($validated['application']);
+
+        $application->update([
+            'status' =>  'rejected'
+        ]);
+
+        return redirect()->back()->with('status', 'application-rejected');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

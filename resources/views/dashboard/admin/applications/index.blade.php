@@ -7,18 +7,19 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">Applications</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}"
+                        class="text-secondary">Applications</a></h1>
             </header>
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
-            <div class="flex justify-center items-center">
-                  <x-primary-linkbutton href="{{ route('admin.applications.empty.pdf') }}">
-                    Get Empty Form
-                  </x-primary-linkbutton>
-            </div>
+                <div class="flex justify-center items-center">
+                    <x-primary-linkbutton href="{{ route('admin.applications.empty.pdf') }}">
+                        Get Empty Form
+                    </x-primary-linkbutton>
+                </div>
 
                 <table class="dt-table display">
 
@@ -35,7 +36,7 @@
 
                     <tbody>
 
-                       @isset($applications)
+                        @isset($applications)
 
                             @foreach ($applications as $application)
                                 <tr>
@@ -43,16 +44,16 @@
                                     <td>{{ $application->name }}</td>
                                     <td>{{ $application->gender }}</td>
                                     <td>
-                                        @if($application->status === 'pending')
-                                          <x-badge type="warning">{{  $application->status }} </x-badge>
+                                        @if ($application->status === \App\Enums\ApplicationStatus::PENDING)
+                                            <x-badge type="warning">{{ $application->status }} </x-badge>
                                         @endif
 
-                                        @if($application->status === 'approved')
-                                            <x-badge type="success">{{  $application->status }} </x-badge>
+                                        @if ($application->status === \App\Enums\ApplicationStatus::APPROVED)
+                                            <x-badge type="success">{{ $application->status }} </x-badge>
                                         @endif
 
-                                        @if($application->status === 'rejected')
-                                            <x-badge type="danger">{{  $application->status }} </x-badge>
+                                        @if ($application->status === \App\Enums\ApplicationStatus::REJECTED)
+                                            <x-badge type="danger">{{ $application->status }} </x-badge>
                                         @endif
 
                                     </td>
@@ -61,16 +62,17 @@
                                         <div> {{ $application->created_at->toDayDateTimeString() }} </div>
                                     </td>
                                     <td>
-                                       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-                                            <x-primary-linkbutton href="{{ route('admin.applications.show', $application->id) }}">
+                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+                                            <x-primary-linkbutton
+                                                href="{{ route('admin.applications.show', $application->id) }}">
                                                 View
                                             </x-primary-linkbutton>
-                                       </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
-                       
-                       @endisset
+
+                        @endisset
 
                     </tbody>
 

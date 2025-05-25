@@ -10,27 +10,73 @@
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a> -
-                    @if($application->status === 'pending')
+                    @if($application->status === \App\Enums\ApplicationStatus::PENDING)
                         <x-badge type="warning">{{  $application->status }} </x-badge>
                     @endif
 
-                    @if($application->status === 'approved')
+                    @if($application->status === \App\Enums\ApplicationStatus::APPROVED)
                         <x-badge type="success">{{  $application->status }} </x-badge>
                     @endif
 
-                    @if($application->status === 'rejected')
+                    @if($application->status === \App\Enums\ApplicationStatus::REJECTED)
                         <x-badge type="danger">{{  $application->status }} </x-badge>
                     @endif
                 </h1>
             </header>
 
+            <x-session-status key="application-approved" message="Application Approved" />
+            <x-session-status key="application-rejected" message="Application Rejected" />
+
+            <x-session-error />
+
             <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-800 dark:text-neutral-200 shadow rounded-lg">
 
                <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
                      <h2 class="text-center uppercase tracking-widest">{{ $application->name }} - <span class="font-semibold">Application Form</span></h2>
-                     <x-primary-linkbutton href="{{ route('admin.applications.pdf', $application->id) }}">
-                        Generate PDF 
-                    </x-primary-linkbutton>
+                   
+                    
+                    <div class="flex items-center gap-3">
+                        
+                        @if($application->status === \App\Enums\ApplicationStatus::PENDING)
+                            <form action="{{ route('admin.applications.approve') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-primary-button>Approve</x-primary-button>
+                            </form>
+
+                            <form action="{{ route('admin.applications.reject') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-danger-button>Reject</x-danger-button>
+                            </form>
+                        @endif
+
+                        @if($application->status === \App\Enums\ApplicationStatus::APPROVED)
+                            <form action="{{ route('admin.applications.reject') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-danger-button>Reject</x-danger-button>
+                            </form>
+                        @endif
+
+                        @if($application->status === \App\Enums\ApplicationStatus::REJECTED)
+                             <form action="{{ route('admin.applications.approve') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-primary-button>Approve</x-primary-button>
+                            </form>
+                        @endif
+                        
+
+                        <x-primary-linkbutton href="{{ route('admin.applications.pdf', $application->id) }}">
+                            Generate PDF 
+                        </x-primary-linkbutton>
+                    </div>
+
                </div>
 
                 <table id="applicationForm">
@@ -116,7 +162,6 @@
                 </table>
 
             </div>
-
 
         </div>
     </div>

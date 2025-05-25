@@ -183,8 +183,15 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('/generate-pdf/{id}', [ApplicationController::class, 'generatePdf'])
         ->name('.pdf');
 
-         Route::get('/empty/generate/', [ApplicationController::class, 'generateEmptyPdf'])
+        Route::get('/empty/generate/', [ApplicationController::class, 'generateEmptyPdf'])
         ->name('.empty.pdf');
+
+        Route::patch('/approve', [ApplicationController::class, 'approve'])
+        ->name('.approve');
+
+        Route::patch('/reject', [ApplicationController::class, 'reject'])
+        ->name('.reject');
+
     });
 
 });

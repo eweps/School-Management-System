@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ApplicationStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
@@ -26,6 +27,10 @@ class Application extends Model
         'other_relevant_info',
         'status',
         'timezone'
+    ];
+
+    protected $casts = [
+        'status' => ApplicationStatus::class
     ];
 
     public function diploma()

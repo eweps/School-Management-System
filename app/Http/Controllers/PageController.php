@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderStatus;
 use App\Models\Diploma;
 use App\Models\Application;
 use Illuminate\Support\Str;
+use App\Enums\MaritalStatus;
+use App\Enums\SalutationStatus;
 use Illuminate\Http\Request;
 use App\Models\CourseSession;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -36,7 +39,7 @@ class PageController extends Controller
         // dd($request);
 
         $validated = $request->validate([
-            'salutation' => 'required|in:mr,mrs,miss,dr,prof,chief,engr',
+            'salutation' => ['required', Rule::in(SalutationStatus::values())],
             'name' => 'required|string|max:255',
             'idCardNumber' => 'required|string|max:50',
             'email' => [
@@ -48,8 +51,8 @@ class PageController extends Controller
             'phone' => 'required|regex:/^[0-9\s\-\+\(\)]+$/|min:7',
             'address' => 'required|string|max:500',
             'preferredLanguage' => 'required|in:english,french',
-            'gender' => 'required|in:male,female',
-            'maritalStatus' => 'required|in:single,married,separated,divorced',
+            'gender' => ['required', Rule::in(GenderStatus::values())],
+            'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
             'dateOfBirth' => 'required|date|before:today',
             'placeOfBirth' => 'required|string|max:255',
             'academicDiplomas' => 'nullable|string|max:500',
