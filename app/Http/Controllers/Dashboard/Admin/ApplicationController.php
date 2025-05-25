@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Events\ApplicationApproved;
+use App\Events\ApplicationRejected;
 use App\Models\Application;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -75,7 +76,8 @@ class ApplicationController extends Controller
         $application->update([
             'status' =>  'rejected'
         ]);
-
+        
+        ApplicationRejected::dispatch($application);
         return redirect()->back()->with('status', 'application-rejected');
     }
 

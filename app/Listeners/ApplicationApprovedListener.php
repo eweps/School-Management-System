@@ -8,7 +8,7 @@ use App\Mail\ApplicationApprovedMail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendApplicationApprovedListener implements ShouldQueue
+class ApplicationApprovedListener implements ShouldQueue
 {
     public $delay = 60;
     public $tries = 3;

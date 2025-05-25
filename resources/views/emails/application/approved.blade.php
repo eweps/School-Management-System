@@ -1,5 +1,5 @@
 <x-mail::message>
-# Application Approved
+# Application Status Update
 
 Hi {{ $application->name }},
 

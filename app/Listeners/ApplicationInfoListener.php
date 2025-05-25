@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendApplicationInfoListener implements ShouldQueue
+class ApplicationInfoListener implements ShouldQueue
 {
     public $delay = 60;
     public $tries = 3;

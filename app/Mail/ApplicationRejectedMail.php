@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApplicationApprovedMail extends Mailable
+class ApplicationRejectedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,7 @@ class ApplicationApprovedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Application Approved',
+            subject: 'Application Rejected',
         );
     }
 
@@ -36,7 +36,7 @@ class ApplicationApprovedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.application.approved',
+            markdown: 'emails.application.rejected',
         );
     }
 

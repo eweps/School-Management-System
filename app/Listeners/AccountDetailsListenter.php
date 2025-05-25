@@ -7,7 +7,7 @@ use App\Notifications\AccountDetailsNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendAccountDetailsListenter implements ShouldQueue
+class AccountDetailsListenter implements ShouldQueue
 {
 
     public $delay = 60;
