@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use App\Models\Application;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -18,7 +19,7 @@ class ApplicationApproved
     /**
      * Create a new event instance.
      */
-    public function __construct(public Application $application)
+    public function __construct(public Application $application, public User $user)
     {}
 
     /**

@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ApplicationRejectedListener implements ShouldQueue
 {
+    use InteractsWithQueue;
     public $delay = 60;
     public $tries = 3;
 

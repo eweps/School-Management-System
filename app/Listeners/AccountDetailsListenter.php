@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class AccountDetailsListenter implements ShouldQueue
 {
-
+    use InteractsWithQueue;
     public $delay = 60;
     public $tries = 3;
 

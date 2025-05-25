@@ -15,6 +15,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ApplicationInfoListener implements ShouldQueue
 {
+    use InteractsWithQueue;
+    
     public $delay = 60;
     public $tries = 3;
 

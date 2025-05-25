@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Events\ApplicationApproved;
-use App\Events\ApplicationRejected;
+use App\Models\User;
 use App\Models\Application;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Events\ApplicationApproved;
+use App\Events\ApplicationRejected;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
@@ -61,7 +63,7 @@ class ApplicationController extends Controller
             'status' =>  'approved'
         ]);
 
-        ApplicationApproved::dispatch($application);
+        ApplicationApproved::dispatch($application, User::find(Auth::user()->id));
         return redirect()->back()->with('status', 'application-approved');
     }
 
