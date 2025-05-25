@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use App\Events\ApplicationApproved;
 use App\Models\Application;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -55,11 +56,11 @@ class ApplicationController extends Controller
 
         $application = Application::findOrFail($validated['application']);
     
-
         $application->update([
             'status' =>  'approved'
         ]);
 
+        ApplicationApproved::dispatch($application);
         return redirect()->back()->with('status', 'application-approved');
     }
 

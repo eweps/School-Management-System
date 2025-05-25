@@ -7,12 +7,11 @@ use App\Notifications\AccountDetailsNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendAccountDetailsNotification implements ShouldQueue
+class SendAccountDetailsListenter implements ShouldQueue
 {
 
     public $delay = 60;
     public $tries = 3;
-
 
     /**
      * Create the event listener.
