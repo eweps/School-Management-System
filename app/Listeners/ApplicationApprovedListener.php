@@ -48,8 +48,8 @@ class ApplicationApprovedListener implements ShouldQueue
             // Notify admin
             $event->user->notify(new ApplicationApprovedNotification($event->application));
             Log::info("Application approved email sent to admin: {$event->user->email}");
-            
-       } catch (\Throwable $th) {
+
+       } catch (\Throwable $e) {
             Log::error('ApplicationApprovedListener failed: ' . $e->getMessage(), [
                 'exception' => $e,
             ]);

@@ -4,11 +4,11 @@ namespace App\Notifications;
 
 use App\Models\Application;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class ApplicationApprovedNotification extends Notification
+class ApplicationRejectedNotification extends Notification
 {
     use Queueable;
 
@@ -33,15 +33,15 @@ class ApplicationApprovedNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)  
-            ->subject('Application Approved')
-            ->greeting('Hello ' . $notifiable->name . ',')
-            ->line('An application has been approved.')
-            ->line('Applicant: ' . $this->application->name)
-            ->line('Email: ' . $this->application->email)
-            ->line('You can view more details in the admin dashboard.')
-            ->action('View Application', route('admin.applications.show', $this->application->id))
-            ->line('Thank you.');
+        return (new MailMessage)
+                        ->subject('Application Rejected')
+                        ->greeting('Hello ' . $notifiable->name . ',')
+                        ->line('An application has been rejected.')
+                        ->line('Applicant: ' . $this->application->name)
+                        ->line('Email: ' . $this->application->email)
+                        ->line('You can view more details in the admin dashboard.')
+                        ->action('View Application', route('admin.applications.show', $this->application->id))
+                        ->line('Thank you.');
     }
 
     /**
@@ -51,11 +51,11 @@ class ApplicationApprovedNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-         return [
+        return [
             'application_id' => $this->application->id,
             'applicant_name' => $this->application->name,
             'applicant_email' => $this->application->email,
-            'message' => 'An application was approved.',
+            'message' => 'An application was rejected.',
             'link' => route('admin.applications.show', $this->application->id),
         ];
     }

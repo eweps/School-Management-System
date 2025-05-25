@@ -79,7 +79,7 @@ class ApplicationController extends Controller
             'status' =>  'rejected'
         ]);
         
-        ApplicationRejected::dispatch($application);
+        ApplicationRejected::dispatch($application, User::find(Auth::user()->id));
         return redirect()->back()->with('status', 'application-rejected');
     }
 
