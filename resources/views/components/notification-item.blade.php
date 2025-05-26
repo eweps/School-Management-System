@@ -11,7 +11,7 @@
          </div>
          
 
-         <div class="text-sm text-neutral-600 dark:text-neutral-500">
+         <div class="text-sm text-neutral-600 dark:text-neutral-300">
             {{ $duration }}
          </div>
  </div>
