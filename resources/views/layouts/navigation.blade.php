@@ -27,7 +27,11 @@
 
     <div class="nav-right flex items-center gap-3">
 
-        <a href="#" class="transition-transform delay-150 ease-in-out hover:scale-110">
+        <a href="{{ route('notifications') }}" class="transition-transform delay-150 ease-in-out hover:scale-110 relative flex">
+            @if(auth()->user()->unReadNotifications()->count() > 0)
+                 <span class="absolute inline-flex h-2.5 w-2.5  top-1 left-4 animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2  top-1 left-4 size-3 rounded-full bg-sky-500"></span>
+            @endif
             <i class="ri-notification-line text-white text-lg"></i>
             <span class="sr-only">Notification</span>
         </a>

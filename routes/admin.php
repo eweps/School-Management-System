@@ -8,10 +8,11 @@ use App\Http\Controllers\Dashboard\Admin\DiplomaController;
 use App\Http\Controllers\Dashboard\Admin\ActivityController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\SemesterController;
+use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
+use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
-use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {

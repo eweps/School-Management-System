@@ -1,4 +1,4 @@
-<x-app-layout  pageTitle="Edit Level">
+<x-app-layout  pageTitle="Edit Live Class">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}

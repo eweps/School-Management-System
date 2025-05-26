@@ -51,11 +51,13 @@ class ApplicationRejectedNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $uppercaseName = strtoupper($this->application->name);
+
         return [
             'application_id' => $this->application->id,
             'applicant_name' => $this->application->name,
             'applicant_email' => $this->application->email,
-            'message' => 'An application was rejected.',
+            'message' => "Hello #{$notifiable->name} Application #{$this->application->id} by #{$uppercaseName} has been rejected.",
             'link' => route('admin.applications.show', $this->application->id),
         ];
     }
