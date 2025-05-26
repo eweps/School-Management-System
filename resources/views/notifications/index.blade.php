@@ -13,9 +13,7 @@
             </header>
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
-
                 <x-notification-data :notifications="$notifications" />
-
             </div>
 
 
