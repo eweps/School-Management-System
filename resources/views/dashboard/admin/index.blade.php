@@ -15,19 +15,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
 
-                 <x-stats class="text-amber-700 bg-amber-100 ri-group-line" heading="Total Teachers" value="{{ $totalTeachers }}" />
+                 <x-stats class="text-amber-700 bg-amber-100 ri-group-line" heading="Total Teachers" value="{{ $totalTeachers ?? 0 }}" />
 
-                <x-stats class="text-blue-700 bg-blue-100 ri-group-line" heading="Total Students" value="{{ $totalStudents }}" />
+                <x-stats class="text-blue-700 bg-blue-100 ri-group-line" heading="Total Students" value="{{ $totalStudents ?? 0 }}" />
 
-                <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Admins" value="{{ $totalStudents }}" />
+                <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Admins" value="{{ $totalAdmins ?? 0 }}" />
 
-                <x-stats class="text-green-700 bg-green-100 ri-layout-top-line" heading="Pending Applications" value="{{ $totalPendingApplications }}" />
+                <x-stats class="text-orange-700 bg-green-100 ri-layout-top-line" heading="Pending Applications" value="{{ $totalPendingApplications ?? 0 }}" />
                 
-                <x-stats class="text-purple-700 bg-purple-100 ri-layout-top-line" heading="Approved Applications" value="{{ $totalTeachers }}" />
+                <x-stats class="text-green-700 bg-purple-100 ri-layout-top-line" heading="Approved Applications" value="{{ $totalApprovedApplications ?? 0 }}" />
                 
-                <x-stats class="text-purple-700 bg-purple-100 ri-layout-top-line" heading="Rejected Applications" value="{{ $totalTeachers }}" />
+                <x-stats class="text-red-700 bg-purple-100 ri-layout-top-line" heading="Rejected Applications" value="{{ $totalRejectedApplications ?? 0 }}" />
                 
-                <x-stats class="text-teal-700 bg-teal-100 ri-wallet-3-line" heading="Transactions" value="0" />
+                <x-stats class="text-teal-700 bg-teal-100 ri-notification-line" heading="Unread Notifications" value="{{ $unreadNotifications ?? 0 }}" />
 
                 <x-stats class="text-red-700 bg-red-100 ri-wallet-3-line" heading="Annual Fee" value="300,000 FCFA" />
         

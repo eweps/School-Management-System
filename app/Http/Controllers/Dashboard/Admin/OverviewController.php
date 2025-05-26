@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Application;
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
@@ -17,7 +18,11 @@ class OverviewController extends Controller
         return view('dashboard.admin.index', [
             'totalTeachers' => User::role('teacher')->count(),
             'totalStudents' => User::role('student')->count(),
-            'totalPendingApplications' => Application::pending()->count()
+            'totalAdmins' => User::role('admin')->count(),
+            'totalPendingApplications' => Application::pending()->count(),
+            'totalApprovedApplications' => Application::approved()->count(),
+            'totalRejectedApplications' => Application::rejected()->count(),
+            'unreadNotifications' => Auth::user()->unreadNotifications()->count()
         ]);
     }
 }
