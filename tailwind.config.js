@@ -21,7 +21,9 @@ export default {
         'dark:bg-gray-900/80',
         'fixed',
         'inset-0',
-        'z-40'
+        'z-40',
+        'overflow-y-hidden',
+        'overflow-y-auto'
     ],
 
     theme: {
