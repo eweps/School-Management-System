@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
+    protected $fillable = [
+        'name',
+        'description',
+        'diploma_id'
+    ];
+
     public function diploma()
     {
         return $this->belongsTo(Diploma::class);

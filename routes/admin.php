@@ -22,7 +22,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
 
     // Diploma routes
-    Route::prefix("/diplomas")->as('admin.diplomas')->namespace()->group(function() {
+    Route::prefix("/diplomas")->as('admin.diplomas')->group(function() {
 
         Route::get('', [DiplomaController::class , 'index'])
             ->name('');
@@ -40,6 +40,27 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.update');
     
         Route::delete('/delete', [DiplomaController::class , 'destroy'])
+            ->name('.delete');
+    });
+
+    Route::prefix("/departments")->as('admin.departments')->group(function() {
+
+        Route::get('', [DepartmentController::class , 'index'])
+            ->name('');
+    
+        Route::get('/create', [DepartmentController::class , 'create'])
+            ->name('.create');
+    
+        Route::post('/store', [DepartmentController::class , 'store'])
+            ->name('.store');
+    
+        Route::get('/edit/{id}', [DepartmentController::class , 'edit'])
+            ->name('.edit');
+    
+        Route::patch('/edit/{id}', [DepartmentController::class , 'update'])
+            ->name('.update');
+    
+        Route::delete('/delete', [DepartmentController::class , 'destroy'])
             ->name('.delete');
     });
 

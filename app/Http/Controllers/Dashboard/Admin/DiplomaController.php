@@ -63,7 +63,7 @@ class DiplomaController extends Controller
 
         try {
             $diploma = Diploma::findOrFail($validated['id']);
-            $deleteWorker->checkAndDeleteDiplomaInApplicationsTable($diploma);
+            $deleteWorker->checkAndDeleteDiploma($diploma);
             return back()->with(['status' => 'diploma-deleted']);
         } 
         catch (CannotDeleteUsedResourceException $e) {

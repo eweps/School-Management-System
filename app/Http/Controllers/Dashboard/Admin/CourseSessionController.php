@@ -73,7 +73,7 @@ class CourseSessionController extends Controller
 
         try {
             $courseSession = CourseSession::findOrFail($validated['id']);
-            $deleteWorker->checkAndDeleteCourseSessionInApplicationsTable($courseSession);
+            $deleteWorker->checkAndDeleteCourseSession($courseSession);
             return back()->with(['status' => 'course-session-deleted']);
         } 
         catch (CannotDeleteUsedResourceException $e) {
