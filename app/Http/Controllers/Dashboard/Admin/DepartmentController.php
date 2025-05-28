@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use Exception;
+use App\Models\Course;
 use App\Models\Diploma;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -68,6 +69,36 @@ class DepartmentController extends Controller
         ]);
 
         return back()->with(['status' => 'department-updated']);
+    }
+
+    public function showCourses(int $id)
+    {   
+        $department = Department::findOrFail($id);
+        $departmentCoursesIds = [];
+        $departmentCourses =$department->courses()->get();
+
+        foreach($departmentCourses as $course) {
+            array_push($departmentCoursesIds, $course->id);
+        }
+
+        return view('dashboard.admin.departments.show-course', [
+            'department' => $department,
+            'departmentCourses' => $department->courses()->get(),  
+            'courses' => Course::whereNotIn('id', $departmentCoursesIds)->get()
+        ]);
+    }
+
+    public function addCourseToDepartment(Request $request)
+    {
+        $validated = $request->validate([
+            'course' => 'required|integer',
+            'department' => 'required|integer',
+        ]);
+
+        $department = Department::findOrFail($validated['department']);
+        $department->courses()->attach($validated['course']);
+        
+        return back()->with(['status' => 'course-added']);
     }
 
     public function destroy(Request $request, ResourceDeleteService $deleteWorker)

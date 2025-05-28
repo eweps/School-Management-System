@@ -64,6 +64,12 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     
         Route::delete('/delete', [DepartmentController::class , 'destroy'])
             ->name('.delete');
+
+        Route::get('/courses/{id}', [DepartmentController::class, 'showCourses'])
+            ->name('.courses');
+
+        Route::post('/courses/add/', [DepartmentController::class, 'addCourseToDepartment'])
+            ->name('.courses.store');
     });
 
     // Course routes
