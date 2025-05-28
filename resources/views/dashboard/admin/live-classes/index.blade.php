@@ -37,7 +37,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $liveClass->title }}</td>
                                     <td>
-                                        @if($liveClass->is_expired)
+                                        @if ($liveClass->is_expired)
                                             <x-badge type="danger">{{ __('expired') }} </x-badge>
                                         @else
                                             <x-badge type="success">{{ __('active') }} </x-badge>
@@ -47,25 +47,35 @@
                                     <td>{{ $liveClass->created_at->diffForHumans() }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-                                            <x-view-modal key="{{ $liveClass->id }}" heading="Live Class Description" button="View">
+                                            <x-view-modal key="{{ $liveClass->id }}" heading="Live Class Description"
+                                                button="More">
 
-                                                <h3 class="dark:text-neutral-200">Description</h3>
-                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                    {{ $liveClass->description }}
-                                                </p>
+                                                <table
+                                                    class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm">
+                                                    <tbody
+                                                        class="divide-y divide-gray-700 text-sm text-gray-700 dark:text-neutral-200">
+                                                        <tr>
+                                                            <td class="font-medium px-4 py-3 w-1/3 uppercase">Description
+                                                            </td>
+                                                            <td class="px-4 py-3">{{ $liveClass->description }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-medium px-4 py-3 uppercase">Start Date</td>
+                                                            <td class="px-4 py-3">
+                                                                {{ $liveClass->date->toFormattedDayDateString() }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-medium px-4 py-3 uppercase">Start Time</td>
+                                                            <td class="px-4 py-3 capitalize">
+                                                                {{ $liveClass->start_time->format('H:i a') }}</td>
+                                                        </tr>
 
-                                                <h3 class="dark:text-neutral-200">Start Date</h3>
-                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                    {{ $liveClass->date->toFormattedDayDateString() }}
-                                                </p>
-
-                                                <h3 class="dark:text-neutral-200">Start Time</h3>
-                                                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                    {{ $liveClass->start_time->format('H:i a') }}
-                                                </p>
+                                                    </tbody>
+                                                </table>
 
                                                 <div class="mb-3">
-                                                    <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy and
+                                                    <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy
+                                                        and
                                                         Share Live Class Link
                                                     </h3>
 
@@ -80,7 +90,7 @@
                                                         <button
                                                             class="clipBtn py-3 px-1 w-10 h-full t bg-primary hover:bg-primary-dark text-white rounded-lg"
                                                             data-clipboard-target="#clipboardCopy{{ $liveClass->id }}">
-                                                            
+
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                 height="16" fill="currentColor"
                                                                 class="bi bi-clipboard mx-auto" viewBox="0 0 16 16">
@@ -94,11 +104,13 @@
                                                 </div>
                                             </x-view-modal>
 
-                                            <x-primary-linkbutton href="{{ route('admin.liveclasses.edit', ['id' => $liveClass->id]) }}">
-                                                {{ __('Edit') }}                      
+                                            <x-primary-linkbutton
+                                                href="{{ route('admin.liveclasses.edit', ['id' => $liveClass->id]) }}">
+                                                {{ __('Edit') }}
                                             </x-primary-linkbutton>
 
-                                            <form  id="delete-{{ $liveClass->id }}" class="delete-form" action="{{ route('admin.liveclasses.delete') }}" method="POST">
+                                            <form id="delete-{{ $liveClass->id }}" class="delete-form"
+                                                action="{{ route('admin.liveclasses.delete') }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="hidden" name="id" value="{{ $liveClass->id }}">

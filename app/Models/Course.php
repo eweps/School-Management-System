@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+        'credit_value',
+        'semester_id'
+    ];
+
     public function learningResources()
     {
         return $this->hasMany(LearningResource::class);

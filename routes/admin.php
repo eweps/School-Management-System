@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\Admin\SemesterController;
 use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
+use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
@@ -43,6 +44,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.delete');
     });
 
+    // Departments routes
     Route::prefix("/departments")->as('admin.departments')->group(function() {
 
         Route::get('', [DepartmentController::class , 'index'])
@@ -61,6 +63,28 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.update');
     
         Route::delete('/delete', [DepartmentController::class , 'destroy'])
+            ->name('.delete');
+    });
+
+    // Course routes
+    Route::prefix("/courses")->as('admin.courses')->group(function() {
+
+        Route::get('', [CourseController::class , 'index'])
+            ->name('');
+    
+        Route::get('/create', [CourseController::class , 'create'])
+            ->name('.create');
+    
+        Route::post('/store', [CourseController::class , 'store'])
+            ->name('.store');
+    
+        Route::get('/edit/{id}', [CourseController::class , 'edit'])
+            ->name('.edit');
+    
+        Route::patch('/edit/{id}', [CourseController::class , 'update'])
+            ->name('.update');
+    
+        Route::delete('/delete', [CourseController::class , 'destroy'])
             ->name('.delete');
     });
 
@@ -193,7 +217,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.delete');
     });
     
-
+    // Application routes
     Route::prefix('/applications')->as('admin.applications')->group(function() {
 
         Route::get('', [ApplicationController::class, 'index'])

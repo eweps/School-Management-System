@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Level;
+use App\Models\Course;
 use App\Models\Diploma;
 use App\Models\Department;
 use App\Models\Application;
@@ -26,10 +27,18 @@ class ResourceDeleteService
         $courseSession->delete();
     }
 
-     public function checkAndDeleteDepartment(Department $department) {
+    public function checkAndDeleteDepartment(Department $department) {
         if($department->courses()->exists()){
             throw new CannotDeleteUsedResourceException('Department');
         }
         $department->delete();
+    }
+
+
+    public function checkAndDeleteCourse(Course $course) {
+        if($course->learningResources()->exists() || $course->examMarks()->exists() || $course->caMarks()->exists() || $course->attendances()->exists() || $course->departments()->exists() || $course->teacherCourses()->exists()){
+            throw new CannotDeleteUsedResourceException('Course');
+        }
+        $course->delete();
     }
 }

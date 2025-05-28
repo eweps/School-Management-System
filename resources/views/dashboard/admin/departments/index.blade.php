@@ -50,6 +50,8 @@
                                                 <input type="hidden" name="id" value="{{ $department->id }}">
                                                 <x-danger-button> Del</x-danger-button>
                                             </form>
+
+                                            <x-primary-linkbutton href="{{ route('admin.departments.edit', $department->id) }}"> Courses </x-primary-linkbutton>
                                        </div>
                                     </td>
                                 </tr>
