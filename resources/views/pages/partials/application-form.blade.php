@@ -211,7 +211,7 @@
 
             </div>
 
-            <x-input-error class="mt-2" :messages="$errors->get('maritalStatus')" />
+            <x-input-error class="mt-2" :messages="$errors->get('preferredSession')" />
             
         </div>
 
@@ -221,18 +221,18 @@
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
 
-                @isset($diplomas)
-                    @foreach ($diplomas as $diploma )
+                @isset($diplomaTypes)
+                    @foreach ($diplomaTypes as $diplomaType )
                         <div class="item flex-shrink-0">
-                            <input type="radio" name="diploma" id="diploma{{ $diploma->id }}" value="{{ $diploma->id }}" {{ old('diploma') == $diploma->id ? 'checked' : '' }}>
-                            <x-input-label for="diploma{{ $diploma->id }}" class="inline-block cursor-pointer" :value="__($diploma->name)"/>
+                            <input type="radio" name="diplomaType" id="diplomaType{{ $diplomaType->id }}" value="{{ $diplomaType->id }}" {{ old('diplomaType') == $diplomaType->id ? 'checked' : '' }}>
+                            <x-input-label for="diplomaType{{ $diplomaType->id }}" class="inline-block cursor-pointer" :value="__($diplomaType->name)"/>
                         </div>
                     @endforeach
                 @endisset
 
             </div>
 
-            <x-input-error class="mt-2" :messages="$errors->get('maritalStatus')" />
+            <x-input-error class="mt-2" :messages="$errors->get('diplomaType')" />
             
         </div>
 

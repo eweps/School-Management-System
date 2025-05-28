@@ -11,7 +11,7 @@ class Application extends Model
         'name',
         'email',
         'course_session_id',
-        'diploma_id',
+        'diploma_type_id',
         'id_card_number',
         'address',
         'gender',
@@ -33,9 +33,9 @@ class Application extends Model
         'status' => ApplicationStatus::class
     ];
 
-    public function diploma()
+    public function diplomaType()
     {
-        return $this->belongsTo(Diploma::class);
+        return $this->belongsTo(DiplomaType::class);
     }
 
     public function courseSession()

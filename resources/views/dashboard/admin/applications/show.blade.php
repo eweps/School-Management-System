@@ -128,7 +128,7 @@
                         </tr>
 
                         <tr>
-                            <td colspan="3" class="py-8">{{ $application->diploma->name ?? "------" }}</td>
+                            <td colspan="3" class="py-8">{{ $application->diplomaType->name ?? "------" }}</td>
                             <td colspan="3" class="py-8">{{ $application->courseSession->name ?? "------" }}</td>
                         </tr>
 

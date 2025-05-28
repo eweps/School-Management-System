@@ -13,6 +13,7 @@ use App\Models\CourseSession;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 use App\Events\ApplicationSubmitted;
+use App\Models\DiplomaType;
 use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
@@ -25,12 +26,12 @@ class PageController extends Controller
     public function apply()
     {
         $courseSessions = CourseSession::all();
-        $diplomas = Diploma::all();
+        $diplomaTypes = DiplomaType::all();
 
         return view('pages.apply', 
         [
             "courseSessions" => $courseSessions, 
-            "diplomas" =>  $diplomas
+            "diplomaTypes" =>  $diplomaTypes
         ]);
     }
 
@@ -60,7 +61,7 @@ class PageController extends Controller
             'professionalExperience' => 'nullable|string|max:1000',
             'otherRelevantInformation' => 'nullable|string|max:1000',
             'preferredSession' => 'required',
-            'diploma' => 'required',
+            'diplomaType' => 'required',
             'timezone' => 'required|timezone'
         ]);
 
@@ -83,7 +84,7 @@ class PageController extends Controller
                 'professional_experience' => $validated['professionalExperience'] ?? null,
                 'other_relevant_info' => $validated['otherRelevantInformation'] ?? null,
                 'course_session_id' => $validated['preferredSession'],
-                'diploma_id' => $validated['diploma'],
+                'diploma_type_id' => $validated['diplomaType'],
                 'timezone' => $validated['timezone']
             ]);
 
