@@ -37,7 +37,7 @@ class EmailVerificationPromptController extends Controller
             }
 
         }else {
-            view('auth.verify-email');
+            return view('auth.verify-email');
         }
         
     }

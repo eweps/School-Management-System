@@ -253,7 +253,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
     // Teacher Routes
 
-     Route::prefix('/teachers')->as('admin.teachers')->group(function() {
+    Route::prefix('/teachers')->as('admin.teachers')->group(function() {
 
             Route::get('', [TeacherController::class, 'index'])
                 ->name('');
