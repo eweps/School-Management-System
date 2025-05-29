@@ -16,7 +16,14 @@ export default {
         'px-0',
         'ml-60',
         'w-[100%]',
-        '!w-[calc(100%-15rem)]'
+        '!w-[calc(100%-15rem)]',
+        'bg-gray-900/50',
+        'dark:bg-gray-900/80',
+        'fixed',
+        'inset-0',
+        'z-40',
+        'overflow-y-hidden',
+        'overflow-y-auto'
     ],
 
     theme: {

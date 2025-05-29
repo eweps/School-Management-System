@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GenderStatus;
 use App\Models\Diploma;
 use App\Models\Application;
+use Illuminate\Support\Str;
+use App\Enums\MaritalStatus;
+use App\Enums\SalutationStatus;
 use Illuminate\Http\Request;
 use App\Models\CourseSession;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
+use App\Events\ApplicationSubmitted;
+use App\Models\DiplomaType;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -18,12 +26,12 @@ class PageController extends Controller
     public function apply()
     {
         $courseSessions = CourseSession::all();
-        $diplomas = Diploma::all();
+        $diplomaTypes = DiplomaType::all();
 
         return view('pages.apply', 
         [
             "courseSessions" => $courseSessions, 
-            "diplomas" =>  $diplomas
+            "diplomaTypes" =>  $diplomaTypes
         ]);
     }
 
@@ -32,7 +40,7 @@ class PageController extends Controller
         // dd($request);
 
         $validated = $request->validate([
-            'salutation' => 'required|in:mr,mrs,miss,ms,dr',
+            'salutation' => ['required', Rule::in(SalutationStatus::values())],
             'name' => 'required|string|max:255',
             'idCardNumber' => 'required|string|max:50',
             'email' => [
@@ -44,8 +52,8 @@ class PageController extends Controller
             'phone' => 'required|regex:/^[0-9\s\-\+\(\)]+$/|min:7',
             'address' => 'required|string|max:500',
             'preferredLanguage' => 'required|in:english,french',
-            'gender' => 'required|in:male,female',
-            'maritalStatus' => 'required|in:single,married,separated,divorced',
+            'gender' => ['required', Rule::in(GenderStatus::values())],
+            'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
             'dateOfBirth' => 'required|date|before:today',
             'placeOfBirth' => 'required|string|max:255',
             'academicDiplomas' => 'nullable|string|max:500',
@@ -53,12 +61,13 @@ class PageController extends Controller
             'professionalExperience' => 'nullable|string|max:1000',
             'otherRelevantInformation' => 'nullable|string|max:1000',
             'preferredSession' => 'required',
-            'diploma' => 'required'
+            'diplomaType' => 'required',
+            'timezone' => 'required|timezone'
         ]);
 
        
         try {
-                Application::create( [
+            $application = Application::create( [
                 'salutation' => $validated['salutation'],
                 'name' => $validated['name'],
                 'id_card_number' => $validated['idCardNumber'],
@@ -75,11 +84,13 @@ class PageController extends Controller
                 'professional_experience' => $validated['professionalExperience'] ?? null,
                 'other_relevant_info' => $validated['otherRelevantInformation'] ?? null,
                 'course_session_id' => $validated['preferredSession'],
-                'diploma_id' => $validated['diploma']
+                'diploma_type_id' => $validated['diplomaType'],
+                'timezone' => $validated['timezone']
             ]);
 
+            ApplicationSubmitted::dispatch($application);
 
-        return redirect()->back()->with(['status' => 'application-successful']);
+            return redirect()->back()->with(['status' => 'application-successful']);
 
         } catch (\Exception $e) {
 
@@ -89,4 +100,5 @@ class PageController extends Controller
            
         }
     }
+
 }

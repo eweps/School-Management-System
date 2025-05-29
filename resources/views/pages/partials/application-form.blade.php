@@ -1,14 +1,6 @@
 <section>
 
-    @if (session('status') === 'application-successful')
-            <div
-                x-data="{ show: true }"
-                x-show="show"
-                x-transition
-                x-init="setTimeout(() => show = false, 2000)"
-                class="w-full bg-green-500 text-white py-2 px-3 my-3 text-center rounded-lg"
-            >{{ __('Application Submitted Successfully.') }}</div>
-    @endif
+    <x-session-status key="application-successful" message="Application Submitted Successfully" />
 
     <form method="post" action="{{ route('apply.store') }}" class="mt-6 space-y-6">
         @csrf
@@ -219,7 +211,7 @@
 
             </div>
 
-            <x-input-error class="mt-2" :messages="$errors->get('maritalStatus')" />
+            <x-input-error class="mt-2" :messages="$errors->get('preferredSession')" />
             
         </div>
 
@@ -229,20 +221,22 @@
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
 
-                @isset($diplomas)
-                    @foreach ($diplomas as $diploma )
+                @isset($diplomaTypes)
+                    @foreach ($diplomaTypes as $diplomaType )
                         <div class="item flex-shrink-0">
-                            <input type="radio" name="diploma" id="diploma{{ $diploma->id }}" value="{{ $diploma->id }}" {{ old('diploma') == $diploma->id ? 'checked' : '' }}>
-                            <x-input-label for="diploma{{ $diploma->id }}" class="inline-block cursor-pointer" :value="__($diploma->name)"/>
+                            <input type="radio" name="diplomaType" id="diplomaType{{ $diplomaType->id }}" value="{{ $diplomaType->id }}" {{ old('diplomaType') == $diplomaType->id ? 'checked' : '' }}>
+                            <x-input-label for="diplomaType{{ $diplomaType->id }}" class="inline-block cursor-pointer" :value="__($diplomaType->name)"/>
                         </div>
                     @endforeach
                 @endisset
 
             </div>
 
-            <x-input-error class="mt-2" :messages="$errors->get('maritalStatus')" />
+            <x-input-error class="mt-2" :messages="$errors->get('diplomaType')" />
             
         </div>
+
+        <input type="hidden" name="timezone" id="timezone" />
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Submit Your Application') }}</x-primary-button>

@@ -8,10 +8,14 @@ use App\Http\Controllers\Dashboard\Admin\DiplomaController;
 use App\Http\Controllers\Dashboard\Admin\ActivityController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\SemesterController;
+use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
+use App\Http\Controllers\Dashboard\Admin\CourseController;
+use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
+use App\Http\Controllers\Dashboard\Admin\TeacherController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
  
@@ -20,7 +24,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
 
     // Diploma routes
-    Route::prefix("/diplomas")->as('admin.diplomas')->namespace()->group(function() {
+    Route::prefix("/diplomas")->as('admin.diplomas')->group(function() {
 
         Route::get('', [DiplomaController::class , 'index'])
             ->name('');
@@ -38,6 +42,59 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.update');
     
         Route::delete('/delete', [DiplomaController::class , 'destroy'])
+            ->name('.delete');
+    });
+
+    // Departments routes
+    Route::prefix("/departments")->as('admin.departments')->group(function() {
+
+        Route::get('', [DepartmentController::class , 'index'])
+            ->name('');
+    
+        Route::get('/create', [DepartmentController::class , 'create'])
+            ->name('.create');
+    
+        Route::post('/store', [DepartmentController::class , 'store'])
+            ->name('.store');
+    
+        Route::get('/edit/{id}', [DepartmentController::class , 'edit'])
+            ->name('.edit');
+    
+        Route::patch('/edit/{id}', [DepartmentController::class , 'update'])
+            ->name('.update');
+    
+        Route::delete('/delete', [DepartmentController::class , 'destroy'])
+            ->name('.delete');
+
+        Route::get('/courses/{id}', [DepartmentController::class, 'showCourses'])
+            ->name('.courses');
+
+        Route::post('/courses/add/', [DepartmentController::class, 'addCourseToDepartment'])
+            ->name('.courses.store');
+
+        Route::post('/courses/remove/', [DepartmentController::class, 'removeCourseFromDepartment'])
+            ->name('.courses.remove');
+    });
+
+    // Course routes
+    Route::prefix("/courses")->as('admin.courses')->group(function() {
+
+        Route::get('', [CourseController::class , 'index'])
+            ->name('');
+    
+        Route::get('/create', [CourseController::class , 'create'])
+            ->name('.create');
+    
+        Route::post('/store', [CourseController::class , 'store'])
+            ->name('.store');
+    
+        Route::get('/edit/{id}', [CourseController::class , 'edit'])
+            ->name('.edit');
+    
+        Route::patch('/edit/{id}', [CourseController::class , 'update'])
+            ->name('.update');
+    
+        Route::delete('/delete', [CourseController::class , 'destroy'])
             ->name('.delete');
     });
 
@@ -126,6 +183,29 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
     });
 
 
+     // LiveClass Routes
+    Route::prefix('/liveclass')->as('admin.liveclasses')->group(function() {
+        Route::get('', [LiveClassController::class, 'index'])
+            ->name('');
+
+        Route::get('/edit/{id}', [LiveClassController::class, 'edit'])
+            ->name('.edit');
+
+        Route::patch('/update/{id}', [LiveClassController::class, 'update'])
+            ->name('.update');
+
+        Route::get('/create', [LiveClassController::class, 'create'])
+            ->name('.create');
+
+        Route::post('/store', [LiveClassController::class, 'store'])
+            ->name('.store');
+
+         Route::delete('/delete', [LiveClassController::class , 'destroy'])
+            ->name('.delete');
+    });
+
+
+
     // Level Routes
     Route::prefix('/levels')->as('admin.levels')->group(function() {
         Route::get('', [LevelController::class, 'index'])
@@ -147,7 +227,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.delete');
     });
     
-
+    // Application routes
     Route::prefix('/applications')->as('admin.applications')->group(function() {
 
         Route::get('', [ApplicationController::class, 'index'])
@@ -156,6 +236,49 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('/{id}', [ApplicationController::class, 'show'])
         ->name('.show');
 
+        Route::get('/generate-pdf/{id}', [ApplicationController::class, 'generatePdf'])
+        ->name('.pdf');
+
+        Route::get('/empty/generate/', [ApplicationController::class, 'generateEmptyPdf'])
+        ->name('.empty.pdf');
+
+        Route::patch('/approve', [ApplicationController::class, 'approve'])
+        ->name('.approve');
+
+        Route::patch('/reject', [ApplicationController::class, 'reject'])
+        ->name('.reject');
+
+    });
+
+
+    // Teacher Routes
+
+    Route::prefix('/teachers')->as('admin.teachers')->group(function() {
+
+            Route::get('', [TeacherController::class, 'index'])
+                ->name('');
+
+            Route::get('/create', [TeacherController::class, 'create'])
+                ->name('.create');
+
+            Route::post('/store', [TeacherController::class, 'store'])
+                ->name('.store');
+        
+            Route::get('/edit/{id}', [TeacherController::class, 'edit'])
+                ->name('.edit');
+            
+            Route::patch('/update/{id}', 
+            [TeacherController::class, 'update'])
+                ->name('.update');
+
+            Route::get('/courses/{id}', [TeacherController::class, 'showCourses'])
+            ->name('.courses');
+
+            Route::post('/courses/add/', [TeacherController::class, 'addCourseToTeacher'])
+            ->name('.courses.store');
+
+            Route::post('/courses/remove/', [TeacherController::class, 'removeCourseFromTeacher'])
+            ->name('.courses.remove');
     });
 
 });

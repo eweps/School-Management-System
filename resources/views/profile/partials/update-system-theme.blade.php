@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('System Theme') }}
+            {{ __('Color Theme') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Change between the light, dark or default theme") }}
+            {{ __("Change between the light, dark or system theme") }}
         </p>
     </header>
 

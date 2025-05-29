@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\QueuedVerifyEmailNotification;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -25,7 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'image',
         'is_active',
-        'gender'
+        'gender',
+        'timezone'
     ];
 
     /**
@@ -52,10 +54,9 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->hasOne(Teacher::class);
     }
 
     public function student()
@@ -98,5 +99,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return ['mail'];
 
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new QueuedVerifyEmailNotification);
     }
 }

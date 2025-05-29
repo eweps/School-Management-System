@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    public function diploma()
-    {
-        return $this->belongsTo(Diploma::class);
-    }
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_department');
+        return $this->belongsToMany(Course::class, 'course_department')->withTimestamps();
     }
 }

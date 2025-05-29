@@ -1,6 +1,8 @@
 <aside id="sidebar"
-    class="min-h-screen w-60 bg-primary-dark dark:bg-gray-950 text-white px-5 py-8 overflow-y-auto h-full transition-all duration-300 ease-in-out fixed top-[80px] sm:top-[55px] left-0">
-    <ul id="sidebar-nav" class="mb-20 space-y-2">
+    class="min-h-screen w-60 bg-primary-dark dark:bg-gray-950/60 backdrop-blur-md text-white px-5 py-8 overflow-y-auto h-[100%] transition-[width] duration-300 ease-in-out fixed top-[80px] sm:top-[55px] left-0">
+    <ul id="sidebar-nav" class="block mb-20 space-y-1">
+
+        @if(auth()->user()->hasRole('admin'))
 
         <!-- Navitem with link -->
         <li class="nav-item group {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -10,8 +12,25 @@
                 <span>Dashboard</span>
             </a>
         </li>
+
+        @endif
+
+
+        @if(auth()->user()->hasRole('teacher'))
+
+        <!-- Navitem with link -->
+        <li class="nav-item group {{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('teacher.dashboard') }}"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-home-2-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        @endif
        
-        
+        @if(auth()->user()->hasRole('admin'))
+
          <!-- Navitem with link -->
         <li class="nav-item group {{ request()->routeIs('admin.applications*') ? 'active' : '' }}">
             <a href="{{ route('admin.applications') }}"
@@ -45,6 +64,29 @@
             </ul>
         </li>
 
+
+          <!-- Navitem with sub items -->
+        <li class="nav-dropdown group {{ request()->routeIs('admin.liveclasses*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-live-line"></i>
+                <span>Live Classes</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.liveclasses*') ? '' : 'hidden' }}">
+                <li class="mb-4 group/item {{ request()->routeIs('admin.liveclasses') ? 'active' : '' }}">
+                    <a href="{{ route('admin.liveclasses') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        All Classes</a>
+                </li>
+                <li class="mb-4 group/item {{ request()->routeIs('admin.liveclasses.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.liveclasses.create') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Add Class</a>
+                </li>
+
+            </ul>
+        </li>
 
          <!-- Navitem with sub items -->
         <li class="nav-dropdown group {{ request()->routeIs('admin.levels*') ? 'active' : '' }}">
@@ -92,7 +134,85 @@
             </ul>
         </li>
 
-    
+        <!-- Navitem with sub items -->
+        <li class="nav-dropdown group {{ request()->routeIs('admin.courses*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-book-line"></i>
+                <span>Courses</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.courses*') ? '' : 'hidden' }}">
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.courses') ? 'active' : '' }}">
+                    <a href="{{ route('admin.courses') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        All Courses</a>
+            </li>
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.courses.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.courses.create') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Add Course</a>
+                </li>
+
+            </ul>
+        </li>
+
+         <!-- Navitem with sub items -->
+        <li class="nav-dropdown group {{ request()->routeIs('admin.teachers*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-group-line"></i>
+                <span>Teachers</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.teachers*') ? '' : 'hidden' }}">
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.teachers') ? 'active' : '' }}">
+                    <a href="{{ route('admin.teachers') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        All Teachers</a>
+            </li>
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.teachers.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.teachers.create') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Add Teacher</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+          <!-- Navitem with sub items -->
+        <li class="nav-dropdown group {{ request()->routeIs('admin.departments*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-building-line"></i>
+                <span>Departments</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+
+            <ul class="dropdown pl-7 mt-2 {{ request()->routeIs('admin.departments*') ? '' : 'hidden' }}">
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.departments') ? 'active' : '' }}">
+                    <a href="{{ route('admin.departments') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        All Departments</a>
+                </li>
+
+                <li class="mb-4 group/item {{ request()->routeIs('admin.departments.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.departments.create') }}"
+                        class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
+                        Add Department</a>
+                </li>
+
+            </ul>
+        </li>
+
 
         <!-- Navitem with sub items -->
         <li class="nav-dropdown group {{ request()->routeIs('admin.diplomas*') ? 'active' : '' }}">
@@ -159,6 +279,24 @@
         </li>
 
 
+         <!-- Navitem with link -->
+        <li class="nav-item group {{ request()->routeIs('notifications') ? 'active' : '' }}">
+            <a href="{{ route('notifications') }}"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+                <i class="ri-notification-line"></i>
+                <span>Notifications</span>
+                @if(auth()->user()->unReadNotifications()->count() > 0)
+                    <span class="flex items-center relative ml-auto">
+                        <span class="relative inline-flex h-2.5 w-2.5 animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                        <span class="absolute inline-flex h-2.5 w-2.5 size-3 rounded-full bg-sky-500"></span>
+                    </span>
+                @endif
+            </a>
+        </li>
+
+
+        @endif
+
         <!-- Navitem with sub items -->
         <li class="nav-dropdown group {{ request()->routeIs('profile.edit') || request()->routeIs('admin.settings.system') ? 'active' : '' }}">
             <a href="#"
@@ -175,11 +313,15 @@
                         Profile</a>
                 </li>
 
+                @if(auth()->user()->hasRole('admin'))
+
                 <li class="mb-4 group/item {{ request()->routeIs('admin.settings.system') ? 'active' : '' }}">
                     <a href="{{ route('admin.settings.system') }}"
                         class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                         System</a>
                 </li>
+
+                @endif
             </ul>
         </li>
 

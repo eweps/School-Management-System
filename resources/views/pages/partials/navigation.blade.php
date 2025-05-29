@@ -1,4 +1,4 @@
-<div class="container mx-auto lg:flex lg:items-center lg:justify-between lg:gap-3 text-center">
+<div class="container max-w-7xl mx-auto lg:flex lg:items-center lg:justify-between lg:gap-3 text-center">
     <a href="{{ route('home') }}" class="block w-48 flex-shrink-0 mx-auto mb-8 lg:mb-0">
         <img class="w-full" src="{{ asset('images/logo.png') }}" alt="Logo">
     </a>
@@ -16,7 +16,13 @@
    @endguest
 
    @auth
-    <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @if(auth()->user()->hasRole('admin'))
+            <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @endif
+
+        @if(auth()->user()->hasRole('teacher'))
+            <a href="{{ route('teacher.dashboard') }}" class="bg-secondary hover:bg-secondary-dark transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+        @endif
    @endauth
 </div>
 

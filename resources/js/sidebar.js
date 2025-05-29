@@ -35,25 +35,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // On click of the button toggle the sidebar
 
         sidebarToggle.addEventListener('click', function(){
-
+            
             let sidebarState = sidebarToggle.getAttribute('data-sidebar-state');
 
             // If sidebar is open close it
             if(sidebarState === 'open'){
-                sidebar.classList.remove('w-60', 'px-5');
-                sidebar.classList.add('w-0', 'px-0');
+                sidebar.classList.remove('w-60', 'px-5', 'overflow-y-auto');
+                sidebar.classList.add('w-0', 'px-0', 'overflow-y-hidden');
                 sidebarToggle.setAttribute('data-sidebar-state', 'closed');
                 contentSection.classList.remove('ml-60', '!w-[calc(100%-15rem)]');
                 contentSection.classList.add('w-[100%]');
+                sidebarNav.classList.add('block');
+                sidebarNav.classList.add('hidden');
             }
 
             // If sidebar is closed open it
             if(sidebarState === 'closed') {
-                sidebar.classList.remove('w-0', 'px-0');
-                sidebar.classList.add('w-60', 'px-5');
+                sidebar.classList.remove('w-0', 'px-0', 'overflow-y-hidden');
+                sidebar.classList.add('w-60', 'px-5', 'overflow-y-auto');
                 sidebarToggle.setAttribute('data-sidebar-state', 'open');
                 contentSection.classList.remove('w-[100%]');
                 contentSection.classList.add('ml-60', '!w-[calc(100%-15rem)]');
+                sidebarNav.classList.remove('hidden');
+                sidebarNav.classList.add('block');
             }
 
         });

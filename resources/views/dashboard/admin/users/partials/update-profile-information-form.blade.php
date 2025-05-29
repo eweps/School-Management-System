@@ -67,6 +67,8 @@
              <x-input-error class="mt-2" :messages="$errors->get('gender')" />
         </div>
 
+        <input type="hidden" name="timezone" id="timezone">
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

@@ -12,7 +12,9 @@
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.levels') }}" class="text-secondary">Levels</a></h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">
+            <x-session-error />
+
+            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
                 <table class="dt-table display">
 
@@ -40,7 +42,7 @@
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.levels.edit', $level->id) }}"> Edit </x-primary-linkbutton>
 
-                                            <form action="{{ route('admin.levels.delete') }}" method="POST">
+                                            <form class="delete-form" action="{{ route('admin.levels.delete') }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="hidden" name="id" value="{{ $level->id }}">

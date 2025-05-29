@@ -7,7 +7,7 @@
 
     </header>
 
-    <section class="w-full mb-10 px-8 xl:px-0">
+    <section class="w-full max-w-7xl mx-auto  mb-10 px-8 xl:px-0">
         <div class="container mx-auto flex flex-col lg:flex-row text-center lg:text-start lg:items-center justify-between">
 
             <div class="basis-1/2 mb-8 lg:mb-0">
@@ -43,7 +43,7 @@
 
     <section class="w-full mx-auto bg-neutral-50 bg-rough backdrop:blur-xl border-y-2 py-10 px-8 xl:px-0">
 
-        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div class="container max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
             <img class="w-40 lg:w-1/6" src="{{ asset('images/laravel.png') }}" alt="Laravel Logo">
             <img class="w-40 lg:w-1/6" src="{{ asset('images/Mysql_logo.png') }}" alt="MySQL Logo">
             <img class="w-40 lg:w-[12%]" src="{{ asset('images/php.svg') }}" alt="PHP Logo">

@@ -9,23 +9,80 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.applications') }}" class="text-secondary">{{ $application->name }} Application</a> -
+                    @if($application->status === \App\Enums\ApplicationStatus::PENDING)
+                        <x-badge type="warning">{{  $application->status }} </x-badge>
+                    @endif
+
+                    @if($application->status === \App\Enums\ApplicationStatus::APPROVED)
+                        <x-badge type="success">{{  $application->status }} </x-badge>
+                    @endif
+
+                    @if($application->status === \App\Enums\ApplicationStatus::REJECTED)
+                        <x-badge type="danger">{{  $application->status }} </x-badge>
+                    @endif
+                </h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-100 shadow rounded-lg">
+            <x-session-status key="application-approved" message="Application Approved" />
+            <x-session-status key="application-rejected" message="Application Rejected" />
+
+            <x-session-error />
+
+            <div class="w-full overflow-x-auto py-5 px-10 bg-white dark:bg-gray-800 dark:text-neutral-200 shadow rounded-lg">
 
                <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
                      <h2 class="text-center uppercase tracking-widest">{{ $application->name }} - <span class="font-semibold">Application Form</span></h2>
-                     <x-primary-linkbutton href="#">
-                        <i class="ri-file-pdf-2-line text-base me-1"></i>
-                        Generate PDF 
-                    </x-primary-linkbutton>
+                   
+                    
+                    <div class="flex items-center gap-3">
+                        
+                        @if($application->status === \App\Enums\ApplicationStatus::PENDING)
+                            <form action="{{ route('admin.applications.approve') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-primary-button>Approve</x-primary-button>
+                            </form>
+
+                            <form action="{{ route('admin.applications.reject') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-danger-button>Reject</x-danger-button>
+                            </form>
+                        @endif
+
+                        @if($application->status === \App\Enums\ApplicationStatus::APPROVED)
+                            <form action="{{ route('admin.applications.reject') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-danger-button>Reject</x-danger-button>
+                            </form>
+                        @endif
+
+                        @if($application->status === \App\Enums\ApplicationStatus::REJECTED)
+                             <form action="{{ route('admin.applications.approve') }}" method="POST">
+                                @method('patch')
+                                @csrf
+                                <input type="hidden" name="application" value="{{ $application->id }}">
+                                <x-primary-button>Approve</x-primary-button>
+                            </form>
+                        @endif
+                        
+
+                        <x-primary-linkbutton href="{{ route('admin.applications.pdf', $application->id) }}">
+                            Generate PDF 
+                        </x-primary-linkbutton>
+                    </div>
+
                </div>
 
                 <table id="applicationForm">
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Personal Information</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Personal Information</th>
                         </tr>
 
                         <tr class="border-b">
@@ -62,7 +119,7 @@
                         </tr>
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Program Selection</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Program Selection</th>
                         </tr>
 
                         <tr>
@@ -71,12 +128,12 @@
                         </tr>
 
                         <tr>
-                            <td colspan="3" class="py-8">{{ $application->diploma->name }}</td>
-                            <td colspan="3" class="py-8">{{ $application->courseSession->name }}</td>
+                            <td colspan="3" class="py-8">{{ $application->diplomaType->name ?? "------" }}</td>
+                            <td colspan="3" class="py-8">{{ $application->courseSession->name ?? "------" }}</td>
                         </tr>
 
                         <tr>
-                            <th colspan="5" class="theading border bg-slate-200 uppercase tracking-widest">Academic Information</th>
+                            <th colspan="5" class="theading border bg-slate-200 dark:bg-gray-900 uppercase tracking-widest">Academic Information</th>
                         </tr>
 
 
@@ -105,7 +162,6 @@
                 </table>
 
             </div>
-
 
         </div>
     </div>

@@ -12,7 +12,9 @@
                 <h1 class="text-base">Dashboard / <a href="{{ route('admin.diplomas') }}" class="text-secondary">Diplomas</a></h1>
             </header>
 
-            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-100 shadow rounded-lg">
+            <x-session-error />
+
+            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
                 <table class="dt-table display">
 
@@ -20,7 +22,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Department</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -34,13 +37,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $diploma->name }}</td>
-                                    <td> {{ \Illuminate\Support\Str::limit($diploma->description, 20) }}</td>
+                                    <td>{{ $diploma->diplomaType->name }}</td>
+                                    <td>{{ $diploma->department->name }}</td>
                                     <td>{{ $diploma->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-primary-linkbutton href="{{ route('admin.diplomas.edit', $diploma->id) }}"> Edit </x-primary-linkbutton>
 
-                                            <form action="{{ route('admin.diplomas.delete') }}" method="POST">
+                                            <form class="delete-form" action="{{ route('admin.diplomas.delete') }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="hidden" name="id" value="{{ $diploma->id }}">
@@ -59,7 +63,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Department</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>

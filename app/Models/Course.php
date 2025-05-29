@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+        'credit_value',
+        'semester_id'
+    ];
+
     public function learningResources()
     {
         return $this->hasMany(LearningResource::class);
@@ -33,11 +42,11 @@ class Course extends Model
 
     public function departments()
     {
-        return $this->belongsToMany(Department::class, 'course_department');
+        return $this->belongsToMany(Department::class, 'course_department')->withTimestamps();
     }
 
-    public function teacherCourses()
+    public function teachers()
     {
-        return $this->hasMany(TeacherCourse::class);
+        return $this->belongsToMany(Teacher::class, 'teacher_course')->withTimestamps();
     }
 }

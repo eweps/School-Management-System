@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use Exception;
 use App\Models\Diploma;
+use App\Models\DiplomaType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\QueryException;
+use App\Services\ResourceDeleteService;
+use App\Exceptions\CannotDeleteUsedResourceException;
+use App\Models\Department;
 
 class DiplomaController extends Controller
 {
@@ -18,7 +22,10 @@ class DiplomaController extends Controller
 
     public function create()
     {
-        return view('dashboard.admin.diplomas.create');
+        return view('dashboard.admin.diplomas.create', [
+            'diplomaTypes' => DiplomaType::orderBy('id', 'DESC')->get(),
+            'departments' => Department::orderByDesc('id')->get()
+        ]);
     }
 
     public function store(Request $request)
@@ -26,9 +33,16 @@ class DiplomaController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'type' => 'required|integer',
+            'department' => 'required|integer'
         ]);
 
-        Diploma::create($validated);
+        Diploma::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'diploma_type_id' => $validated['type'],
+            'department_id' => $validated['department']
+        ]);
 
         return back()->with(['status' => 'diploma-created']);
     }
@@ -36,7 +50,9 @@ class DiplomaController extends Controller
     public function edit(int $id)
     {
         return view('dashboard.admin.diplomas.edit', [
-            'diploma' => Diploma::findOrFail($id)
+            'diploma' => Diploma::findOrFail($id),
+            'diplomaTypes' => DiplomaType::orderBy('id', 'DESC')->get(),
+            'departments' => Department::orderByDesc('id')->get()
         ]);
     }
 
@@ -45,14 +61,22 @@ class DiplomaController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'type' => 'required|integer',
+            'department' => 'required|integer'
         ]);
 
         $diploma = Diploma::findOrFail($id);
-        $diploma->update($validated);
+        $diploma->update([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'diploma_type_id' => $validated['type'],
+            'department_id' => $validated['department']
+        ]);
+
         return back()->with(['status' => 'diploma-updated']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, ResourceDeleteService $deleteWorker)
     {
         $validated = $request->validate([
             'id' => 'required',
@@ -60,16 +84,15 @@ class DiplomaController extends Controller
 
         try {
             $diploma = Diploma::findOrFail($validated['id']);
-            $diploma->delete();
-
+            $deleteWorker->checkAndDeleteDiploma($diploma);
             return back()->with(['status' => 'diploma-deleted']);
         } 
-        catch (QueryException $e) {
-            return redirect()->back()->withErrors([
-                'delete' => 'Cannot delete: This record is being used in another table.'
-            ]);
+        catch (CannotDeleteUsedResourceException $e) {
+                return back()->with('error', $e->getMessage());
         }
-
+        catch (Exception $e) {
+                return back()->with('error', $e->getMessage());
+        }
 
     }   
 }

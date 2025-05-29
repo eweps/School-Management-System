@@ -31,7 +31,6 @@ class LevelController extends Controller
         ]);
 
         Level::create($validated);
-
         return back()->with(['status' => 'level-created']);
     }
 

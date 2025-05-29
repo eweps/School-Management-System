@@ -11,12 +11,19 @@ class Diploma extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'diploma_type_id',
+        'department_id'
     ];
 
-    public function departments()
+    public function diplomaType()
     {
-        return $this->hasMany(Department::class);
+        return $this->belongsTo(DiplomaType::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function applications()

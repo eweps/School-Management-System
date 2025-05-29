@@ -5,9 +5,11 @@ import './theme';
 import './datatable';
 import './transaction-chart';
 import './browser-chart';
+import './timezone';
+import 'flowbite';
+import './clipboard';
+import './delete-alert';
 
 import Alpine from 'alpinejs';
-
 window.Alpine = Alpine;
-
 Alpine.start();
