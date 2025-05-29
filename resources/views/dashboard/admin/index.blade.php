@@ -21,11 +21,11 @@
 
                 <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Admins" value="{{ $totalAdmins ?? 0 }}" />
 
-                <x-stats class="text-orange-700 bg-green-100 ri-layout-top-line" heading="Pending Applications" value="{{ $totalPendingApplications ?? 0 }}" />
+                <x-stats class="text-orange-700 bg-orange-100 ri-layout-top-line" heading="Pending Applications" value="{{ $totalPendingApplications ?? 0 }}" />
                 
-                <x-stats class="text-green-700 bg-purple-100 ri-layout-top-line" heading="Approved Applications" value="{{ $totalApprovedApplications ?? 0 }}" />
+                <x-stats class="text-green-700 bg-green-100 ri-layout-top-line" heading="Approved Applications" value="{{ $totalApprovedApplications ?? 0 }}" />
                 
-                <x-stats class="text-red-700 bg-purple-100 ri-layout-top-line" heading="Rejected Applications" value="{{ $totalRejectedApplications ?? 0 }}" />
+                <x-stats class="text-purple-700 bg-purple-100 ri-layout-top-line" heading="Rejected Applications" value="{{ $totalRejectedApplications ?? 0 }}" />
                 
                 <x-stats class="text-teal-700 bg-teal-100 ri-notification-line" heading="Unread Notifications" value="{{ $unreadNotifications ?? 0 }}" />
 

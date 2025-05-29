@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.departments.courses', $department->id ) }}" class="text-secondary">Courses for {{ $department->name }} Department</a>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.departments.courses', $department->id) }}"
+                        class="text-secondary">Courses for {{ $department->name }} Department</a>
                 </h1>
             </header>
 
@@ -17,7 +18,7 @@
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg mb-8">
                 <div class="max-w-xl">
-                    @include("dashboard.admin.departments.partials.add-course-to-department-form")
+                    @include('dashboard.admin.departments.partials.add-course-to-department-form')
                 </div>
             </div>
 
@@ -39,7 +40,7 @@
 
                     <tbody>
 
-                        @if(isset($departmentCourses) && $departmentCourses->count() > 0)
+                        @if (isset($departmentCourses) && $departmentCourses->count() > 0)
 
                             @foreach ($departmentCourses as $course)
                                 <tr>
@@ -52,19 +53,23 @@
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
-                                            <x-view-modal key="{{ $course->id }}" heading="Course Details" button="More">
+                                            <x-view-modal key="{{ $course->id }}" heading="Course Details"
+                                                button="More">
                                                 <div class="overflow-x-auto">
                                                     <table
                                                         class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm">
                                                         <tbody
                                                             class="divide-y divide-gray-700 text-sm text-gray-700 dark:text-neutral-200">
                                                             <tr>
-                                                                <td class="font-medium px-4 py-3 w-1/3 uppercase">Name</td>
+                                                                <td class="font-medium px-4 py-3 w-1/3 uppercase">Name
+                                                                </td>
                                                                 <td class="px-4 py-3">{{ $course->name }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="font-medium px-4 py-3 uppercase">Description</td>
-                                                                <td class="px-4 py-3 capitalize">{{ $course->description }}
+                                                                <td class="font-medium px-4 py-3 uppercase">Description
+                                                                </td>
+                                                                <td class="px-4 py-3 capitalize">
+                                                                    {{ $course->description }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -77,8 +82,10 @@
                                                                     {{ $course->credit_value }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="font-medium px-4 py-3 uppercase">Semester</td>
-                                                                <td class="px-4 py-3">{{ $course->semester->name }}</td>
+                                                                <td class="font-medium px-4 py-3 uppercase">Semester
+                                                                </td>
+                                                                <td class="px-4 py-3">{{ $course->semester->name }}
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="font-medium px-4 py-3 uppercase">Created</td>
@@ -91,15 +98,12 @@
                                                 </div>
                                             </x-view-modal>
 
-                                            <x-primary-linkbutton href="{{ route('admin.courses.edit', $course->id) }}">
-                                                Edit </x-primary-linkbutton>
-
-                                            <form class="delete-form" action="{{ route('admin.courses.delete') }}"
+                                            <form action="{{ route('admin.departments.courses.remove') }}"
                                                 method="POST">
                                                 @csrf
-                                                @method('delete')
-                                                <input type="hidden" name="id" value="{{ $course->id }}">
-                                                <x-danger-button> Del</x-danger-button>
+                                                <input type="hidden" name="course" value="{{ $course->id }}">
+                                                <input type="hidden" name="department" value="{{ $department->id }}">
+                                                <x-danger-button> Remove</x-danger-button>
                                             </form>
                                         </div>
                                     </td>

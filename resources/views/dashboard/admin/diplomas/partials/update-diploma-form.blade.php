@@ -19,6 +19,38 @@
 
         </div>
 
+        <div>
+            <x-input-label for="type" :value="__('Diploma Type *')" />
+            <x-select-input id="type" name="type" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Diploma Type') }}</option>
+                
+                @isset($diplomaTypes)
+                    @foreach ($diplomaTypes as $diplomaType )
+                         <option value="{{ $diplomaType->id }}" {{ $diploma->diplomaType->id === $diplomaType->id ? 'selected' : '' }}>{{ __($diplomaType->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+             <x-input-error class="mt-2" :messages="$errors->get('diplomaType')" />
+        </div>
+
+
+        
+        <div>
+            <x-input-label for="department" :value="__('Department *')" />
+            <x-select-input id="department" name="department" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Department') }}</option>
+                
+                @isset($departments)
+                    @foreach ($departments as $department )
+                         <option value="{{ $department->id }}" {{ $diploma->department->id === $department->id ? 'selected' : '' }}>{{ __($department->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+             <x-input-error class="mt-2" :messages="$errors->get('department')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Update') }}</x-primary-button>
 

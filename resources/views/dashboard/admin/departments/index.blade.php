@@ -7,9 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.departments') }}" class="text-secondary">Departments</a></h1>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.departments') }}"
+                        class="text-secondary">Departments</a></h1>
             </header>
 
             <x-session-error />
@@ -22,7 +23,6 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Diploma</th>
                             <th>Courses</th>
                             <th>Created</th>
                             <th>Action</th>
@@ -31,19 +31,19 @@
 
                     <tbody>
 
-                       @isset($departments)
+                        @isset($departments)
 
                             @foreach ($departments as $department)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $department->name }}</td>
-                                    <td>{{ $department->diploma->name }}</td>
                                     <td> [{{ $department->courses()->count() }}] </td>
                                     <td>{{ $department->created_at->diffForHumans() }}</td>
                                     <td>
-                                       <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
-                                         <x-view-modal key="{{ $department->id }}" heading="Department Details" button="More">
+                                            <x-view-modal key="{{ $department->id }}" heading="Department Details"
+                                                button="More">
                                                 <div class="overflow-x-auto">
                                                     <table
                                                         class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm">
@@ -55,19 +55,18 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="font-medium px-4 py-3 uppercase">Description</td>
-                                                                <td class="px-4 py-3 capitalize">{{ $department->description }}
+                                                                <td class="px-4 py-3 capitalize">
+                                                                    {{ $department->description }}
                                                                 </td>
                                                             </tr>
+
                                                             <tr>
-                                                                <td class="font-medium px-4 py-3 uppercase">Diploma</td>
-                                                                <td class="px-4 py-3">{{ $department->diploma->name }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="font-medium px-4 py-3 uppercase">Num of Courses</td>
+                                                                <td class="font-medium px-4 py-3 uppercase">Num of Courses
+                                                                </td>
                                                                 <td class="px-4 py-3 capitalize">
                                                                     {{ $department->courses()->count() }}</td>
                                                             </tr>
-                                                            
+
                                                             <tr>
                                                                 <td class="font-medium px-4 py-3 uppercase">Created</td>
                                                                 <td class="px-4 py-3">
@@ -79,22 +78,27 @@
                                                 </div>
                                             </x-view-modal>
 
-                                            <x-primary-linkbutton href="{{ route('admin.departments.edit', $department->id) }}"> Edit </x-primary-linkbutton>
+                                            <x-primary-linkbutton
+                                                href="{{ route('admin.departments.edit', $department->id) }}"> Edit
+                                            </x-primary-linkbutton>
 
-                                            <form class="delete-form" action="{{ route('admin.departments.delete') }}" method="POST">
+                                            <form class="delete-form" action="{{ route('admin.departments.delete') }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="hidden" name="id" value="{{ $department->id }}">
                                                 <x-danger-button> Del</x-danger-button>
                                             </form>
 
-                                            <x-primary-linkbutton href="{{ route('admin.departments.courses', $department->id) }}"> Courses </x-primary-linkbutton>
-                                       </div>
+                                            <x-primary-linkbutton
+                                                href="{{ route('admin.departments.courses', $department->id) }}"> Courses
+                                            </x-primary-linkbutton>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
-                       
-                       @endisset
+
+                        @endisset
 
                     </tbody>
 
@@ -102,7 +106,6 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Diploma</th>
                             <th>Courses</th>
                             <th>Created</th>
                             <th>Action</th>

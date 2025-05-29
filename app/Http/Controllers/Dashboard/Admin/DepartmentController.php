@@ -22,9 +22,7 @@ class DepartmentController extends Controller
 
     public function create()
     {
-        return view('dashboard.admin.departments.create', [
-             'diplomas' => Diploma::orderBy('id', 'DESC')->get()
-        ]);
+        return view('dashboard.admin.departments.create');
     }
 
     public function store(Request $request) 
@@ -32,13 +30,11 @@ class DepartmentController extends Controller
          $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'diploma' => 'required'
         ]);
 
         Department::create([
             'name' => $validated['name'],
-            'description' => $validated['description'],
-            'diploma_id' => $validated['diploma']
+            'description' => $validated['description']
         ]);
 
         return back()->with(['status' => 'department-created']);
@@ -48,7 +44,6 @@ class DepartmentController extends Controller
     {
         return view('dashboard.admin.departments.edit', [
             'department' => Department::findOrFail($id),
-            'diplomas' => Diploma::orderBy('id', 'DESC')->get()
         ]);
     }
 
@@ -56,16 +51,14 @@ class DepartmentController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'diploma' => 'required'
+            'description' => 'required|string'
         ]);
 
         $department = Department::findOrFail($id);
         
         $department->update([
             'name' => $validated['name'],
-            'description' => $validated['description'],
-            'diploma_id' => $validated['diploma']
+            'description' => $validated['description']
         ]);
 
         return back()->with(['status' => 'department-updated']);
@@ -99,6 +92,19 @@ class DepartmentController extends Controller
         $department->courses()->attach($validated['course']);
         
         return back()->with(['status' => 'course-added']);
+    }
+
+    public function removeCourseFromDepartment(Request $request)
+    {
+        $validated = $request->validate([
+            'course' => 'required|integer',
+            'department' => 'required|integer'
+        ]);
+
+        $department = Department::findOrFail($validated['department']);
+        $department->courses()->detach($validated['course']);
+
+        return back()->with(['status' => 'course-removed']);
     }
 
     public function destroy(Request $request, ResourceDeleteService $deleteWorker)

@@ -22,7 +22,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Department</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -36,7 +37,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $diploma->name }}</td>
-                                    <td> {{ \Illuminate\Support\Str::limit($diploma->description, 20) }}</td>
+                                    <td>{{ $diploma->diplomaType->name }}</td>
+                                    <td>{{ $diploma->department->name }}</td>
                                     <td>{{ $diploma->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
@@ -61,7 +63,8 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Department</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>

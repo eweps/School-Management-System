@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
+use App\Http\Controllers\Dashboard\Admin\TeacherController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
  
@@ -70,6 +71,9 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
         Route::post('/courses/add/', [DepartmentController::class, 'addCourseToDepartment'])
             ->name('.courses.store');
+
+        Route::post('/courses/remove/', [DepartmentController::class, 'removeCourseFromDepartment'])
+            ->name('.courses.remove');
     });
 
     // Course routes
@@ -244,6 +248,28 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::patch('/reject', [ApplicationController::class, 'reject'])
         ->name('.reject');
 
+    });
+
+
+    // Teacher Routes
+
+     Route::prefix('/teachers')->as('admin.teachers')->group(function() {
+
+            Route::get('', [TeacherController::class, 'index'])
+                ->name('');
+
+            Route::get('/create', [TeacherController::class, 'create'])
+                ->name('.create');
+
+            Route::post('/store', [TeacherController::class, 'store'])
+                ->name('.store');
+        
+            Route::get('/edit/{id}', [TeacherController::class, 'edit'])
+                ->name('.edit');
+            
+            Route::patch('/update/{id}', 
+            [TeacherController::class, 'update'])
+                ->name('.update');
     });
 
 });

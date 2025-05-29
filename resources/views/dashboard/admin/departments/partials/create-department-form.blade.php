@@ -20,21 +20,6 @@
 
         </div>
 
-         <div>
-            <x-input-label for="diploma" :value="__('Diploma *')" />
-            <x-select-input id="diploma" name="diploma" class="mt-1 block w-full">
-                <option selected disabled>{{ __('Select a Diploma') }}</option>
-                
-                @isset($diplomas)
-                    @foreach ($diplomas as $diploma )
-                         <option value="{{ $diploma->id }}">{{ __($diploma->name) }}</option>
-                    @endforeach
-                @endisset
-
-            </x-select-input>
-             <x-input-error class="mt-2" :messages="$errors->get('diploma')" />
-        </div>
-
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Create') }}</x-primary-button>
 
