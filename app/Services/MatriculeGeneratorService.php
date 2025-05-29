@@ -23,7 +23,7 @@ class MatriculeGeneratorService
         $year = now()->year;
         $random = str_shuffle(Str::random(4)).$user_id;
     
-        $prefix = self::getPrefix('MATRICULE_PREFIX', 'SM').'TCH';
+        $prefix = self::getPrefix('MATRICULE_PREFIX', 'SM').'T';
         $matricule = strtoupper(sprintf('%s%s%s', $prefix, $year, $random));
        
         if(Teacher::where('matricule', $matricule)->exists()) {

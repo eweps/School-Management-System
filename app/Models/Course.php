@@ -42,11 +42,11 @@ class Course extends Model
 
     public function departments()
     {
-        return $this->hasMany(Department::class, 'course_department')->withTimestamps();
+        return $this->belongsToMany(Department::class, 'course_department')->withTimestamps();
     }
 
     public function teachers()
     {
-        return $this->hasMany(TeacherCourse::class);
+        return $this->belongsToMany(Teacher::class, 'teacher_course')->withTimestamps();
     }
 }

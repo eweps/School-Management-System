@@ -270,6 +270,15 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             Route::patch('/update/{id}', 
             [TeacherController::class, 'update'])
                 ->name('.update');
+
+            Route::get('/courses/{id}', [TeacherController::class, 'showCourses'])
+            ->name('.courses');
+
+            Route::post('/courses/add/', [TeacherController::class, 'addCourseToTeacher'])
+            ->name('.courses.store');
+
+            Route::post('/courses/remove/', [TeacherController::class, 'removeCourseFromTeacher'])
+            ->name('.courses.remove');
     });
 
 });

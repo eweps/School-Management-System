@@ -35,8 +35,8 @@ class Teacher extends Model
         return $this->hasMany(LearningResource::class);
     }
 
-    public function teacherCourses()
+    public function courses()
     {
-        return $this->hasMany(TeacherCourse::class);
+        return $this->belongsToMany(Course::class, 'teacher_course')->withTimestamps();
     }
 }

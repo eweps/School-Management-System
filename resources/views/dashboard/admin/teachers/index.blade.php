@@ -146,8 +146,8 @@
                                                     </div>
                                             </x-view-modal>
 
-                                             <x-primary-linkbutton
-                                                href="{{ route('admin.departments.courses', $teacher->id) }}"> Courses
+                                            <x-primary-linkbutton
+                                                href="{{ route('admin.teachers.courses', $teacher->id) }}"> Courses
                                             </x-primary-linkbutton>
                                     
                                        </div>
