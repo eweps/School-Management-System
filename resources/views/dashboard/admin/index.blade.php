@@ -7,56 +7,88 @@
 
     <div class="py-12">
         <div class="max-w-[1550px] mx-auto sm:px-6 lg:px-8">
-            <div class="container mx-auto">
-                <header class="mb-8">
-                    <h1 class="text-3xl">Dashboard / Analytics</h1>
-                </header>
-                <div class="w-full overflow-x-auto py-5 px-4 bg-white shadow rounded-lg">
-                
-                    <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
-                      <div>
-                        <p class="text-xl fon-semibold">50</p>
-                        <h3>Total Teachers</h3>
-                      </div>
-                      <div>
-                        <i class="ri-group-line text-2xl bg-amber-100 py-2 px3 rounded-lg text-amber-700"></i>
-                      </div>
-                    </div>
-                    <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
-                      <div>
-                        <p class="text-xl fon-semibold">50</p>
+            
+            <header class="mb-8 dark:text-white">
+                <h1 class="text-3xl">Dashboard / Analytics</h1>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                        <div>
+                            <p class="text-2xl font-semibold">50</p>
+                            <h3>Total Teachers</h3>
+                        </div>
+
+                        <div>
+                            <i class="ri-group-line text-2xl bg-amber-100 py-2 px-3 rounded-lg text-amber-700"></i>
+                        </div>
+                </div>
+
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl font-semibold">50</p>
                         <h3>Total Students</h3>
-                      </div>
-                      <div>
-                        <i class="ri-group-line text-2xl bg-blue-100 py-2 px3 rounded-lg text-blue-700"></i>
-                      </div>
                     </div>
-                    <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
-                      <div>
-                        <p class="text-3xl fon-semibold">50</p>
-                        <h3>Total Applications</h3>
-                      </div>
-                      <div>
-                        <i class="ri-layout-top-line text-2xl bg-green-100 py-2 px3 rounded-lg text-green-700"></i>
-                      </div>
-                    </div>
-                    <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
-                      <div>
-                        <p class="text-xl fon-semibold">300,000</p>
-                        <h3>Annual Fee</h3>
-                      </div>
-                      <div>
-                        <i class="ri-wallet-3-line text-2xl bg-red-100 py-2 px3 rounded-lg text-red-700"></i>
-                      </div>
+
+                    <div>
+                        <i class="ri-group-line text-2xl bg-blue-100 py-2 px-3 rounded-lg text-blue-700"></i>
                     </div>
                 </div>
-                <div class="bg-white py-5 px-10 rounded-lg my-8 shadow">
-                  <h4 class="text-xl uppercase tracking-wider fon-semibold">Transactions</h4>
-    
-                  <!-- Transaction chart  -->
-    <div id="transactionChart"></div> 
+                
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl font-semibold">50</p>
+                        <h3>Total Applications</h3>
+                    </div>
+
+                    <div>
+                        <i class="ri-layout-top-line text-2xl bg-green-100 py-2 px-3 rounded-lg text-green-700"></i>
+                    </div>
+                </div>
+                
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl font-semibold">300,000000 FCFA</p>
+                        <h3>Annual Fee</h3>
+                    </div>
+
+                    <div>
+                        <i class="ri-wallet-3-line text-2xl bg-red-100 py-2 px-3 rounded-lg text-red-700"></i>
+                    </div>
+                </div>
+
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl font-semibold">100,000000 FCFA</p>
+                        <h3>Annual Fee Paid</h3>
+                    </div>
+
+                    <div>
+                        <i class="ri-wallet-3-line text-2xl bg-red-100 py-2 px-3 rounded-lg text-red-700"></i>
+                    </div>
+                </div>
+
+                <div class="shadow border border-gray-200 bg-white rounded-lg py-8 px-8 flex items-center justify-between">
+                    <div>
+                        <p class="text-2xl font-semibold">200,000000 FCFA</p>
+                        <h3>Annual Fee Owed</h3>
+                    </div>
+
+                    <div>
+                        <i class="ri-wallet-3-line text-2xl bg-red-100 py-2 px-3 rounded-lg text-red-700"></i>
+                    </div>
+                </div>
+
+            
             </div>
+
+            <div class="bg-white py-5 px-10 rounded-lg my-8 shadow">
+                <h4 class="text-xl uppercase tracking-wider font-semibold">Transactions</h4>
+                <div id="transactionChart"></div>
             </div>
+
+
         </div>
     </div>
 </x-app-layout>

@@ -104,6 +104,30 @@
 
         </li>
 
+        <li class="nav-dropdown mb-2 group {{ request()->routeIs('admin.diplomas*') ? 'active' : '' }}">
+            <a href="#"
+                class="text-gray-300 hover:text-white flex items-center gap-3 text-lg font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light group-[.active]:text-white group-[.selected]:bg-primary-light group-[.selected]:text-gray-100 hover:bg-primary-lighter">
+                <i class="ri-community-line"></i>
+                <span>Diplomas</span>
+                <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
+            </a>
+            <ul class="dropdown pl-7 mt-6 hidden">
+                <li class="mb-4 group/item {{ request()->routeIs('admin.diplomas') ? 'active' : '' }}">
+                    <a href="{{ route('admin.diplomas') }}"
+                        class="text-gray-300 text-lg flex item-center before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]:font-bold">All
+                        Diplomas</a>
+                </li>
+                <li class="mb-4 group/item {{ request()->routeIs('admin.departments.create') ? 'active' : '' }}">
+                    <a href="{{ route('admin.diplomas.create') }}"
+                        class="text-gray-300 text-lg flex item-center before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">Add
+                        Diplomas</a>
+                </li>
+
+            </ul>
+
+        </li>
+
+
         <li class="nav-dropdown mb-2 group/item">
             <a href="#"
                 class="text-gray-300 hover:text-white flex items-center gap-3 text-lg font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light group-[.active]:text-white group-[.selected]:bg-primary-light group-[.selected]:text-gray-100 hover:bg-primary-lighter">
