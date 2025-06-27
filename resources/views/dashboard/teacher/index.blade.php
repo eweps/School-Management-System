@@ -14,64 +14,28 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
-                        <div class="flex-shrink-0">
-                            <p class="font-semibold">50</p>
-                            <h3 class="text-neutral-500 font-medium">Total Teachers</h3>
-                        </div>
+                 <x-stats class="text-amber-700 bg-amber-100 ri-book-2-line" heading="Learning resources" value="{{ $totalResources ?? 0 }}" />
 
-                        <div class="flex-shrink-0">
-                            <i class="ri-group-line bg-amber-100 py-2 px-3 rounded-lg text-amber-700"></i>
-                        </div>
-                </div>
+                <x-stats class="text-blue-700 bg-blue-100 ri-folder-chart-2-line" heading="Total Courses" value="{{ $totalCourses ?? 0 }}" />
 
-                <div class="shadow border border-gray-200 bg-white rounded-lg  py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
-                    <div>
-                        <p class="font-semibold">50</p>
-                        <h3 class="text-neutral-500 font-medium">Total Students</h3>
-                    </div>
+                <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Admins" value="{{ $totalStudents ?? 0 }}" />
 
-                    <div>
-                        <i class="ri-group-line bg-blue-100 py-2 px-3 rounded-lg text-blue-700"></i>
-                    </div>
-                </div>
-          
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
-                    <div>
-                        <p class="font-semibold">50</p>
-                        <h3 class="text-neutral-500 font-medium">Total Applications</h3>
-                    </div>
-
-                    <div>
-                        <i class="ri-layout-top-line text-2xl bg-green-100 py-2 px-3 rounded-lg text-green-700"></i>
-                    </div>
-                </div>
-
-                <div class="shadow border border-gray-200 bg-white rounded-lg py-4 px-3 flex flex-col-reverse text-center sm:text-start sm:flex-row items-center justify-between text-base cursor-pointer transition-transform delay-150 ease-in-out hover:scale-[1.03]">
-                    <div>
-                        <p class="font-semibold">300,000 FCFA</p>
-                        <h3 class="text-neutral-500 font-medium">Annual Fee</h3>
-                    </div>
-
-                    <div>
-                        <i class="ri-wallet-3-line bg-red-100 py-2 px-3 rounded-lg text-red-700"></i>
-                    </div>
-                </div>
+                <x-stats class="text-teal-700 bg-teal-100 ri-notification-line" heading="Unread Notifications" value="{{ $unreadNotifications ?? 0 }}" />
             
             </div>
 
             
-           <div class="grid grid-cols-1 xl:grid-cols-5 gap-y-20 gap-x-0 xl:gap-y-0 xl:gap-x-5 mt-20">
+               <div class="grid grid-cols-1 xl:grid-cols-5 gap-y-20 gap-x-0 xl:gap-y-0 xl:gap-x-5 mt-16">
                <div class="col-span-1 xl:col-span-3">
                     <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Monthly Transactions</h4>
-                    <div class="bg-white py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full">
                         <div id="transactionChart" class="!w-[100%]"></div>
                     </div>
                </div>
 
                 <div class="col-span-1 xl:col-span-2">
                     <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Browser Usage</h4>
-                    <div class="bg-white py-5 px-8 rounded-lg mt-4 shadow overflow-hidden flex items-center justify-center h-full">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden flex items-center justify-center h-full">
                         <div id="browserChart" class="!w-[100%] mb-8"></div>
                     </div>
                </div>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Teacher;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
@@ -12,6 +13,8 @@ class OverviewController extends Controller
      */
     public function __invoke(Request $request)
     {
-       return view('dashboard.teacher.index');
+       return view('dashboard.teacher.index', [
+         'unreadNotifications' => Auth::user()->unreadNotifications()->count()
+       ]);
     }
 }
