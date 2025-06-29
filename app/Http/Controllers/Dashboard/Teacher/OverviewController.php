@@ -14,7 +14,8 @@ class OverviewController extends Controller
     public function __invoke(Request $request)
     {
        return view('dashboard.teacher.index', [
-         'unreadNotifications' => Auth::user()->unreadNotifications()->count()
+         'unreadNotifications' => Auth::user()->unreadNotifications()->count(),
+         'totalCourses' => Auth::user()->teacher->courses()->count()
        ]);
     }
 }
