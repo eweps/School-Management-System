@@ -20,8 +20,6 @@
 
         </div>
 
-        <input type="hidden" name="teacher" value="{{ auth()->user()->teacher->id }}" />
-
          <div>
             <x-input-label for="course" :value="__('Course *')" />
             <x-select-input id="course" name="course" class="mt-1 block w-full">
@@ -41,8 +39,8 @@
 
         <div class="">
             <div class="w-full">
-                <x-input-label for="learningResource" :value="__('Upload Document *')" />
-                <x-upload-input class="mt-1 block w-full" for="learningResource" />
+                <x-input-label for="learningResource" :value="__('Upload Document (pdf,doc,docx,ppt,pptx,zip,jpg,png) max: 6MB *')" />
+                <x-upload-input class="mt-1 block w-full" for="learningResource" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.jpg,.png" />
                 <x-input-error class="mt-2" :messages="$errors->get('learningResource')" />
             </div>
         </div>
@@ -50,7 +48,7 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Create') }}</x-primary-button>
 
-            @if (session('status') === 'diploma-created')
+            @if (session('status') === 'resource-created')
                 <p
                     x-data="{ show: true }"
                     x-show="show"

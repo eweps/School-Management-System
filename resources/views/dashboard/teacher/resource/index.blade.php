@@ -38,7 +38,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $resource->name }}</td>
                                     <td>{{ $resource->course->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
+                                    <td>{{ $resource->created_at->diffForHumans() }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
@@ -61,6 +61,17 @@
                                                     </table>
                                                 </div>
                                             </x-view-modal>
+
+                                            <x-primary-linkbutton href="{{ route('teacher.resources.download', $resource->id) }}">
+                                                Download </x-primary-linkbutton>
+
+                                            <form class="delete-form" action="{{ route('teacher.resources.delete') }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="id" value="{{ $resource->id }}">
+                                                <x-danger-button> Del</x-danger-button>
+                                            </form>
        
                                         </div>
                                     </td>

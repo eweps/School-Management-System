@@ -32,7 +32,7 @@
                 class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                 All Resources</a>
         </li>
-        <li class="mb-4 group/item {{ request()->routeIs('admin.resources.create') ? 'active' : '' }}">
+        <li class="mb-4 group/item {{ request()->routeIs('teacher.resources.create') ? 'active' : '' }}">
             <a href="{{ route('teacher.resources.create') }}"
                 class="text-gray-300 text-base flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3 group-[.active]/item:text-primary-lightest group-[.active]/item:font-bold">
                 Add Resource</a>

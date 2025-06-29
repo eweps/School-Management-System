@@ -33,6 +33,10 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
                 ->name('.create');
             Route::post('/store', [ResourceController::class, 'store'])
                 ->name('.store');
+
+            Route::delete('/delete', [ResourceController::class, 'destroy'])
+                ->name('.delete');
+            Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
         });
 
 
