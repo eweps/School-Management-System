@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\Teacher\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Teacher\OverviewController;
 use App\Http\Controllers\Dashboard\Teacher\ProfileController;
+use App\Http\Controllers\Dashboard\Teacher\ResourceController;
 
 Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
 ->group(function() {
@@ -24,5 +25,15 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
         });
 
         Route::get('/courses', [CourseController::class, 'index'])->name('teacher.course');
+
+        Route::prefix('/resources')->as('teacher.resources')->group(function() {
+            Route::get('', [ResourceController::class, 'index'])
+                ->name('');
+            Route::get('/create', [ResourceController::class, 'create'])
+                ->name('.create');
+            Route::post('/store', [ResourceController::class, 'store'])
+                ->name('.store');
+        });
+
 
 });

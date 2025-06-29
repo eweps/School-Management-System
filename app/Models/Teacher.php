@@ -30,7 +30,7 @@ class Teacher extends Model
           return $this->belongsTo(User::class);
     }
 
-    public function learningResources()
+    public function resources()
     {
         return $this->hasMany(LearningResource::class);
     }
