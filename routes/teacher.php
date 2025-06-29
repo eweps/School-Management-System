@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Dashboard\Teacher\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Teacher\OverviewController;
 use App\Http\Controllers\Dashboard\Teacher\ProfileController;
@@ -20,5 +22,7 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
             Route::post('/store', [ProfileController::class, 'store'])
                 ->name('.store');
         });
+
+        Route::get('/courses', [CourseController::class, 'index'])->name('teacher.course');
 
 });

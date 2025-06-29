@@ -18,7 +18,7 @@
 
                 <x-stats class="text-blue-700 bg-blue-100 ri-folder-chart-2-line" heading="Total Courses" value="{{ $totalCourses ?? 0 }}" />
 
-                <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Admins" value="{{ $totalStudents ?? 0 }}" />
+                <x-stats class="text-pink-700 bg-pink-100 ri-group-line" heading="Total Students" value="{{ $totalStudents ?? 0 }}" />
 
                 <x-stats class="text-teal-700 bg-teal-100 ri-notification-line" heading="Unread Notifications" value="{{ $unreadNotifications ?? 0 }}" />
             
