@@ -14,7 +14,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
-                 <x-stats class="text-amber-700 bg-amber-100 ri-book-2-line" heading="Learning resources" value="{{ $totalResources ?? 0 }}" />
+                 <x-stats class="text-amber-700 bg-amber-100 ri-book-2-line" heading="Learning resources" value="{{ $learningResources ?? 0 }}" />
 
                 <x-stats class="text-blue-700 bg-blue-100 ri-folder-chart-2-line" heading="Total Courses" value="{{ $totalCourses ?? 0 }}" />
 

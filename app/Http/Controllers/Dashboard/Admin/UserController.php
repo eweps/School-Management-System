@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\User;
+use App\Enums\GenderStatus;
 use App\Events\UserCreated;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -43,7 +44,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required', 'string'],
-            'gender' => ['required', 'string'],
+            'gender' => ['required', 'string', Rule::in(GenderStatus::values())],
         ]);
 
         $user = User::create([

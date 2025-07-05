@@ -30,6 +30,7 @@
                 <option selected disabled>{{ __('Select a role') }}</option>
                 <option value="admin">Admin</option>
                 <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
             </x-select-input>
              <x-input-error class="mt-2" :messages="$errors->get('role')" />
         </div>
