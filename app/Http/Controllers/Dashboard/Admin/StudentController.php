@@ -95,4 +95,17 @@ class StudentController extends Controller
        }
     }
 
+
+    public function edit(int $id)
+    {
+        $student = Student::findOrFail($id);
+        return view('dashboard.admin.students.edit', [
+            "student" => $student,
+            'users' => User::role('student')->where(function ($query) use ($student) {
+                            $query->whereDoesntHave('student')
+                                ->orWhere('id', $student->user_id);
+                        })->get()
+        ]);
+    }
+
 }
