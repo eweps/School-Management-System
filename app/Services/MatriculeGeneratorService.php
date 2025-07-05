@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class MatriculeGeneratorService
 {
+    public const MAX_ATTEMPT = 10;
+
     protected static function getPrefix(string $key, string $default): string
     {
         return Setting::where('name', $key)->value('value') ?? $default;
@@ -15,7 +17,7 @@ class MatriculeGeneratorService
 
     public static function forTeacher(int $user_id, int $attempt = 0): string
     {
-        $maxAttempts = 10;
+        $maxAttempts = self::MAX_ATTEMPT;
         if ($attempt >= $maxAttempts) {
             throw new \Exception("Unable to generate unique matricule after {$maxAttempts} attempts");
         }
@@ -33,13 +35,25 @@ class MatriculeGeneratorService
         return $matricule;
     }
 
-    // public static function forStudent($departmentCode = 'GEN', $level = 'HND'): string
-    // {
-    //     $year = now()->year;
-    //     $count = Student::whereYear('created_at', $year)->count() + 1;
+    public static function forStudent(int $user_id, int $attempt = 0): string
+    {
+        $maxAttempts = self::MAX_ATTEMPT;
+        if ($attempt >= $maxAttempts) {
+            throw new \Exception("Unable to generate unique matricule after {$maxAttempts} attempts");
+        }
 
-    //     $prefix = self::getPrefix('MATRICULE_PREFIX', 'STD');
+        $year = now()->year;
+        $count = Student::whereYear('created_at', $year)->count() + 1;
+        $random = str_shuffle(Str::random(4)).$user_id;
+    
+        $prefix = self::getPrefix('MATRICULE_PREFIX', 'SM').'S';
+        $matricule = strtoupper(sprintf('%s%s%s', $prefix, $year, $random . $count));
 
-    //     return strtoupper(sprintf('%s/%s/%s/%04d', $prefix, $departmentCode, $year, $count));
-    // }
+               
+        if(Student::where('matricule', $matricule)->exists()) {
+            return self::forStudent($user_id, $attempt + 1,);
+        }
+
+        return $matricule;
+    }
 }

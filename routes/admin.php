@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\Admin\ApplicationController;
 use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
+use App\Http\Controllers\Dashboard\Admin\StudentController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 use App\Http\Controllers\Dashboard\Admin\TeacherController;
 
@@ -278,6 +279,36 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             ->name('.courses.store');
 
             Route::post('/courses/remove/', [TeacherController::class, 'removeCourseFromTeacher'])
+            ->name('.courses.remove');
+    });
+
+
+    // Student Routes
+    Route::prefix('/students')->as('admin.students')->group(function() {
+
+            Route::get('', [StudentController::class, 'index'])
+                ->name('');
+
+            Route::get('/create', [StudentController::class, 'create'])
+                ->name('.create');
+
+            Route::post('/store', [StudentController::class, 'store'])
+                ->name('.store');
+        
+            Route::get('/edit/{id}', [StudentController::class, 'edit'])
+                ->name('.edit');
+            
+            Route::patch('/update/{id}', 
+            [StudentController::class, 'update'])
+                ->name('.update');
+
+            Route::get('/courses/{id}', [StudentController::class, 'showCourses'])
+            ->name('.courses');
+
+            Route::post('/courses/add/', [StudentController::class, 'addCourseToTeacher'])
+            ->name('.courses.store');
+
+            Route::post('/courses/remove/', [StudentController::class, 'removeCourseFromTeacher'])
             ->name('.courses.remove');
     });
 

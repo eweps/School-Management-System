@@ -15,7 +15,8 @@ class OverviewController extends Controller
     {
        return view('dashboard.teacher.index', [
          'unreadNotifications' => Auth::user()->unreadNotifications()->count(),
-         'totalCourses' => Auth::user()->teacher->courses()->count()
+         'totalCourses' => Auth::user()->teacher->courses()->count(),
+         'learningResources' => Auth::user()->teacher->resources()->count()
        ]);
     }
 }
