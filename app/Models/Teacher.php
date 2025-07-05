@@ -12,7 +12,6 @@ class Teacher extends Model
         'user_id',
         'id_card_number',
         'address',
-        'gender',
         'marital_status',
         'phone_number',
         'date_of_birth',

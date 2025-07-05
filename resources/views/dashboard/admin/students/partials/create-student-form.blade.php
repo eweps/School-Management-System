@@ -133,26 +133,6 @@
 
         </div>
 
-
-        <div>
-            <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Sex *</h4>
-            <div class="radio-group flex items-center gap-x-3 flex-wrap">
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="gender" id="male" value="male"
-                        {{ old('gender') == 'male' ? 'checked' : '' }}>
-                    <x-input-label for="male" class="inline-block cursor-pointer" :value="__('Male')" />
-                </div>
-
-                <div class="item flex-shrink-0">
-                    <input type="radio" name="gender" id="female" value="female"
-                        {{ old('gender') == 'female' ? 'checked' : '' }}>
-                    <x-input-label for="female" class="inline-block cursor-pointer" :value="__('Female')" />
-                </div>
-            </div>
-
-            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
-        </div>
-
         <div>
             <x-input-label for="phoneNumber" :value="__('Phone Number *')" />
             <x-text-input id="phoneNumber" name="phoneNumber" type="text" class="mt-1 block w-full"

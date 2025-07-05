@@ -15,7 +15,6 @@ class Student extends Model
         'level_id',
         'id_card_number',
         'address',
-        'gender',
         'marital_status',
         'phone_number',
         'date_of_birth',
