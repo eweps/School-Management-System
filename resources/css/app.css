@@ -13,6 +13,26 @@ html[data-loading] * {
     background-position: center center;
 }
 
+.sidebar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(50, 50, 50, 0.4) transparent;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar {
+    width: 6px!important;
+    height: 6px!important;
+}
+
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(50, 50, 50, 0.4) transparent;
+  border-radius: 3px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* scrollbar track color */
+}
+
 select.dt-input{
     width: 60px!important;
 }

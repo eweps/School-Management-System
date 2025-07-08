@@ -268,7 +268,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             Route::get('/edit/{id}', [TeacherController::class, 'edit'])
                 ->name('.edit');
             
-            Route::patch('/update/{id}', 
+            Route::put('/update/{id}', 
             [TeacherController::class, 'update'])
                 ->name('.update');
 
@@ -298,7 +298,7 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
             Route::get('/edit/{id}', [StudentController::class, 'edit'])
                 ->name('.edit');
             
-            Route::patch('/update/{id}', 
+            Route::put('/update/{id}', 
             [StudentController::class, 'update'])
                 ->name('.update');
 
