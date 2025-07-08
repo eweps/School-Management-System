@@ -32,6 +32,26 @@ class Student extends Model
           return $this->belongsTo(User::class);
     }
 
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function courseSession()
+    {
+        return $this->belongsTo(CourseSession::class);
+    }
+
+    public function diploma()
+    {
+        return $this->belongsTo(Diploma::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
     public function studentDocuments()
     {
         return $this->hasMany(StudentDocument::class);

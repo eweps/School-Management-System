@@ -40,7 +40,7 @@
                                     <td>{{ $teacher->user->name }}</td>
                                     <td>{{ $teacher->id_card_number }}</td>
                                     <td>{{ $teacher->matricule }}</td>
-                                    <td>{{ $teacher->gender }}</td>
+                                    <td>{{ $teacher->user->gender }}</td>
                                     <td>{{ $teacher->created_at->diffForHumans() }}</td>
                                     <td>
                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
