@@ -27,7 +27,7 @@ class EmailVerificationPromptController extends Controller
                 return redirect()->intended(route('teacher.dashboard', absolute: false));
 
             } elseif ($request->user()->hasRole('student') && Auth::user()->is_active) {
-                // TODO
+                  return redirect()->intended(route('student.dashboard', absolute: false));
             } else {
                 Auth::guard('web')->logout();
                 $request->session()->invalidate();
