@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Fee;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\Diploma;
@@ -40,5 +41,13 @@ class ResourceDeleteService
             throw new CannotDeleteUsedResourceException('Course');
         }
         $course->delete();
+    }
+
+
+      public function checkAndDeleteFee(Fee $fee) {
+        if($fee->feeRecords()->exists()){
+            throw new CannotDeleteUsedResourceException('Fee');
+        }
+        $fee->delete();
     }
 }

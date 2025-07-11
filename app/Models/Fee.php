@@ -16,4 +16,9 @@ class Fee extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function feeRecords()
+    {
+        return $this->hasMany(FeeRecord::class);
+    }
 }
