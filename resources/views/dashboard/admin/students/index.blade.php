@@ -55,6 +55,38 @@
                                             <x-view-modal key="{{ $student->id }}" heading="Student Details"
                                                 button="More">
                                                 <div class="overflow-x-auto">
+
+                                                     <table
+                                                        class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm mb-5">
+                                                        <tbody
+                                                            class="divide-y divide-gray-700 text-sm text-gray-700 dark:text-neutral-200">
+
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Diploma
+                                                                </td>
+                                                                <td class="px-4 py-3 capitalize">
+                                                                    {{ $student->diploma->name }}</td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Department
+                                                                </td>
+                                                                <td class="px-4 py-3 capitalize">
+                                                                    {{ $student->department->name }}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Course Session
+                                                                </td>
+                                                                <td class="px-4 py-3 capitalize">
+                                                                    {{ $student->courseSession->name }}</td>
+                                                            </tr>
+
+                                                           
+                                                        </tbody>
+                                                    </table>
+
                                                     <table
                                                         class="min-w-full table-auto border border-gray-600 dark:border-gray-700 rounded-md shadow-sm">
                                                         <tbody

@@ -15,4 +15,9 @@ class Department extends Model
     {
         return $this->belongsToMany(Course::class, 'course_department')->withTimestamps();
     }
+
+    public function fee()
+    {
+        return $this->hasOne(Fee::class);
+    }
 }
