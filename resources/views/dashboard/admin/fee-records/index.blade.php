@@ -25,7 +25,6 @@
                             <th>Student</th>
                             <th>Total Fee</th>
                             <th>Paid Amount</th>
-                            <th>Amount Left</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -70,7 +69,6 @@
                             <th>Student</th>
                             <th>Total Fee</th>
                             <th>Paid Amount</th>
-                            <th>Amount Left</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>

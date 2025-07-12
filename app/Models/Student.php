@@ -57,6 +57,11 @@ class Student extends Model
         return $this->hasMany(StudentDocument::class);
     }
 
+    public function fees()
+    {
+        return $this->department->fees();
+    }
+
     public function feeRecords()
     {
         return $this->hasMany(FeeRecord::class);
