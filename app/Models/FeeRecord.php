@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FeeRecord extends Model
 {
     protected $fillable = [
+        'reference',
         'student_id',
         'fee_id',
         'receipt',
