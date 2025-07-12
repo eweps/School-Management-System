@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class FeeRecord extends Model
 {
+    protected $fillable = [
+        'student_id',
+        'fee_id',
+        'receipt',
+        'amount_paid',
+        'total_amount',
+        'amount_left',
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class);

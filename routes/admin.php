@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\FeeController;
+use App\Http\Controllers\Dashboard\Admin\FeeRecordController;
 use App\Http\Controllers\Dashboard\Admin\StudentController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 use App\Http\Controllers\Dashboard\Admin\TeacherController;
@@ -205,6 +206,28 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
          Route::delete('/delete', [FeeController::class , 'destroy'])
             ->name('.delete');
+    });
+
+
+    // Fee Records Routes
+    Route::prefix('/fee-records')->as('admin.fee-records')->group(function() {
+        Route::get('', [FeeRecordController::class, 'index'])
+            ->name('');
+
+        // Route::get('/edit/{id}', [FeeController::class, 'edit'])
+        //     ->name('.edit');
+
+        // Route::patch('/update/{id}', [FeeController::class, 'update'])
+        //     ->name('.update');
+
+        Route::get('/create', [FeeRecordController::class, 'create'])
+            ->name('.create');
+
+        // Route::post('/store', [FeeController::class, 'store'])
+        //     ->name('.store');
+
+        //  Route::delete('/delete', [FeeController::class , 'destroy'])
+        //     ->name('.delete');
     });
 
 
