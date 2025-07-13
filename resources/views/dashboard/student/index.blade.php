@@ -46,6 +46,13 @@
                         {{ Auth::user()->student->level->name }}
                         </div>
                  </div>
+
+                  <div class="col-span-1 xl:col-span-2">
+                        <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Your Diploma</h4>
+                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 dark:text-gray-200 text-lg md:text-xl tracking-widest font-bold uppercase">
+                        {{ Auth::user()->student->diploma->name }}
+                        </div>
+                 </div>
            </div>
 
 
