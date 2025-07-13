@@ -25,20 +25,27 @@
             </div>
 
             
-               <div class="grid grid-cols-1 xl:grid-cols-5 gap-y-20 gap-x-0 xl:gap-y-0 xl:gap-x-5 mt-16">
-               <div class="col-span-1 xl:col-span-3">
-                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Monthly Transactions</h4>
-                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full">
-                        <div id="transactionChart" class="!w-[100%]"></div>
-                    </div>
-               </div>
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-y-20 gap-x-0 xl:gap-x-5 mt-16">
+                 <div class="col-span-1 xl:col-span-2">
+                        <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Your Matricule</h4>
+                        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 dark:text-gray-200 text-lg md:text-xl tracking-widest font-bold uppercase">
+                        {{ Auth::user()->student->matricule }}
+                        </div>
+                 </div>
 
-                <div class="col-span-1 xl:col-span-2">
-                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Browser Usage</h4>
-                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden flex items-center justify-center h-full">
-                        <div id="browserChart" class="!w-[100%] mb-8"></div>
-                    </div>
-               </div>
+                 <div class="col-span-1 xl:col-span-2">
+                        <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Your Department</h4>
+                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 dark:text-gray-200 text-lg md:text-xl tracking-widest font-bold uppercase">
+                        {{ Auth::user()->student->department->name }}
+                        </div>
+                 </div>
+
+                   <div class="col-span-1 xl:col-span-2">
+                        <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Your Level</h4>
+                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 dark:text-gray-200 text-lg md:text-xl tracking-widest font-bold uppercase">
+                        {{ Auth::user()->student->level->name }}
+                        </div>
+                 </div>
            </div>
 
 
