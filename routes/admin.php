@@ -228,6 +228,8 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
          Route::delete('/delete', [FeeRecordController::class , 'destroy'])
             ->name('.delete');
+
+        Route::get('/download/{id}', [FeeRecordController::class, 'download'])->name('.download');
     });
 
 

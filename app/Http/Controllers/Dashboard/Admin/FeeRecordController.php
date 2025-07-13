@@ -124,4 +124,18 @@ class FeeRecordController extends Controller
         return $record;
     }
 
+     public function download($recordId)
+    {
+        $record = FeeRecord::findOrFail($recordId);
+
+        try {
+            return Storage::disk('public')->download($record->receipt);
+        }
+        catch(\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);  
+        }
+
+        return redirect()->back()->with(['error' => 'Download Failed']);  
+    }
+
 }

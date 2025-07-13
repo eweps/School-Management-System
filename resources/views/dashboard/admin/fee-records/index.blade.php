@@ -92,6 +92,9 @@
                                             </table>
                                         </div>
                                     </x-view-modal>
+
+                                      <x-primary-linkbutton href="{{ route('admin.fee-records.download', $feeRecord->id) }}">
+                                                Receipt </x-primary-linkbutton>
                                 
                                     <form class="delete-form" action="{{ route('admin.fee-records.delete') }}" method="POST">
                                         @csrf
