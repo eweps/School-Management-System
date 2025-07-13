@@ -3,5 +3,7 @@ import Choices from "choices.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const element = document.querySelector(".searchable");
-    const choices = new Choices(element);
+    if(element !== null) {
+        const choices = new Choices(element);
+    }
 });

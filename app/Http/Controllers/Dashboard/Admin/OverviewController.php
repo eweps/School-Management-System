@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AuthLog;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
 
 class OverviewController extends Controller
 {
