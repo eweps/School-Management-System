@@ -28,7 +28,7 @@
                 
                 <x-stats class="text-teal-700 bg-teal-100 ri-notification-line" heading="Unread Notifications" value="{{ $unreadNotifications ?? 0 }}" />
 
-                <x-stats class="text-red-700 bg-red-100 ri-wallet-3-line" heading="Annual Fee" value="300,000 FCFA" />
+                <x-stats class="text-red-700 bg-red-100 ri-wallet-3-line" heading="Annual Fee" value="{{ Number::currency($annualFee, 'XAF', 'en') }}" />
         
             </div>
 

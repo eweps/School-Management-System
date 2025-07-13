@@ -33,6 +33,37 @@ html[data-loading] * {
   background: transparent; /* scrollbar track color */
 }
 
+/* Choices Library */
+
+.choices__inner, 
+.choices[data-type*="select-one"] .choices__input {
+  @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 ;
+}
+
+
+
+.choices__inner {
+    @apply !px-[0.4rem] !py-[0.3rem] !text-base !overflow-hidden !rounded-md;
+}
+
+.choices__list  {
+ @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300;
+}
+
+.choices__list[aria-expanded]{ 
+    @apply !border-indigo-500 dark:!border-indigo-600 !ring-indigo-500 dark:!ring-indigo-600;
+}
+
+.choices__list--dropdown{
+     @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300;
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+    @apply border-gray-400 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-400;
+}
+
+
+/* Datatable */
 select.dt-input{
     width: 60px!important;
 }

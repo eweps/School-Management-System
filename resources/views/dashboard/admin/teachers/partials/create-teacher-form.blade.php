@@ -9,9 +9,8 @@
 
         <div>
             <x-input-label for="user" :value="__('Select User *')" />
-            <x-select-input id="user" name="user" class="mt-1 block w-full">
-                <option  selected disabled hidden>{{ __('Select a User') }}</option>
-
+            <x-select-input id="user" name="user" class="searchable mt-1 block w-full">
+             
                 @isset($users)
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}" {{ old('user') === $user->id ? 'selected' : '' }}>
