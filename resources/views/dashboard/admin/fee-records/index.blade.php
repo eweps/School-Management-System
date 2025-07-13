@@ -97,6 +97,8 @@
                                         @csrf
                                         @method('delete')
                                         <input type="hidden" name="id" value="{{ $feeRecord->id }}">
+                                        <input type="hidden" name="student_id" value="{{ $feeRecord->student_id }}">
+                                        <input type="hidden" name="fee_id" value="{{ $feeRecord->fee_id }}">
                                         <x-danger-button> Del</x-danger-button>
                                     </form>
 

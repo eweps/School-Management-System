@@ -73,22 +73,55 @@ class FeeRecordController extends Controller
     public function destroy(Request $request)
     {
          $validated = $request->validate([
-            'id' => 'required',
+            'id' => 'required|integer',
+            'student_id' => 'required|integer',
+            'fee_id' => 'required|integer'
         ]);
 
         try {
             $record = FeeRecord::findOrFail($validated['id']);
-            $record->delete();
 
-            // if reciept exist delete it
-            if ($record->receipt && Storage::exists($record->receipt)) {
-                Storage::delete($record->receipt);
+            if($record->count() > 1) {
+
+                //if admin trying to delete first record
+                $studentFirstRecord = $this->getFirstFeeRecord($validated['student_id'], $validated['fee_id']);
+                 
+                if($studentFirstRecord->id === (int) $validated['id']) {
+                    return redirect()->back()->with("error", "You cannot delete the first transaction");
+                }
+                else {
+                     $record->delete();
+                      // if reciept exist delete it
+                    if ($record->receipt && Storage::exists($record->receipt)) {
+                        Storage::delete($record->receipt);
+                    }
+                    return back()->with(['status' => 'fee-record-deleted']);
+                }
+
             }
+            else {
+                
+                $record->delete();
+    
+                // if reciept exist delete it
+                if ($record->receipt && Storage::exists($record->receipt)) {
+                    Storage::delete($record->receipt);
+                }
+                return back()->with(['status' => 'fee-record-deleted']);
+            }
+        
 
-            return back()->with(['status' => 'fee-record-deleted']);
         } 
         catch (QueryException $e) {
             return redirect()->back()->with("error", $e->getMessage());
         }
+
     }
+
+
+    private function getFirstFeeRecord($studentId, $feeId) {
+        $record = FeeRecord::where(['student_id' => $studentId, 'fee_id' => $feeId])->orderBy('id', 'ASC')->first();
+        return $record;
+    }
+
 }
