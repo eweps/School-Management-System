@@ -35,7 +35,7 @@ class FeeRecordController extends Controller
             'student' => 'required|integer',
             'amount' => 'required|numeric|min:1',
             'fee' => 'required|integer',
-            'receipt' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,zip,jpg,png|max:6144', // 6MB max
+            'receipt' => 'required|file|mimes:pdf,jpg,png|max:6144', // 6MB max
         ]);
 
         $path = $request->file('receipt')->store('receipts', 'public');

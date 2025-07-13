@@ -84,8 +84,8 @@
 
         <div class="">
             <div class="w-full">
-                <x-input-label for="receipt" :value="__('Upload Receipt Document (pdf,doc,docx,ppt,pptx,zip,jpg,png) max: 6MB *')" />
-                <x-upload-input class="mt-1 block w-full" for="receipt" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.jpg,.png" />
+                <x-input-label for="receipt" :value="__('Upload Receipt Document (pdf,jpg,png) max: 6MB *')" />
+                <x-upload-input class="mt-1 block w-full" for="receipt" accept=".pdf,.jpg,.png" />
                 <x-input-error class="mt-2" :messages="$errors->get('receipt')" />
             </div>
         </div>
