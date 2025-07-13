@@ -7,6 +7,9 @@ use App\Models\Student;
 use App\Models\FeeRecord;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Services\TransactionReferenceService;
+use App\Services\TransactionReferenceGenerator;
 
 class FeeRecordController extends Controller
 {
@@ -28,10 +31,42 @@ class FeeRecordController extends Controller
 
     public function store(Request $request)
     {
-        //  $validated = $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'amount' => 'required|numeric|min:1',
-        //     'department' => 'required|integer'
-        // ]);
+        $validated = $request->validate([
+            'student' => 'required|integer',
+            'amount' => 'required|numeric|min:1',
+            'fee' => 'required|integer',
+            'receipt' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,zip,jpg,png|max:6144', // 6MB max
+        ]);
+
+        $path = $request->file('receipt')->store('receipts', 'public');
+
+        // get last amount left form last students record of fee
+
+        $fee = Fee::findOrFail($validated['fee']);
+
+        $record = FeeRecord::where(['student_id' => $validated['student'], 'fee_id' => $fee->id])->orderByDesc('id')->first();
+
+        // if no fee record in database
+        if(!$record) {
+            $amountLeft = $fee->amount - (float) $validated['amount'];
+        }else {
+            $amountLeft = $record->amount_left - (float) $validated['amount'];
+        }
+        
+        if($amountLeft < 0) {
+            return redirect()->back()->with('error', 'Incorrect fee value or Student already completed fee'); 
+        }
+
+        FeeRecord::create([
+            'reference' => TransactionReferenceService::generate(),
+            'student_id' => $validated['student'],
+            'fee_id' => $validated['fee'],
+            'amount_paid' => $validated['amount'],
+            'total_amount' => $fee->amount,
+            'amount_left' => $amountLeft,
+            'receipt' => $path,
+        ]);    
+        
+        return redirect()->back()->with(['status' => 'fee-record-created']); 
     }
 }

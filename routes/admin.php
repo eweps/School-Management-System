@@ -223,8 +223,8 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('/create', [FeeRecordController::class, 'create'])
             ->name('.create');
 
-        // Route::post('/store', [FeeController::class, 'store'])
-        //     ->name('.store');
+        Route::post('/store', [FeeRecordController::class, 'store'])
+            ->name('.store');
 
         //  Route::delete('/delete', [FeeController::class , 'destroy'])
         //     ->name('.delete');
