@@ -214,10 +214,10 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::get('', [FeeRecordController::class, 'index'])
             ->name('');
 
-        // Route::get('/edit/{id}', [FeeController::class, 'edit'])
+        // Route::get('/edit/{id}', [FeeRecordController::class, 'edit'])
         //     ->name('.edit');
 
-        // Route::patch('/update/{id}', [FeeController::class, 'update'])
+        // Route::patch('/update/{id}', [FeeRecordController::class, 'update'])
         //     ->name('.update');
 
         Route::get('/create', [FeeRecordController::class, 'create'])
@@ -226,8 +226,8 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
         Route::post('/store', [FeeRecordController::class, 'store'])
             ->name('.store');
 
-        //  Route::delete('/delete', [FeeController::class , 'destroy'])
-        //     ->name('.delete');
+         Route::delete('/delete', [FeeRecordController::class , 'destroy'])
+            ->name('.delete');
     });
 
 

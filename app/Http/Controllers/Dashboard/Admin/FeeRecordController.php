@@ -7,9 +7,9 @@ use App\Models\Student;
 use App\Models\FeeRecord;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 use App\Services\TransactionReferenceService;
-use App\Services\TransactionReferenceGenerator;
 
 class FeeRecordController extends Controller
 {
@@ -68,5 +68,27 @@ class FeeRecordController extends Controller
         ]);    
         
         return redirect()->back()->with(['status' => 'fee-record-created']); 
+    }
+
+    public function destroy(Request $request)
+    {
+         $validated = $request->validate([
+            'id' => 'required',
+        ]);
+
+        try {
+            $record = FeeRecord::findOrFail($validated['id']);
+            $record->delete();
+
+            // if reciept exist delete it
+            if ($record->receipt && Storage::exists($record->receipt)) {
+                Storage::delete($record->receipt);
+            }
+
+            return back()->with(['status' => 'fee-record-deleted']);
+        } 
+        catch (QueryException $e) {
+            return redirect()->back()->with("error", $e->getMessage());
+        }
     }
 }

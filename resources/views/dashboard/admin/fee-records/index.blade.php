@@ -93,7 +93,7 @@
                                         </div>
                                     </x-view-modal>
                                 
-                                    <form class="delete-form" action="{{ route('admin.fees.delete') }}" method="POST">
+                                    <form class="delete-form" action="{{ route('admin.fee-records.delete') }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <input type="hidden" name="id" value="{{ $feeRecord->id }}">
