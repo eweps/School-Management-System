@@ -98,10 +98,19 @@ class ApiController extends Controller
 
     public function getFeeRecordData() {
 
+        // $dataset = FeeRecord::selectRaw('DATE(created_at) as date, SUM(amount_paid) as amount')
+        // ->groupBy('date')
+        // ->orderBy('date')
+        // ->get();
+
+        // return $dataset;
+
         $dataset = FeeRecord::selectRaw('DATE(created_at) as date, SUM(amount_paid) as amount')
-        ->groupBy('date')
-        ->orderBy('date')
-        ->get();
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
 
         return $dataset;
 
