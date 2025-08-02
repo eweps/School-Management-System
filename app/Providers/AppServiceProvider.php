@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Models\Student;
+use App\Observers\StudentObserver;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 Config::set('app.name', $systemName);
             }
         }
+
+        Student::observe(StudentObserver::class);
     }
 }
