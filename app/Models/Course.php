@@ -12,7 +12,8 @@ class Course extends Model
         'code',
         'description',
         'credit_value',
-        'semester_id'
+        'semester_id',
+        'level_id'
     ];
 
     public function learningResources()
@@ -28,6 +29,11 @@ class Course extends Model
     public function semester()
     {
         return $this->belongsTo(Semester::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 
     public function caMarks()

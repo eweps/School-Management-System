@@ -26,7 +26,7 @@
                             <th>Code</th>
                             <th>Credit</th>
                             <th>Semester</th>
-                            <th>Created</th>
+                            <th>Level</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                                     <td>{{ $course->code }}</td>
                                     <td>{{ $course->credit_value }}</td>
                                     <td>{{ $course->semester->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
+                                    <td>{{ $course->level->name ?? 'none' }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
@@ -55,6 +55,11 @@
                                                             <tr>
                                                                 <td class="font-medium px-4 py-3 w-1/3 uppercase">Name</td>
                                                                 <td class="px-4 py-3">{{ $course->name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-medium px-4 py-3 uppercase">Level</td>
+                                                                <td class="px-4 py-3 capitalize">{{ $course->level->name ?? 'none' }}
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="font-medium px-4 py-3 uppercase">Description</td>
@@ -111,7 +116,7 @@
                             <th>Code</th>
                             <th>Credit</th>
                             <th>Semester</th>
-                            <th>Created</th>
+                            <th>Level</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

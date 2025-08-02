@@ -59,7 +59,8 @@ class CourseController extends Controller
     {
         return view('dashboard.admin.courses.edit', [
             'course' => Course::findOrFail($id),
-            'semesters' => Semester::orderByDesc('id')->get()
+            'semesters' => Semester::orderByDesc('id')->get(),
+            'levels' => Level::orderByDesc('id')->get()
         ]);
     }
 
