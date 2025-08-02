@@ -36,7 +36,7 @@
                                 <th>Name</th>
                                 <th>Matricule</th>
                                 <th>Course</th>
-                                <th>Mark / 30</th>
+                                <th>Mark / {{ getSetting('TOTAL_CA_MARK') }}</th>
                             </tr>
                         </thead>
 

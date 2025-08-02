@@ -80,7 +80,7 @@
                         <th class="theading">Student Name</th>
                         <th class="theading">Matricule</th>
                         <th class="theading">Level</th>
-                        <th class="theading">Mark / 70</th>
+                        <th class="theading">Mark / {{ getSetting('TOTAL_EXAM_MARK') }}</th>
                     </tr>
                 </thead>
                 <tbody>
