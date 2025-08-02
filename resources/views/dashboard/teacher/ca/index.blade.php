@@ -34,23 +34,23 @@
 
                         @isset($courses)
 
-                            @foreach ($courses as $course)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $course->name }}</td>
-                                    <td>{{ $course->code }}</td>
-                                    <td>{{ $course->semester->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+                        @foreach ($courses as $course)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $course->name }}</td>
+                            <td>{{ $course->code }}</td>
+                            <td>{{ $course->semester->name }}</td>
+                            <td>{{ $course->created_at->diffForHumans() }}</td>
+                            <td>
+                                <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
-                                            <x-primary-linkbutton href="{{ route('teacher.ca-marks.create', $course->id) }}">
-                                                Enter </x-primary-linkbutton>
-       
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    <x-primary-linkbutton href="{{ route('teacher.ca-marks.create', $course->id) }}">
+                                        Enter </x-primary-linkbutton>
+
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
 
                         @endisset
 

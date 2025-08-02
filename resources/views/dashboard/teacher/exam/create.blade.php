@@ -20,6 +20,15 @@
             <form action="{{ route('teacher.exam-marks.store', $course->id) }}" method="post">
                 @csrf
                 <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+
+                    <div class="flex items-center justify-center gap-2">
+                        <x-primary-linkbutton href="{{ route('teacher.exam-marks.pdf', $course->id) }}">
+                            Generate PDF
+                        </x-primary-linkbutton>
+
+                    </div>
+
+
                     <table class="dt-table display">
 
                         <thead>

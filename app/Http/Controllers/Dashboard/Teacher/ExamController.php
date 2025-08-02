@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Dashboard\Teacher;
 
 use App\Models\CaMark;
 use App\Models\Course;
+use App\Models\ExamMark;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\ExamMark;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,5 +64,26 @@ class ExamController extends Controller
         });
 
         return redirect()->back()->with(['status' => 'ca-saved']);
+    }
+
+    public function generatePdf(int $courseId)
+    {
+        $examMarks = ExamMark::with(['student.user', 'student.level', 'course'])
+            ->where('course_id', $courseId)
+            ->get();
+
+        $course = $examMarks->first()->course ?? null;
+        $timezone = auth()->user()->timezone ?? 'UTC';
+
+        if (!$course) {
+            return redirect()->back()->with('error', 'No exam marks found for this course.');
+        }
+
+        $pdf = Pdf::loadView('pdf.exam_marks', compact('examMarks', 'course', 'timezone'))
+            ->setPaper('a4', 'portrait');
+
+        $fileName = 'EXAM_MARKS_' . strtoupper(Str::slug($course->name)) . '_' . time() . '.pdf';
+
+        return $pdf->download($fileName);
     }
 }

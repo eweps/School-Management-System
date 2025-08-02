@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard\Teacher;
 
 use App\Models\CaMark;
 use App\Models\Course;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -61,5 +63,24 @@ class CaController extends Controller
         });
 
         return redirect()->back()->with(['status' => 'ca-saved']);
+    }
+
+    public function generatePdf(int $courseId)
+    {
+        // Fetch CA marks for the course
+        $caMarks = CaMark::with(['student', 'course'])
+            ->where('course_id', $courseId)
+            ->get();
+
+        // Load the view into PDF
+        $pdf = Pdf::loadView('pdf.ca_marks', [
+            'caMarks' => $caMarks,
+            'course' => $caMarks->first()?->course, // for header/title use
+            'timezone' => auth()->user()?->timezone ?? 'UTC'
+        ])->setPaper('a4', 'portrait');
+
+        $fileName = 'CA_MARKS_' . strtoupper(Str::random(6)) . '_' . time() . '.pdf';
+
+        return $pdf->download($fileName);
     }
 }

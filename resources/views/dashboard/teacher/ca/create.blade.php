@@ -4,22 +4,30 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
                 <h1 class="text-base">Dashboard / <a href="{{ route('teacher.ca-marks.create', $course->id) }}" class="text-secondary">Enter CA Marks For {{ $course->name }}</a>
                 </h1>
             </header>
-            
-            
+
+
             <x-session-status key="ca-saved" message="Mark Saved Successfully" />
             <x-session-error />
 
             <form action="{{ route('teacher.ca-marks.store', $course->id) }}" method="post">
                 @csrf
                 <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+
+                    <div class="flex items-center justify-center gap-2">
+                        <x-primary-linkbutton href="{{ route('teacher.ca-marks.pdf', $course->id) }}">
+                            Generate PDF
+                        </x-primary-linkbutton>
+
+                    </div>
+
                     <table class="dt-table display">
 
                         <thead>
@@ -44,7 +52,7 @@
                                 <td>{{ $course->name }}</td>
                                 <td>
                                     @php
-                                        $existingMark = $caMarks[$student->id]->mark ?? '';
+                                    $existingMark = $caMarks[$student->id]->mark ?? '';
                                     @endphp
                                     <x-text-input name="marks[{{ $student->id }}][mark]" class="w-[120px] text-center" min="0" max="30" value="{{ old('marks.' . $student->id . '.mark', $existingMark) }}" required />
                                 </td>
