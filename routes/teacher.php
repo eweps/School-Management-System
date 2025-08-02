@@ -46,8 +46,8 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
                 ->name('');
             Route::get('/create/{id}', [CaController::class, 'create'])
                 ->name('.create');
-            // Route::post('/store', [ResourceController::class, 'store'])
-            //     ->name('.store');
+            Route::post('/store/{id}', [CaController::class, 'store'])
+                ->name('.store');
 
             // Route::delete('/delete', [ResourceController::class, 'destroy'])
             //     ->name('.delete');

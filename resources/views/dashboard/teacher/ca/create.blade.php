@@ -4,70 +4,80 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+            
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
                 <h1 class="text-base">Dashboard / <a href="{{ route('teacher.ca-marks.create', $course->id) }}" class="text-secondary">Enter CA Marks For {{ $course->name }}</a>
                 </h1>
             </header>
-
+            
+            
+            <x-session-status key="ca-saved" message="Mark Saved Successfully" />
             <x-session-error />
 
-            <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+            <form action="{{ route('teacher.ca-marks.store', $course->id) }}" method="post">
+                @csrf
+                <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+                    <table class="dt-table display">
 
-                <table class="dt-table display">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Matricule</th>
+                                <th>Course</th>
+                                <th>Mark</th>
+                            </tr>
+                        </thead>
 
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Matricule</th>
-                            <th>Course</th>
-                            <th>Mark</th>
-                        </tr>
-                    </thead>
+                        <tbody>
 
-                    <tbody>
+                            @isset($students)
 
-                        @isset($courses)
-
-                            @foreach ($courses as $course)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $course->name }}</td>
-                                    <td>{{ $course->code }}</td>
-                                    <td>{{ $course->semester->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        <div class="flex flex-col md:flex-row justify-center items-center gap-3">
-
-                                            <x-primary-linkbutton href="{{ route('teacher.ca-marks.create', $course->id) }}">
-                                                Enter </x-primary-linkbutton>
-       
-                                        </div>
-                                    </td>
-                                </tr>
+                            @foreach ($students as $student)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $student->user->name }}</td>
+                                <td>{{ $student->matricule }}</td>
+                                <td>{{ $course->name }}</td>
+                                <td>
+                                    @php
+                                        $existingMark = $caMarks[$student->id]->mark ?? '';
+                                    @endphp
+                                    <x-text-input name="marks[{{ $student->id }}][mark]" class="w-14 text-center" min="0" max="30" value="{{ old('marks.' . $student->id . '.mark', $existingMark) }}" required />
+                                </td>
+                            </tr>
                             @endforeach
 
-                        @endisset
+                            @endisset
 
-                    </tbody>
+                        </tbody>
 
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Matricule</th>
-                            <th>Course</th>
-                            <th>Mark</th>
-                        </tr>
-                    </tfoot>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Matricule</th>
+                                <th>Course</th>
+                                <th>Mark</th>
+                            </tr>
+                        </tfoot>
 
-                </table>
+                    </table>
 
-            </div>
+                </div>
+
+                <div class="flex items-center gap-4 mt-5">
+                    <x-primary-button>{{ __('Submit') }}</x-primary-button>
+
+                    @if (session('status') === 'ca-saved')
+                    <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>
+                    @endif
+                </div>
+
+            </form>
 
 
         </div>
