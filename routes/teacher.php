@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Teacher\CaController;
 use App\Http\Controllers\Dashboard\Teacher\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Teacher\OverviewController;
@@ -37,6 +38,20 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
             Route::delete('/delete', [ResourceController::class, 'destroy'])
                 ->name('.delete');
             Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
+        });
+
+
+        Route::prefix('/ca-marks')->as('teacher.ca-marks')->group(function() {
+            Route::get('', [CaController::class, 'index'])
+                ->name('');
+            Route::get('/create/{id}', [CaController::class, 'create'])
+                ->name('.create');
+            // Route::post('/store', [ResourceController::class, 'store'])
+            //     ->name('.store');
+
+            // Route::delete('/delete', [ResourceController::class, 'destroy'])
+            //     ->name('.delete');
+            // Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
         });
 
 
