@@ -171,19 +171,23 @@
 
                 const amountLeft = document.querySelector('#amountLeft');
                 const totalPaid = document.querySelector('#totalPaid');
-                const record = data.record;
 
-                if (amountLeft !== null) {
-                    const leftFeeAmount = amountLeft.querySelector('.fee-amount');
-                    leftFeeAmount.textContent = formatter.format(record.amount_left);
-                }
+                if (data !== undefined && data.record !== undefined) {
+                    const record = data.record;
 
-                if (totalPaid !== null) {
-                    const paidFeeAmount = totalPaid.querySelector('.fee-amount');
-                    let totalFee = record.total_amount;
-                    let amountLeft = record.amount_left;
-                    let amountPaid = totalFee - amountLeft;
-                    paidFeeAmount.textContent = formatter.format(amountPaid);
+                    if (amountLeft !== null) {
+                        const leftFeeAmount = amountLeft.querySelector('.fee-amount');
+                        leftFeeAmount.textContent = formatter.format(record.amount_left);
+                    }
+
+                    if (totalPaid !== null) {
+                        const paidFeeAmount = totalPaid.querySelector('.fee-amount');
+                        let totalFee = record.total_amount;
+                        let amountLeft = record.amount_left;
+                        let amountPaid = totalFee - amountLeft;
+                        paidFeeAmount.textContent = formatter.format(amountPaid);
+
+                    }
                 }
 
             });
@@ -198,7 +202,9 @@
 
             getStudentLastPaidFee(studentId, feeId).then(data => {
 
-                const feeRecord = data.record;
+
+                if (data !== undefined && data.record !== undefined) {
+                    const feeRecord = data.record;
 
                     if (payingNow !== null) {
                         const payingNowAmount = payingNow.querySelector('.fee-amount');
@@ -214,13 +220,13 @@
                             let leftFee = parseFloat(feeRecord.amount_left);
                             let totalFee = parseFloat(feeRecord.total_amount);
                             let paidFee = totalFee - leftFee;
-                    
+
                             let currentLeftAmount = leftFee - parsedInput;
                             leftFeeAmount.textContent = formatter.format(currentLeftAmount);
-                            
+
                             let currentPaidAmount = paidFee + parsedInput;
                             paidFeeAmount.textContent = formatter.format(currentPaidAmount);
-                            
+
                         } else {
 
                             let leftFee = parseFloat(feeRecord.amount_left);
@@ -233,6 +239,7 @@
                         }
 
                     }
+                }
 
             });
 
@@ -246,7 +253,10 @@
             const response = await axios.get(`/api/student/fee/lastpaid/${studentId}/${feeId}`);
             return response.data;
         } catch (error) {
-            console.error("Error fetching data:", error);
+            if (error.response && error.response.status === 400) {
+                return null;
+            }
+            // console.error("Error fetching data:", error);
         }
     }
 
@@ -255,7 +265,10 @@
             const response = await axios.get(`/api/fee/${feeId}`);
             return response.data;
         } catch (error) {
-            console.error("Error fetching data:", error);
+            if (error.response && error.response.status === 400) {
+                return null;
+            }
+            // console.error("Error fetching data:", error);
         }
     }
 
