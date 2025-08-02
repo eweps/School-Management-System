@@ -12,7 +12,7 @@ class StudentObserver
         $courseIds = $student->department
             ->courses()
             ->where('level_id', $student->level_id)
-            ->pluck('id');
+            ->pluck('courses.id');
 
         $student->courses()->sync($courseIds);
     }
