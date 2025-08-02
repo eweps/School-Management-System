@@ -37,7 +37,7 @@
                                 <th>Name</th>
                                 <th>Matricule</th>
                                 <th>Course</th>
-                                <th>Mark / 70</th>
+                                <th>Mark / {{ getSetting('TOTAL_EXAM_MARK') }}</th>
                             </tr>
                         </thead>
 

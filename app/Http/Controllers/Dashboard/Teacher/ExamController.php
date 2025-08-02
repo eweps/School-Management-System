@@ -36,7 +36,7 @@ class ExamController extends Controller
     public function store(Request $request, int $courseId)
     {
         $validator = Validator::make($request->all(), [
-            'marks.*.mark' => ['required', 'numeric', 'max:70']
+            'marks.*.mark' => ['required', 'numeric', 'max:'.getSetting('TOTAL_EXAM_MARK')]
         ]);
 
 

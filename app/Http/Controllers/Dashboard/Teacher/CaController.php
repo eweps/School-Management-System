@@ -35,7 +35,7 @@ class CaController extends Controller
     public function store(Request $request, int $courseId)
     {
         $validator = Validator::make($request->all(), [
-            'marks.*.mark' => ['required', 'numeric', 'max:30']
+            'marks.*.mark' => ['required', 'numeric', 'max:'.getSetting('TOTAL_CA_MARK')]
         ]);
 
 
