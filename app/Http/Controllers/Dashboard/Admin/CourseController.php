@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use Exception;
+use App\Models\Level;
 use App\Models\Course;
 use App\Models\Semester;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class CourseController extends Controller
     public function create()
     {
        return view('dashboard.admin.courses.create', [
-            'semesters' => Semester::orderByDesc('id')->get()
+            'semesters' => Semester::orderByDesc('id')->get(),
+            'levels' => Level::orderByDesc('id')->get()
        ]);
     }
 
@@ -36,7 +38,8 @@ class CourseController extends Controller
             'description' => 'required|string',
             'code' => 'required',
             'credit' => ['required', 'integer'],
-            'semester' => 'required'
+            'semester' => 'required',
+            'level' => 'required'
         ]);
 
         Course::create([
@@ -44,7 +47,8 @@ class CourseController extends Controller
             'code' => $validated['code'],
             'description' => $validated['description'],
             'credit_value' => $validated['credit'],
-            'semester_id' => $validated['semester']
+            'semester_id' => $validated['semester'],
+            'level_id' => $validated['level']
         ]);
 
         return back()->with(['status' => 'course-created']);
@@ -55,7 +59,8 @@ class CourseController extends Controller
     {
         return view('dashboard.admin.courses.edit', [
             'course' => Course::findOrFail($id),
-            'semesters' => Semester::orderByDesc('id')->get()
+            'semesters' => Semester::orderByDesc('id')->get(),
+            'levels' => Level::orderByDesc('id')->get()
         ]);
     }
 
@@ -67,7 +72,8 @@ class CourseController extends Controller
             'description' => 'required|string',
             'code' => 'required',
             'credit' => ['required', 'integer'],
-            'semester' => 'required'
+            'semester' => 'required',
+            'level' => 'required'
         ]);
 
         $course = Course::findOrFail($id);
@@ -77,7 +83,8 @@ class CourseController extends Controller
             'code' => $validated['code'],
             'description' => $validated['description'],
             'credit_value' => $validated['credit'],
-            'semester_id' => $validated['semester']
+            'semester_id' => $validated['semester'],
+            'level_id' => $validated['level']
         ]);
 
         return back()->with(['status' => 'course-updated']);

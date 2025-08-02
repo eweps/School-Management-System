@@ -31,7 +31,7 @@ class StudentController extends Controller
             'users' => User::role('student')->whereDoesntHave('student')->get(),
             'courseSessions' => CourseSession::all(),
             'diplomas' => Diploma::all(),
-            'departments' => Department::all(),
+            'departments' => Department::whereHas('courses')->get(),
             'levels' => Level::all()
         ]);
     }
@@ -88,6 +88,9 @@ class StudentController extends Controller
                 'professional_experience' => $validated['professionalExperience'],
                 'other_relevant_info' => $validated['otherRelevantInformation'],
             ]);
+
+            
+
             return redirect()->back()->with(['status' => 'student-created']);
         
        } catch (\Exception $e) {
@@ -103,7 +106,7 @@ class StudentController extends Controller
             "student" => $student,
             'courseSessions' => CourseSession::all(),
             'diplomas' => Diploma::all(),
-            'departments' => Department::all(),
+            'departments' => Department::whereHas('courses')->get(),
             'levels' => Level::all(),
             'users' => User::role('student')->where(function ($query) use ($student) {
                             $query->whereDoesntHave('student')
@@ -137,7 +140,9 @@ class StudentController extends Controller
 
          try {
 
-            Student::whereId($id)->update([
+            $student = Student::findOrFail($id);
+
+            $student->update([
                 'user_id' => $validated['user'],
                 'id_card_number' => $validated['idCardNumber'],
                 'address' => $validated['address'],

@@ -18,7 +18,7 @@
                 
                 @isset($courses)
                     @foreach ($courses as $course )
-                         <option value="{{ $course->id }}">{{ __($course->name) }}</option>
+                         <option value="{{ $course->id }}">{{ __($course->name) }} -- {{ $course->level?->name }}</option>
                     @endforeach
                 @endisset
 

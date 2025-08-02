@@ -48,6 +48,22 @@
              <x-input-error class="mt-2" :messages="$errors->get('semester')" />
         </div>
 
+        <div>
+            <x-input-label for="level" :value="__('Select a Level *')" />
+            <x-select-input id="level" name="level" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Level') }}</option>
+
+                @isset($levels)
+                    @foreach ($levels as $level)
+                        <option value="{{ $level->id }}" {{ old('level') === $level->id ? 'selected' : '' }}>
+                            {{ __($level->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('level')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Create') }}</x-primary-button>
 

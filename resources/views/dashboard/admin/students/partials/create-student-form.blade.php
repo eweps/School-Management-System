@@ -51,11 +51,11 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('diploma')" />
         </div>
 
         <div>
-            <x-input-label for="department" :value="__('Select a Department *')" />
+            <x-input-label for="department" :value="__('Select a Department (with courses) *')" />
             <x-select-input id="department" name="department" class="mt-1 block w-full">
                 <option selected disabled>{{ __('Select a Department') }}</option>
 
@@ -67,7 +67,7 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('department')" />
         </div>
 
 
@@ -84,7 +84,7 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('level')" />
         </div>
 
 

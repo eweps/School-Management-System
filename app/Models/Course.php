@@ -12,7 +12,8 @@ class Course extends Model
         'code',
         'description',
         'credit_value',
-        'semester_id'
+        'semester_id',
+        'level_id'
     ];
 
     public function learningResources()
@@ -28,6 +29,11 @@ class Course extends Model
     public function semester()
     {
         return $this->belongsTo(Semester::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 
     public function caMarks()
@@ -48,5 +54,10 @@ class Course extends Model
     public function teachers()
     {
         return $this->belongsToMany(Teacher::class, 'teacher_course')->withTimestamps();
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'course_student')->withTimestamps();
     }
 }

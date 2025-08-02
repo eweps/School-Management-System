@@ -35,7 +35,7 @@
             
            <div class="grid grid-cols-1 xl:grid-cols-5 gap-y-20 gap-x-0 xl:gap-y-0 xl:gap-x-5 mt-16">
                <div class="col-span-1 xl:col-span-3">
-                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Monthly Fee Records</h4>
+                    <h4 class="text-base uppercase tracking-wider font-semibold dark:text-neutral-200">Fee Records For  ({{ date('F') }})</h4>
                     <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full">
                         <div id="transactionChart" class="!w-[100%]"></div>
                     </div>
