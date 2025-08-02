@@ -40,6 +40,7 @@ class ApiController extends Controller
              return response()->json([
                 'success' => false,
                 'message' => 'Fee not found',
+                'fee' => ''
             ], 404);
           }
 
