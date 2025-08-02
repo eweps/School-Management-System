@@ -31,7 +31,7 @@ class StudentController extends Controller
             'users' => User::role('student')->whereDoesntHave('student')->get(),
             'courseSessions' => CourseSession::all(),
             'diplomas' => Diploma::all(),
-            'departments' => Department::all(),
+            'departments' => Department::whereHas('courses')->get(),
             'levels' => Level::all()
         ]);
     }
@@ -106,7 +106,7 @@ class StudentController extends Controller
             "student" => $student,
             'courseSessions' => CourseSession::all(),
             'diplomas' => Diploma::all(),
-            'departments' => Department::all(),
+            'departments' => Department::whereHas('courses')->get(),
             'levels' => Level::all(),
             'users' => User::role('student')->where(function ($query) use ($student) {
                             $query->whereDoesntHave('student')

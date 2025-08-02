@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Models;
-
-use App\Observers\StudentObserver;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-#[ObservedBy([StudentObserver::class])]
 class Student extends Model
 {
     protected $fillable = [

@@ -55,7 +55,7 @@
         </div>
 
         <div>
-            <x-input-label for="department" :value="__('Select a Department *')" />
+            <x-input-label for="department" :value="__('Select a Department (with courses) *')" />
             <x-select-input id="department" name="department" class="mt-1 block w-full">
                 <option selected disabled>{{ __('Select a Department') }}</option>
 
