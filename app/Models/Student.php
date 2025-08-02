@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Observers\StudentObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy([StudentObserver::class])]
 class Student extends Model
 {
     protected $fillable = [
@@ -84,5 +87,9 @@ class Student extends Model
 
     public function availableCourses() {
         return $this->department->courses()->where('level_id', $this->level_id);
+    }
+
+    public function courses() {
+        return $this->belongsToMany(Course::class, 'course_student')->withTimestamps();
     }
 }

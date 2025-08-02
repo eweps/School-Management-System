@@ -88,6 +88,9 @@ class StudentController extends Controller
                 'professional_experience' => $validated['professionalExperience'],
                 'other_relevant_info' => $validated['otherRelevantInformation'],
             ]);
+
+            
+
             return redirect()->back()->with(['status' => 'student-created']);
         
        } catch (\Exception $e) {
