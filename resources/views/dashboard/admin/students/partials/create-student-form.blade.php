@@ -51,7 +51,7 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('diploma')" />
         </div>
 
         <div>
@@ -67,7 +67,7 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('department')" />
         </div>
 
 
@@ -84,7 +84,7 @@
                 @endisset
 
             </x-select-input>
-            <x-input-error class="mt-2" :messages="$errors->get('user')" />
+            <x-input-error class="mt-2" :messages="$errors->get('level')" />
         </div>
 
 
