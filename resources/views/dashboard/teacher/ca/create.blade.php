@@ -23,10 +23,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Semester</th>
-                            <th>Created</th>
-                            <th>Action</th>
+                            <th>Matricule</th>
+                            <th>Course</th>
+                            <th>Mark</th>
                         </tr>
                     </thead>
 
@@ -60,10 +59,9 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Semester</th>
-                            <th>Created</th>
-                            <th>Action</th>
+                            <th>Matricule</th>
+                            <th>Course</th>
+                            <th>Mark</th>
                         </tr>
                     </tfoot>
 

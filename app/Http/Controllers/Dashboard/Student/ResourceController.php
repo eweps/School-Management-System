@@ -18,7 +18,7 @@ class ResourceController extends Controller
 {
     public function index()
     {
-        $resources = Auth::user()->student->department->courses()->with('learningResources')->get()->flatMap->learningResources;
+        $resources = Auth::user()->student->availableCourses()->with('learningResources')->get()->flatMap->learningResources;
 
         return view('dashboard.student.resources', ['resources' => $resources]);
     }

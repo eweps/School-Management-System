@@ -81,4 +81,8 @@ class Student extends Model
     {
         return $this->hasMany(Attendance::class);
     }
+
+    public function availableCourses() {
+        return $this->department->courses()->where('level_id', $this->level_id);
+    }
 }
