@@ -26,7 +26,7 @@
                             <th>Code</th>
                             <th>Credit</th>
                             <th>Semester</th>
-                            <th>Created</th>
+                            <th>Level</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,7 +42,7 @@
                                     <td>{{ $course->code }}</td>
                                     <td>{{ $course->credit_value }}</td>
                                     <td>{{ $course->semester->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
+                                    <td>{{ $course->level?->name }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
@@ -101,7 +101,7 @@
                             <th>Code</th>
                             <th>Credit</th>
                             <th>Semester</th>
-                            <th>Created</th>
+                            <th>Level</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

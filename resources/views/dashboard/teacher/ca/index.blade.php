@@ -24,6 +24,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Code</th>
+                            <th>Level</th>
                             <th>Semester</th>
                             <th>Created</th>
                             <th>Action</th>
@@ -39,6 +40,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->code }}</td>
+                            <td>{{ $course->level?->name }}</td>
                             <td>{{ $course->semester->name }}</td>
                             <td>{{ $course->created_at->diffForHumans() }}</td>
                             <td>
@@ -61,6 +63,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Code</th>
+                            <th>Level</th>
                             <th>Semester</th>
                             <th>Created</th>
                             <th>Action</th>

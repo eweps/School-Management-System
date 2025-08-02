@@ -42,6 +42,7 @@
 </li>
 
 
+@if (getSetting('FILL_CA_MARKS') === '1')
 <!-- Navitem with link -->
 <li class="nav-item group {{ request()->routeIs('teacher.ca-marks*') ? 'active' : '' }}">
     <a href="{{ route('teacher.ca-marks') }}"
@@ -50,8 +51,10 @@
         <span>CA Marks</span>
     </a>
 </li>
+@endif
 
 
+ @if (getSetting('FILL_EXAM_MARKS') === '1')
 <!-- Navitem with link -->
 <li class="nav-item group {{ request()->routeIs('teacher.exam-marks*') ? 'active' : '' }}">
     <a href="{{ route('teacher.exam-marks') }}"
@@ -60,3 +63,4 @@
         <span>Exam Marks</span>
     </a>
 </li>
+@endif
