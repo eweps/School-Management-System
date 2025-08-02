@@ -14,9 +14,7 @@ class CourseController extends Controller
         $levelId = Auth::user()->student->level->id;
 
         return view('dashboard.student.courses',[
-            'courses' => Auth::user()->student->department->courses()
-                                ->where('level_id', $levelId)
-                                ->latest()->get()
+            'courses' => Auth::user()->student->courses()->get()
         ]);
     }
 }

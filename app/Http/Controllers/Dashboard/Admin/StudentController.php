@@ -140,7 +140,9 @@ class StudentController extends Controller
 
          try {
 
-            Student::whereId($id)->update([
+            $student = Student::findOrFail($id);
+
+            $student->update([
                 'user_id' => $validated['user'],
                 'id_card_number' => $validated['idCardNumber'],
                 'address' => $validated['address'],
