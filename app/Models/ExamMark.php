@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamMark extends Model
 {
+    
+    public $fillable = [
+        'user_id',
+        'student_id',
+        'course_id',
+        'mark'
+    ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);
