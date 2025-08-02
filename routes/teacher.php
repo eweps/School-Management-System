@@ -42,7 +42,7 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
         });
 
 
-        Route::prefix('/ca-marks')->as('teacher.ca-marks')->group(function() {
+        Route::prefix('/ca-marks')->as('teacher.ca-marks')->middleware('ensure.ca-marks')->group(function() {
             Route::get('', [CaController::class, 'index'])
                 ->name('');
             Route::get('/create/{id}', [CaController::class, 'create'])
@@ -58,7 +58,7 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
             // Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
         });
 
-         Route::prefix('/exam-marks')->as('teacher.exam-marks')->group(function() {
+         Route::prefix('/exam-marks')->as('teacher.exam-marks')->middleware('ensure.exam-marks')->group(function() {
             Route::get('', [ExamController::class, 'index'])
                 ->name('');
             Route::get('/create/{id}', [ExamController::class, 'create'])

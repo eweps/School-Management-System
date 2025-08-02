@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\EnsureCaMarkFillingIsOpen;
+use App\Http\Middleware\EnsureExamMarkFillingIsOpen;
 use App\Http\Middleware\EnsureTeacherHasProfile;
 use App\Http\Middleware\SetTimeZone;
 use Illuminate\Foundation\Application;
@@ -22,7 +24,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
-            'ensure.teacher.profile' => EnsureTeacherHasProfile::class
+            'ensure.teacher.profile' => EnsureTeacherHasProfile::class,
+            'ensure.exam-marks' => EnsureExamMarkFillingIsOpen::class,
+            'ensure.ca-marks' => EnsureCaMarkFillingIsOpen::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
