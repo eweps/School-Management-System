@@ -104,14 +104,14 @@
 
             <div class="info-section">
                 <div class="info-block">
-                    <p><strong>Name:</strong> {{ $user->first_name }} {{ $user->last_name }}</p>
+                    <p><strong>Name:</strong> {{ $user->name }}</p>
                     <p><strong>Matriculation No:</strong> {{ $user->student->matricule }}</p>
-                    <p><strong>Program:</strong> {{ $user->student->program->name }}</p>
+                    <p><strong>Diploma:</strong> {{ $user->student->diploma->name }}</p>
                 </div>
                 <div class="info-block">
                     <p><strong>Department:</strong> {{ $user->student->department->name }}</p>
                     <p><strong>Semester:</strong> {{ strtoupper( $courses[0]->semester->name ) }}</p>
-                    <p><strong>Academic Year:</strong> {{ App\Models\SchoolSetting::where("type","academic_year")->first()->value }}</p>
+                    <p><strong>Academic Year:</strong> {{ getSetting('academic_year') }}</p>
                     <p><strong>Date Generated:</strong> {{ Carbon\Carbon::parse(now())->toFormattedDayDateString() }}</p>
                 </div>
             </div>

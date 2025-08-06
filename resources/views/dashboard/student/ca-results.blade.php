@@ -17,11 +17,26 @@
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
-                <form class="flex justify-center items-center">
+                <form action="{{ route('student.ca-results.pdf') }}" class="flex justify-center items-center flex-col mb-5 md:flex-row md:mb-0 gap-2" method="POST">
+                    @csrf
+
+                    <div>
+                        <x-select-input id="semester" name="semester" class="mt-1 block w-full">
+                            <option selected disabled>{{ __('Select a Semester') }}</option>
+                            
+                            @isset($semesters)
+                                @foreach ($semesters as $semester )
+                                    <option value="{{ $semester->id }}">{{ __($semester->name) }}</option>
+                                @endforeach
+                            @endisset
+
+                        </x-select-input>
+                        <x-input-error class="mt-2" :messages="$errors->get('semester')" />
+                    </div>
                     
-                    <x-primary-linkbutton href="">
+                    <x-primary-button type="submit">
                         Get CA Results
-                    </x-primary-linkbutton>
+                    </x-primary-button>
                 </form>
 
                 <table class="dt-table display">
