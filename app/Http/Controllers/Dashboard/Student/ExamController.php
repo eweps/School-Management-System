@@ -15,7 +15,6 @@ class ExamController extends Controller
     public function index()
     {
         $examResults = ExamMark::where(['student_id' => Auth::user()->student->id])->get();
-    
         return view('dashboard.student.exam-results', [
             'examResults' => $examResults,
             'semesters' => Semester::orderByDesc('id')->get(),
