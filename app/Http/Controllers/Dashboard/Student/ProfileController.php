@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Teacher;
+namespace App\Http\Controllers\Dashboard\Student;
 
-use App\Models\Teacher;
+use App\Models\Level;
+use App\Models\Diploma;
+use App\Models\Student;
+use App\Models\Department;
 use App\Enums\GenderStatus;
 use App\Enums\MaritalStatus;
 use Illuminate\Http\Request;
+use App\Models\CourseSession;
 use App\Enums\SalutationStatus;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -15,7 +19,12 @@ class ProfileController extends Controller
 {
     public function create()
     {
-        return view('dashboard.teacher.profile.create');
+        return view('dashboard.student.profile.create', [
+            'courseSessions' => CourseSession::all(),
+            'diplomas' => Diploma::all(),
+            'departments' => Department::whereHas('courses')->get(),
+            'levels' => Level::all()
+        ]);
     }
 
      public function store(Request $request)
@@ -29,6 +38,10 @@ class ProfileController extends Controller
             'maritalStatus' => ['required', Rule::in(MaritalStatus::values())],
             'dateOfBirth' => 'required|date|before:today',
             'placeOfBirth' => 'required|string|max:255',
+            'department' => 'required|int',
+            'diploma' => 'required|int',
+            'level' => 'required|int',
+            'courseSession' => 'required|int',
             'academicDiplomas' => 'nullable|string|max:500',
             'professionalDiplomas' => 'nullable|string|max:500',
             'professionalExperience' => 'nullable|string|max:1000',
@@ -37,7 +50,7 @@ class ProfileController extends Controller
 
 
        try {
-         $matricule = MatriculeGeneratorService::forTeacher(auth()->user()->id);
+         $matricule = MatriculeGeneratorService::forStudent(auth()->user()->id);
        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
        }
@@ -45,7 +58,7 @@ class ProfileController extends Controller
 
        try {
 
-            Teacher::create([
+            Student::create([
                 'matricule' => $matricule,
                 'user_id' => auth()->user()->id,
                 'id_card_number' => $validated['idCardNumber'],
@@ -54,6 +67,10 @@ class ProfileController extends Controller
                 'phone_number' => $validated['phoneNumber'],
                 'date_of_birth' => $validated['dateOfBirth'],
                 'place_of_birth' => $validated['placeOfBirth'],
+                'department_id' => $validated['department'],
+                'diploma_id' => $validated['diploma'],
+                'level_id' => $validated['level'],
+                'course_session_id' => $validated['courseSession'],
                 'salutation' => $validated['salutation'],
                 'preferred_language' => $validated['preferredLanguage'],
                 'academic_diplomas' => $validated['academicDiplomas'],
@@ -62,7 +79,7 @@ class ProfileController extends Controller
                 'other_relevant_info' => $validated['otherRelevantInformation'],
             ]);
 
-            return redirect()->route('teacher.dashboard')->with(['status' => 'profile-created']);
+            return redirect()->route('student.dashboard')->with(['status' => 'profile-created']);
         
        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);

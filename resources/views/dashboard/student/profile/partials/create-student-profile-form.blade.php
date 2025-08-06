@@ -4,8 +4,74 @@
     <x-session-error />
 
 
-    <form method="post" action="{{ route('teacher.profile.store') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('student.profile.store') }}" class="mt-6 space-y-6">
         @csrf
+
+        <div>
+            <x-input-label for="courseSession" :value="__('Select Course Session *')" />
+            <x-select-input id="courseSession" name="courseSession" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Course Session') }}</option>
+
+                @isset($courseSessions)
+                    @foreach ($courseSessions as $session)
+                        <option value="{{ $session->id }}" {{ old('courseSession') === $session->id ? 'selected' : '' }}>
+                            {{ __($session->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('courseSession')" />
+        </div>
+
+          <div>
+            <x-input-label for="diploma" :value="__('Select a Diploma *')" />
+            <x-select-input id="diploma" name="diploma" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Diploma') }}</option>
+
+                @isset($diplomas)
+                    @foreach ($diplomas as $diploma)
+                        <option value="{{ $diploma->id }}" {{ old('diploma') === $diploma->id ? 'selected' : '' }}>
+                            {{ __($diploma->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('diploma')" />
+        </div>
+
+        <div>
+            <x-input-label for="department" :value="__('Select a Department (with courses) *')" />
+            <x-select-input id="department" name="department" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Department') }}</option>
+
+                @isset($departments)
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}" {{ old('department') === $department->id ? 'selected' : '' }}>
+                            {{ __($department->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('department')" />
+        </div>
+
+
+        <div>
+            <x-input-label for="level" :value="__('Select a Level *')" />
+            <x-select-input id="level" name="level" class="mt-1 block w-full">
+                <option selected disabled>{{ __('Select a Level') }}</option>
+
+                @isset($levels)
+                    @foreach ($levels as $level)
+                        <option value="{{ $level->id }}" {{ old('level') === $level->id ? 'selected' : '' }}>
+                            {{ __($level->name) }}</option>
+                    @endforeach
+                @endisset
+
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('level')" />
+        </div>
+
 
         <div>
             <x-input-label for="idCardNumber" :value="__('ID Card Number *')" />
@@ -49,6 +115,26 @@
 
             <x-input-error class="mt-2" :messages="$errors->get('maritalStatus')" />
 
+        </div>
+
+
+        <div>
+            <h4 class="block font-medium text-sm text-gray-700 dark:text-gray-300">Sex *</h4>
+            <div class="radio-group flex items-center gap-x-3 flex-wrap">
+                <div class="item flex-shrink-0">
+                    <input type="radio" name="gender" id="male" value="male"
+                        {{ old('gender') == 'male' ? 'checked' : '' }}>
+                    <x-input-label for="male" class="inline-block cursor-pointer" :value="__('Male')" />
+                </div>
+
+                <div class="item flex-shrink-0">
+                    <input type="radio" name="gender" id="female" value="female"
+                        {{ old('gender') == 'female' ? 'checked' : '' }}>
+                    <x-input-label for="female" class="inline-block cursor-pointer" :value="__('Female')" />
+                </div>
+            </div>
+
+            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
         </div>
 
         <div>
