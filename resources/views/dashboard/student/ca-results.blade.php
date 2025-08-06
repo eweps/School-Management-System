@@ -17,6 +17,13 @@
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
+                <form class="flex justify-center items-center">
+                    
+                    <x-primary-linkbutton href="">
+                        Get CA Results
+                    </x-primary-linkbutton>
+                </form>
+
                 <table class="dt-table display">
 
                     <thead>

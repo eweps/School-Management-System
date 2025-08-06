@@ -12,7 +12,7 @@ class ExamController extends Controller
     {
         $examMarks = ExamMark::where(['student_id' => Auth::user()->student->id])->get();
         
-        return view('dashboard.student.exam.index', [
+        return view('dashboard.student.exam-results', [
             'examMarks' => $examMarks
         ]);
     }

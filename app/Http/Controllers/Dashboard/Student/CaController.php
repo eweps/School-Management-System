@@ -12,7 +12,7 @@ class CaController extends Controller
     {
         $caResults = CaMark::where(['student_id' => Auth::user()->student->id])->get();
         
-        return view('dashboard.student.ca.index', [
+        return view('dashboard.student.ca-results', [
             'caResults' => $caResults
         ]);
     }
