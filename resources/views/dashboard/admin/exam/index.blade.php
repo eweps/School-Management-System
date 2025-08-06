@@ -1,4 +1,4 @@
-<x-app-layout pageTitle="All Exam Marks">
+<x-app-layout pageTitle="All Departments">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('teacher.exam-marks') }}" class="text-secondary">Exam Marks</a>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.exam-marks') }}" class="text-secondary">All Departments</a>
                 </h1>
             </header>
 
@@ -23,9 +23,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Level</th>
-                            <th>Semester</th>
+                            <th>Description</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>
@@ -33,21 +31,19 @@
 
                     <tbody>
 
-                        @isset($courses)
+                        @isset($departments)
 
-                            @foreach ($courses as $course)
+                            @foreach ($departments as $department)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $course->name }}</td>
-                                    <td>{{ $course->code }}</td>
-                                    <td>{{ $course->level?->name }}</td>
-                                    <td>{{ $course->semester->name }}</td>
-                                    <td>{{ $course->created_at->diffForHumans() }}</td>
+                                    <td>{{ $department->name }}</td>
+                                    <td>{{ $department->description }}</td>
+                                    <td>{{ $department->created_at->diffForHumans() }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
 
-                                            <x-primary-linkbutton href="{{ route('teacher.exam-marks.create', $course->id) }}">
-                                                Enter </x-primary-linkbutton>
+                                            <x-primary-linkbutton href="{{ route('admin.exam-marks.courses', $department->id) }}">
+                                                Fill Marks </x-primary-linkbutton>
        
                                         </div>
                                     </td>
@@ -62,9 +58,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Code</th>
-                            <th>Level</th>
-                            <th>Semester</th>
+                            <th>Description</th>
                             <th>Created</th>
                             <th>Action</th>
                         </tr>

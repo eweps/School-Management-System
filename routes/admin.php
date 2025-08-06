@@ -2,23 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Dashboard\Admin\FeeController;
+use App\Http\Controllers\Dashboard\Admin\ExamController;
 use App\Http\Controllers\Dashboard\Admin\UserController;
 use App\Http\Controllers\Dashboard\Admin\LevelController;
+use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\DiplomaController;
+use App\Http\Controllers\Dashboard\Admin\StudentController;
+use App\Http\Controllers\Dashboard\Admin\TeacherController;
 use App\Http\Controllers\Dashboard\Admin\ActivityController;
 use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\SemesterController;
+use App\Http\Controllers\Dashboard\Admin\FeeRecordController;
 use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
-use App\Http\Controllers\Dashboard\Admin\CourseController;
 use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
-use App\Http\Controllers\Dashboard\Admin\FeeController;
-use App\Http\Controllers\Dashboard\Admin\FeeRecordController;
-use App\Http\Controllers\Dashboard\Admin\StudentController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
-use App\Http\Controllers\Dashboard\Admin\TeacherController;
 
 Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
  
@@ -360,6 +361,20 @@ Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(fu
 
             Route::post('/courses/remove/', [StudentController::class, 'removeCourseFromTeacher'])
             ->name('.courses.remove');
+    });
+
+
+    Route::prefix('/exam-marks')->as('admin.exam-marks')->middleware('ensure.exam-marks')->group(function() {
+            Route::get('', [ExamController::class, 'index'])
+                ->name('');
+            Route::get('/courses/{id}', [ExamController::class, 'courses'])
+                ->name('.courses');
+            Route::get('/create/{id}', [ExamController::class, 'create'])
+                ->name('.create');
+            Route::post('/store/{id}', [ExamController::class, 'store'])
+                ->name('.store');
+            Route::get('/generate-pdf/{id}', [ExamController::class, 'generatePdf'])
+            ->name('.pdf');
     });
 
 });

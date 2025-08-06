@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('teacher.exam-marks.create', $course->id) }}" class="text-secondary">Enter Exam Marks For {{ $course->name }}</a>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.exam-marks.create', $course->id) }}" class="text-secondary">Enter Exam Marks For {{ $course->name }}</a>
                 </h1>
             </header>
             
@@ -17,12 +17,12 @@
             <x-session-status key="exam-saved" message="Mark Saved Successfully" />
             <x-session-error />
 
-            <form action="{{ route('teacher.exam-marks.store', $course->id) }}" method="post">
+            <form action="{{ route('admin.exam-marks.store', $course->id) }}" method="post">
                 @csrf
                 <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
                     <div class="flex items-center justify-center gap-2">
-                        <x-primary-linkbutton href="{{ route('teacher.exam-marks.pdf', $course->id) }}">
+                        <x-primary-linkbutton href="{{ route('admin.exam-marks.pdf', $course->id) }}">
                             Generate PDF
                         </x-primary-linkbutton>
 
