@@ -52,10 +52,6 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
 
             Route::get('/generate-pdf/{id}', [CaController::class, 'generatePdf'])
             ->name('.pdf');
-
-            // Route::delete('/delete', [ResourceController::class, 'destroy'])
-            //     ->name('.delete');
-            // Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
         });
 
          Route::prefix('/exam-marks')->as('teacher.exam-marks')->middleware('ensure.exam-marks')->group(function() {
