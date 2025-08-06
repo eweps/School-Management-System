@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Results Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #000;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th.theading {
+            background-color: #e2e8f0;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .info-block {
+            width: 48%;
+            margin-bottom: 10px;
+        }
+
+        .info-block p {
+            margin: 4px 0;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 15mm;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .watermark {
+            font-size: 40px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+
+            <div style="text-align: center; margin-bottom: 15px;">
+                <img src="{{ public_path('images/logo.png') }}" alt="App Logo" style="max-height: 80px;">
+            </div>
+
+            <h2>Exam Results Report</h2>
+
+            <div class="info-section">
+                <div class="info-block">
+                    <p><strong>Name:</strong> {{ $user->name }}</p>
+                    <p><strong>Matriculation No:</strong> {{ $user->student->matricule }}</p>
+                    <p><strong>Diploma:</strong> {{ $user->student->diploma->name }}</p>
+                </div>
+                <div class="info-block">
+                    <p><strong>Department:</strong> {{ $user->student->department->name }}</p>
+                    <p><strong>Semester:</strong> {{ strtoupper( $courses[0]->semester->name ) }}</p>
+                    <p><strong>Academic Year:</strong> {{ getSetting('academic_year') }}</p>
+                    <p><strong>Date Generated:</strong> {{ Carbon\Carbon::parse(now())->toFormattedDayDateString() }}</p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="theading">#</th>
+                        <th class="theading">Course Name</th>
+                        <th class="theading">Course Code</th>
+                        <th class="theading">Credit Value</th>
+                        <th class="theading">CA Mark</th>
+                        <th class="theading">Exam Mark</th>
+                        <th class="theading">Total Mark</th>
+                        <th class="theading">Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($courses as $course)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $course->name }}</td>
+                            <td>{{ $course->code }}</td>
+                            <td>{{ $course->credit_value }}</td>
+                            <td>{{ $course->student_ca_mark($user->student->id) }}</td>
+                            <td>{{ $course->student_exam_mark($user->student->id) }}</td>
+                            <td>{{ $course->student_total_mark($user->student->id) }}</td>
+                            <td>{{ $course->student_grade($user->student->id) }}</td>
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <th colspan="6" style="text-align: right;">Total Credit Value</th>
+                        <th colspan="2">{!! $user->student->result_summary(1)["total_credit_value"] !!}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="6" style="text-align: right;">GPA</th>
+                        <th colspan="2">{!! $user->student->result_summary(1)["gpa"] !!}</th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        Generated by {{ config('app.name') }} on {{ now()->setTimezone($timezone)->format('Y-m-d') }} at {{ now()->setTimezone($timezone)->format('H:i a') }}
+    </div>
+</body>
+</html>

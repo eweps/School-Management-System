@@ -88,4 +88,40 @@ class Student extends Model
     public function courses() {
         return $this->belongsToMany(Course::class, 'course_student')->withTimestamps();
     }
+
+    public function result_summary(int $semester){
+        $courses = $this->courses;
+
+        if(!$courses){
+            return NULL;
+        }
+
+        $total_credit_value = 0;
+        $total_point_earned = 0;
+
+        foreach($courses as $course){
+            $total_credit_value = $total_credit_value + $course->credit_value;
+
+            $total_mark = $course->student_total_mark($this->id);
+
+            if($total_mark < 1 ){
+                continue;
+            }
+
+            $grade_point = $course->get_grade_point($total_mark);
+
+            $quality_point = $course->credit_value * $grade_point;
+
+            $total_point_earned = $total_point_earned + $quality_point;
+        }
+
+        if($total_credit_value >= 1 && $total_point_earned >= 1){
+            $gpa = (float)$total_point_earned / (float)$total_credit_value;   
+            $gpa = round( $gpa , 2);
+        }else{
+            $gpa = "Not yet available";
+        }
+
+        return ["total_credit_value"=>$total_credit_value,"gpa"=>$gpa];
+    }
 }

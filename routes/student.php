@@ -42,7 +42,11 @@ Route::prefix('student')->middleware(['role:student', 'auth', 'verified'])
 
                 Route::get('/ca-results', [CaController::class, 'index'])->name('student.ca-results');
 
+                Route::post('/ca-results/pdf', [CaController::class, 'getPdf'])->name('student.ca-results.pdf');
+
                 Route::get('/exam-results', [ExamController::class, 'index'])->name('student.exam-results');
+
+                Route::post('/exam-results/pdf', [ExamController::class, 'getPdf'])->name('student.exam-results.pdf');
 
                 Route::get('/live-classes', LiveClassController::class)->name('student.liveclasses');
         });

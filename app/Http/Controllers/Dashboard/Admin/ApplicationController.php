@@ -39,7 +39,9 @@ class ApplicationController extends Controller
         $application = Application::findOrFail($id);
 
         $pdf = Pdf::loadView('pdf.application', ['application' => $application, "timezone" => auth()->user()->timezone])->setPaper('a4', 'portrait');
+
         $fileName = strtoupper(str_replace(' ', '_', $application->name) . "_" . Str::random() . time()). ".pdf";
+        
         return $pdf->download($fileName);
     }
 

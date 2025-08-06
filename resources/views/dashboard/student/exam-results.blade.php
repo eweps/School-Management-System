@@ -9,13 +9,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('student.ca-results') }}" class="text-secondary">CA Results</a>
+                <h1 class="text-base">Dashboard / <a href="{{ route('student.exam-results') }}" class="text-secondary">Exam Results</a>
                 </h1>
             </header>
 
             <x-session-error />
 
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+
+                  <form action="{{ route('student.exam-results.pdf') }}" class="flex justify-center items-center flex-col mb-5 md:flex-row md:mb-0 gap-2" method="POST">
+                    @csrf
+
+                    <div>
+                        <x-select-input id="semester" name="semester" class="mt-1 block w-full">
+                            <option selected disabled>{{ __('Select a Semester') }}</option>
+                            
+                            @isset($semesters)
+                                @foreach ($semesters as $semester )
+                                    <option value="{{ $semester->id }}">{{ __($semester->name) }}</option>
+                                @endforeach
+                            @endisset
+
+                        </x-select-input>
+                        <x-input-error class="mt-2" :messages="$errors->get('semester')" />
+                    </div>
+                    
+                    <x-primary-button type="submit">
+                        Get Exam Results
+                    </x-primary-button>
+                </form>
 
                 <table class="dt-table display">
 
@@ -33,9 +55,9 @@
 
                     <tbody>
 
-                        @isset($caResults)
+                        @isset($examResults)
 
-                        @foreach ($caResults as $result)
+                        @foreach ($examResults as $result)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $result->course->name }}</td>
