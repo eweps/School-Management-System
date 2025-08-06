@@ -14,6 +14,39 @@
 
             <x-session-error />
 
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 justify-end mb-5 gap-5">
+                <div id="annualFee" class="bg-gray-100 dark:bg-gray-800 rounded py-6 px-4 flex flex-col justify-center items-center md:flex-row relative">
+                    <div>
+                        <p class="fee-name bg-blue-700 font-semibold text-sm absolute -top-2 left-0 w-[100%] text-center rounded text-white truncate">Total Fee</p>
+                    </div>
+
+                    <div>
+                        <p class="fee-amount text-gray-900 dark:text-gray-200 font-semibold text-lg uppercase">{{ Number::currency($totalFees, 'XAF', 'en') }}</p>
+                    </div>
+                </div>
+
+                <div id="totalPaid" class="bg-gray-100 dark:bg-gray-800 rounded py-6 px-4 flex flex-col justify-center items-center md:flex-row relative">
+                    <div>
+                        <p class="fee-name bg-green-700 font-semibold text-sm absolute -top-2 left-0 w-[100%] text-center rounded text-white truncate">Total Paid Fee</p>
+                    </div>
+
+                    <div>
+                        <p class="fee-amount text-gray-900 dark:text-gray-200 font-semibold text-lg uppercase">{{ Number::currency($feePaid, 'XAF', 'en') }}</p>
+                    </div>
+                </div>
+
+                <div id="amountLeft" class="bg-gray-100 dark:bg-gray-800 rounded py-6 px-4 flex flex-col justify-center items-center md:flex-row relative">
+                    <div>
+                        <p class="fee-name bg-red-700 font-semibold text-sm absolute -top-2 left-0 w-[100%] text-center rounded text-white truncate">Total Fee Left</p>
+                    </div>
+
+                    <div>
+                        <p class="fee-amount text-gray-900 dark:text-gray-200 font-semibold text-lg uppercase">{{ Number::currency($amountLeft, 'XAF', 'en') }}</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="w-full overflow-x-auto py-5 px-4 bg-white dark:bg-gray-800 shadow rounded-lg">
 
                 <table class="dt-table display">

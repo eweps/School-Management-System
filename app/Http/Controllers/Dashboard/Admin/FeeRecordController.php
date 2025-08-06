@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Models\Fee;
 use App\Models\Student;
 use App\Models\FeeRecord;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
@@ -15,8 +16,37 @@ class FeeRecordController extends Controller
 {
     public function index()
     {
+
+        $departments = Department::all();
+        $totalFees = 0;
+
+        foreach ($departments as $department) {
+
+            if($department->fees->count() > 0) {
+                $feePerStudent = $department->fees->sum('amount');
+            }else {
+                $feePerStudent = 0;
+            }
+
+           
+            // Count all students in all courses of this department
+            $studentCount = $department->courses->sum(function ($course) {
+                return $course->students->count();
+            });
+
+            $totalFees += $feePerStudent * $studentCount;
+        }
+
+
+        $feePaid = FeeRecord::sum('amount_paid');
+        $amountLeft = (float) $totalFees - $feePaid;
+
+
         return view('dashboard.admin.fee-records.index', [
-            'feeRecords' => FeeRecord::orderByDesc('id')->get()
+            'feeRecords' => FeeRecord::orderByDesc('id')->get(),
+            'totalFees' => $totalFees,
+            'feePaid' => $feePaid,
+            'amountLeft' => $amountLeft
         ]);
     }
 
