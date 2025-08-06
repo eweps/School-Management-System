@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Teacher</th>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Start Date </th>
@@ -35,6 +36,7 @@
                             @foreach ($liveClasses as $liveClass)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $liveClass->user->name }}</td>
                                     <td>{{ $liveClass->title }}</td>
                                     <td>
                                         @if ($liveClass->is_expired)
@@ -74,9 +76,7 @@
                                                 </table>
 
                                                 <div class="mb-3">
-                                                    <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy
-                                                        and
-                                                        Share Live Class Link
+                                                    <h3 class="text-center font-semibold mb-3 dark:text-neutral-200">Copy Live Class Link
                                                     </h3>
 
                                                     <div class="flex items-center gap-2">
@@ -103,19 +103,6 @@
                                                     </div>
                                                 </div>
                                             </x-view-modal>
-
-                                            <x-primary-linkbutton
-                                                href="{{ route('teacher.liveclasses.edit', ['id' => $liveClass->id]) }}">
-                                                {{ __('Edit') }}
-                                            </x-primary-linkbutton>
-
-                                            <form id="delete-{{ $liveClass->id }}" class="delete-form"
-                                                action="{{ route('teacher.liveclasses.delete') }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <input type="hidden" name="id" value="{{ $liveClass->id }}">
-                                                <x-danger-button> Del</x-danger-button>
-                                            </form>
                                         </div>
 
                                     </td>
@@ -129,6 +116,7 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
+                            <th>Teacher</th>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Start Date </th>

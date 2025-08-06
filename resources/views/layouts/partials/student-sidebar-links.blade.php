@@ -30,7 +30,7 @@
 <li class="nav-item group {{ request()->routeIs('student.ca-results') ? 'active' : '' }}">
     <a href="{{ route('student.ca-results') }}"
         class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
-        <i class="ri-file-list-line"></i>
+        <i class="ri-contract-line"></i>
         <span>CA Results</span>
     </a>
 </li>
@@ -39,8 +39,18 @@
 <li class="nav-item group {{ request()->routeIs('student.exam-results') ? 'active' : '' }}">
     <a href="{{ route('student.exam-results') }}"
         class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
-        <i class="ri-file-list-line"></i>
+        <i class="ri-contract-line"></i>
         <span>Exam Results</span>
+    </a>
+</li>
+
+
+<!-- Navitem with link -->
+<li class="nav-item group {{ request()->routeIs('student.liveclasses') ? 'active' : '' }}">
+    <a href="{{ route('student.liveclasses') }}"
+        class="text-gray-300 hover:text-white flex items-center gap-3 text-base font-medium py-2 px-3 rounded-lg group-[.active]:bg-primary-light dark:group-[.active]:bg-gray-700 group-[.active]:text-white group-[.selected]:bg-primary-light dark:group-[.selected]:bg-gray-700 group-[.selected]:text-gray-100 hover:bg-primary-lighter dark:hover:bg-gray-700">
+        <i class="ri-video-on-line"></i>
+        <span>Live Classes</span>
     </a>
 </li>
 

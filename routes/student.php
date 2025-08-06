@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Student\CourseController;
 use App\Http\Controllers\Dashboard\Student\OverviewController;
 use App\Http\Controllers\Dashboard\Student\ResourceController;
 use App\Http\Controllers\Dashboard\Student\FeeRecordController;
+use App\Http\Controllers\Dashboard\Student\LiveClassController;
 
 Route::prefix('student')->middleware(['role:student', 'auth', 'verified'])
 ->group(function() {
@@ -39,6 +40,8 @@ Route::prefix('student')->middleware(['role:student', 'auth', 'verified'])
         Route::get('/ca-results', [CaController::class, 'index'])->name('student.ca-results');
 
         Route::get('/exam-results', [ExamController::class, 'index'])->name('student.exam-results');
+
+        Route::get('/live-classes', LiveClassController::class)->name('student.liveclasses');
 
         
         // Route::middleware(['ensure.teacher.profile'])->group(function() {
