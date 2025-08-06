@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\Student\CaController;
+use App\Http\Controllers\Dashboard\Student\ExamController;
 use App\Http\Controllers\Dashboard\Student\CourseController;
 use App\Http\Controllers\Dashboard\Student\OverviewController;
 use App\Http\Controllers\Dashboard\Student\ResourceController;
@@ -33,6 +35,11 @@ Route::prefix('student')->middleware(['role:student', 'auth', 'verified'])
                 ->name('');
             Route::get('/download/{id}', [ResourceController::class, 'download'])->name('.download');
         });
+
+        Route::get('/ca-results', [CaController::class, 'index'])->name('student.ca-results');
+
+        Route::get('/exam-results', [ExamController::class, 'index'])->name('student.exam-results');
+
         
         // Route::middleware(['ensure.teacher.profile'])->group(function() {
 
