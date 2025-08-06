@@ -21,9 +21,10 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>User</th>
+                            <th>Role</th>
                             <th>Status</th>
                             <th>Start Date </th>
-                            <th>Created</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -36,6 +37,16 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $liveClass->title }}</td>
+                                    <td>{{ $liveClass->user->name }}</td>
+                                    <td>
+                                        @if($liveClass->user->hasRole('admin'))
+                                            <x-badge type="primary">{{ __('admin') }}</x-badge>
+                                        @endif
+
+                                        @if($liveClass->user->hasRole('teacher'))
+                                            <x-badge type="warning">{{ __('teacher') }}</x-badge>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($liveClass->is_expired)
                                             <x-badge type="danger">{{ __('expired') }} </x-badge>
@@ -44,7 +55,6 @@
                                         @endif
                                     </td>
                                     <td>{{ $liveClass->date->toDateString() }}</td>
-                                    <td>{{ $liveClass->created_at->diffForHumans() }}</td>
                                     <td>
                                         <div class="flex flex-col md:flex-row justify-center items-center gap-3">
                                             <x-view-modal key="{{ $liveClass->id }}" heading="Live Class Description"
@@ -68,6 +78,12 @@
                                                             <td class="font-medium px-4 py-3 uppercase">Start Time</td>
                                                             <td class="px-4 py-3 capitalize">
                                                                 {{ $liveClass->start_time->format('H:i a') }}</td>
+                                                        </tr>
+
+                                                         <tr>
+                                                            <td class="font-medium px-4 py-3 uppercase">Created At</td>
+                                                            <td class="px-4 py-3 capitalize">
+                                                                {{ $liveClass->created_at->diffForHumans() }}</td>
                                                         </tr>
 
                                                     </tbody>
@@ -130,9 +146,10 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>User</th>
+                            <th>Role</th>
                             <th>Status</th>
                             <th>Start Date </th>
-                            <th>Created</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
