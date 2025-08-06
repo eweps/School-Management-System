@@ -14,10 +14,10 @@ class ExamController extends Controller
 {
     public function index()
     {
-        $examMarks = ExamMark::where(['student_id' => Auth::user()->student->id])->get();
-        
+        $examResults = ExamMark::where(['student_id' => Auth::user()->student->id])->get();
+    
         return view('dashboard.student.exam-results', [
-            'examMarks' => $examMarks,
+            'examResults' => $examResults,
             'semesters' => Semester::orderByDesc('id')->get(),
         ]);
     }
