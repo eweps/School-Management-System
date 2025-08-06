@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Teacher\CourseController;
 use App\Http\Controllers\Dashboard\Teacher\ProfileController;
 use App\Http\Controllers\Dashboard\Teacher\OverviewController;
 use App\Http\Controllers\Dashboard\Teacher\ResourceController;
+use App\Http\Controllers\Dashboard\Teacher\LiveClassController;
 
 Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
 ->group(function() {
@@ -63,6 +64,28 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
                 ->name('.store');
             Route::get('/generate-pdf/{id}', [ExamController::class, 'generatePdf'])
             ->name('.pdf');
+        });
+
+
+        // LiveClass Routes
+        Route::prefix('/liveclass')->as('teacher.liveclasses')->group(function() {
+            Route::get('', [LiveClassController::class, 'index'])
+                ->name('');
+
+            Route::get('/edit/{id}', [LiveClassController::class, 'edit'])
+                ->name('.edit');
+
+            Route::patch('/update/{id}', [LiveClassController::class, 'update'])
+                ->name('.update');
+
+            Route::get('/create', [LiveClassController::class, 'create'])
+                ->name('.create');
+
+            Route::post('/store', [LiveClassController::class, 'store'])
+                ->name('.store');
+
+            Route::delete('/delete', [LiveClassController::class , 'destroy'])
+                ->name('.delete');
         });
 
 
