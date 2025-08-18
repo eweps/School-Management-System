@@ -38,10 +38,10 @@
                         @foreach ($courses as $course)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $course->name }}</td>
+                            <td>{{ $course->name ?? '' }}</td>
                             <td>{{ $course->code }}</td>
                             <td>{{ $course->credit_value }}</td>
-                            <td>{{ $course->semester->name }}</td>
+                            <td>{{ $course->semester->name ?? '' }}</td>
                             <td>{{ $course->level->name ?? 'none' }}</td>
                             <td>
                                 <div class="flex flex-col md:flex-row justify-center items-center gap-3">
@@ -52,7 +52,7 @@
                                                 <tbody class="divide-y divide-gray-700 text-sm text-gray-700 dark:text-neutral-200">
                                                     <tr>
                                                         <td class="font-medium px-4 py-3 w-1/3 uppercase">Name</td>
-                                                        <td class="px-4 py-3">{{ $course->name }}</td>
+                                                        <td class="px-4 py-3">{{ $course->name ?? "" }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="font-medium px-4 py-3 uppercase">Level</td>
@@ -67,11 +67,14 @@
 
                                                     <td class="font-medium px-4 py-3 uppercase">Teachers</td>
                                                     <td class="px-4 py-3 capitalize">
-                                                        @foreach ($course->teachers as $teacher)
-                                                            <p>{{ $teacher->user->name }}</p>
-                                                        @endforeach
+                                                       
                                                         @if(count($course->teachers) === 0)
                                                             <p>No assigned teacher</p>
+
+                                                        @else
+                                                            @foreach ($course->teachers as $teacher)
+                                                                <p>{{ $teacher->user->name ?? "" }}</p>
+                                                            @endforeach
                                                         @endif
                                                     </td>
 
@@ -86,7 +89,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="font-medium px-4 py-3 uppercase">Semester</td>
-                                                        <td class="px-4 py-3">{{ $course->semester->name }}</td>
+                                                        <td class="px-4 py-3">{{ $course->semester->name ?? '' }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="font-medium px-4 py-3 uppercase">Created</td>
