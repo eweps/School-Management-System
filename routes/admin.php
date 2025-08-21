@@ -21,7 +21,7 @@ use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
-Route::prefix('admin')->middleware(['role:admin', 'auth', 'verified'])->group(function() {
+Route::prefix('admin')->middleware(['role:admin', 'auth'])->group(function() {
  
     Route::get('/dashboard', OverviewController::class)
         ->name('admin.dashboard');
