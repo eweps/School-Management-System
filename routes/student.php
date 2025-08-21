@@ -10,7 +10,7 @@ use App\Http\Controllers\Dashboard\Student\ResourceController;
 use App\Http\Controllers\Dashboard\Student\FeeRecordController;
 use App\Http\Controllers\Dashboard\Student\LiveClassController;
 
-Route::prefix('student')->middleware(['role:student', 'auth', 'verified'])
+Route::prefix('student')->middleware(['role:student', 'auth'])
         ->group(function () {
 
 

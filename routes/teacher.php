@@ -9,7 +9,7 @@ use App\Http\Controllers\Dashboard\Teacher\OverviewController;
 use App\Http\Controllers\Dashboard\Teacher\ResourceController;
 use App\Http\Controllers\Dashboard\Teacher\LiveClassController;
 
-Route::prefix('teacher')->middleware(['role:teacher', 'auth', 'verified'])
+Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
 ->group(function() {
 
         Route::middleware(['ensure.teacher.profile'])->group(function() {
