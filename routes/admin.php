@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\Admin\CaController;
 use App\Http\Controllers\Dashboard\Admin\FeeController;
 use App\Http\Controllers\Dashboard\Admin\ExamController;
@@ -18,7 +17,6 @@ use App\Http\Controllers\Dashboard\Admin\FeeRecordController;
 use App\Http\Controllers\Dashboard\Admin\LiveClassController;
 use App\Http\Controllers\Dashboard\Admin\DepartmentController;
 use App\Http\Controllers\Dashboard\Admin\ApplicationController;
-use App\Http\Controllers\Dashboard\Admin\NotificationController;
 use App\Http\Controllers\Dashboard\Admin\CourseSessionController;
 use App\Http\Controllers\Dashboard\Admin\SystemSettingController;
 
