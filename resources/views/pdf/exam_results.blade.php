@@ -8,7 +8,9 @@
             font-family: Arial, sans-serif;
             background: #fff;
             color: #000;
-            font-size: 16px!important;
+            font-size: 12px!important;
+            margin: 0;
+            padding: 0;
         }
 
         .wrapper {
@@ -18,26 +20,26 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 10px;
         }
 
         h2 {
             text-align: center;
             text-transform: uppercase;
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         th, td {
             border: 1px solid #999;
-            padding: 8px;
+            padding: 6px;
             text-align: center;
         }
 
@@ -54,7 +56,7 @@
 
         .footer {
             position: fixed;
-            bottom: 15mm;
+            bottom: 8mm;
             left: 0;
             right: 0;
             text-align: center;
@@ -78,12 +80,9 @@
 </head>
 <body>
     <div class="wrapper">
+        <img src="{{ public_path('/storage/'.getSetting('LETTER_HEAD')) }}" alt="LetterHead" style="width: 100%; height: 160px;">
+
         <div class="container">
-
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img src="{{ public_path('images/logo.png') }}" alt="App Logo" style="max-height: 80px;">
-            </div>
-
             <h2>Exam Results Report</h2>
 
              <table class="info-section">

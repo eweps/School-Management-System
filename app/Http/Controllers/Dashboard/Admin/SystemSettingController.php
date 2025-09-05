@@ -50,9 +50,20 @@ class SystemSettingController extends Controller
 
         $request->validate($rules, $messages);
 
-        foreach ($settings as $setting) {
-             $value = $request->input($setting->name);
-             Setting::where('name', $setting->name)->update(['value' => $value]);
+        if($setting->type !== 'image') {
+            foreach ($settings as $setting) {
+                 $value = $request->input($setting->name);
+                 Setting::where('name', $setting->name)->update(['value' => $value]);
+            }
+        }
+        else {
+
+            if ($request->hasFile($setting->name)) {
+                $file = $request->file($setting->name);
+                $path = $file->store('settings', 'public');
+                Setting::where('name', $setting->name)->update(['value' => $path]);
+            }
+
         }
 
         return back()->with(['status' => 'settings-updated']);

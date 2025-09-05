@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Diploma;
+use App\Models\Setting;
 use App\Models\Student;
 use App\Models\Semester;
 use App\Models\Department;
@@ -199,7 +200,9 @@ class StudentController extends Controller
 
         if($courses->count() > 0){
 
-            $pdf = Pdf::loadView('pdf.exam_results', ['user' => $student->user, 'courses' => $courses, 'semester' => $semester, "timezone" => auth()->user()->timezone])->setPaper('a4', 'landscape');
+            $letterHead = Setting::where('name', 'LETTER_HEAD')->value('value');
+
+            $pdf = Pdf::loadView('pdf.exam_results', ['user' => $student->user, 'courses' => $courses, 'semester' => $semester, "timezone" => auth()->user()->timezone, "letterHead" => $letterHead])->setPaper('a4', 'landscape');
 
             $fileName = strtoupper(str_replace(' ', '_', $semester->name) . "_semester_exam_" . "_matricule_". $student->matricule . "_" . Str::random() . time()). ".pdf";
 

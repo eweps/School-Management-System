@@ -17,21 +17,22 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 10px;
         }
 
-        h2 {
+         h2 {
             text-align: center;
             text-transform: uppercase;
-            font-size: 18px;
-            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         th, td {
@@ -65,12 +66,8 @@
 </head>
 <body>
     <div class="wrapper">
+        <img src="{{ public_path('/storage/'.getSetting('LETTER_HEAD')) }}" alt="LetterHead" style="width: 100%; height: 160px;">
         <div class="container">
-
-            <div style="text-align: center; margin-bottom: 15px;">
-                <img src="{{ public_path('images/logo.png') }}" alt="App Logo" style="max-height: 80px;">
-            </div>
-
             <h2>Exam Marks Report - {{ $course->name }}</h2>
 
             <table>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Student;
 
 use App\Models\CaMark;
+use App\Models\Setting;
 use App\Models\Semester;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -38,7 +39,9 @@ class CaController extends Controller
 
         if($courses->count() > 0){
 
-            $pdf = Pdf::loadView('pdf.ca_results', ['user' => $user, 'courses' => $courses, "timezone" => auth()->user()->timezone])->setPaper('a4', 'portrait');
+            $letterHead = Setting::where('name', 'LETTER_HEAD')->value('value');
+
+            $pdf = Pdf::loadView('pdf.ca_results', ['user' => $user, 'courses' => $courses, "timezone" => auth()->user()->timezone, 'letterHead' => $letterHead])->setPaper('a4', 'portrait');
 
             $fileName = strtoupper(str_replace(' ', '_', $semester->name) . "_semester_ca_" . "_matricule_". $user->student->matricule . "_" . Str::random() . time()). ".pdf";
 

@@ -11,6 +11,7 @@ import './clipboard';
 import './delete-alert';
 import './file-input';
 import './choices';
+import './letterhead';
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
