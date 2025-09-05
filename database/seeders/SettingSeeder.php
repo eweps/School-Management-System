@@ -67,7 +67,7 @@ class SettingSeeder extends Seeder
             ],
             [
                 "name" => "LETTER_HEAD",
-                "type" => "file",
+                "type" => "image",
                 "value" => ""
             ]
         ];
