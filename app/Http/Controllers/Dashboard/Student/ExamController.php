@@ -21,7 +21,7 @@ class ExamController extends Controller
         ]);
     }
 
-      public function getPdf(Request $request) {
+    public function getPdf(Request $request) {
 
         $validated = $request->validate([
             'semester' => 'required'

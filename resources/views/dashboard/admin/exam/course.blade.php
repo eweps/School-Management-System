@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.exam-marks') }}" class="text-secondary">Exam Marks</a>
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.exam-marks') }}" class="text-secondary">Fill Exam Marks for Courses In Department {{ $department->name }}</a>
                 </h1>
             </header>
 
