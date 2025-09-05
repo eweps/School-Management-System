@@ -10,9 +10,9 @@ use App\Http\Controllers\Dashboard\Teacher\ResourceController;
 use App\Http\Controllers\Dashboard\Teacher\LiveClassController;
 
 Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
-->group(function() {
+    ->group(function () {
 
-        Route::middleware(['ensure.teacher.profile'])->group(function() {
+        Route::middleware(['ensure.teacher.profile'])->group(function () {
 
             Route::get('/dashboard', OverviewController::class)
                 ->name('teacher.dashboard');
@@ -20,7 +20,7 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
 
             Route::get('/courses', [CourseController::class, 'index'])->name('teacher.course');
 
-            Route::prefix('/resources')->as('teacher.resources')->group(function() {
+            Route::prefix('/resources')->as('teacher.resources')->group(function () {
                 Route::get('', [ResourceController::class, 'index'])
                     ->name('');
                 Route::get('/create', [ResourceController::class, 'create'])
@@ -34,7 +34,7 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
             });
 
 
-            Route::prefix('/ca-marks')->as('teacher.ca-marks')->middleware('ensure.ca-marks')->group(function() {
+            Route::prefix('/ca-marks')->as('teacher.ca-marks')->middleware('ensure.ca-marks')->group(function () {
                 Route::get('', [CaController::class, 'index'])
                     ->name('');
                 Route::get('/create/{id}', [CaController::class, 'create'])
@@ -43,10 +43,10 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
                     ->name('.store');
 
                 Route::get('/generate-pdf/{id}', [CaController::class, 'generatePdf'])
-                ->name('.pdf');
+                    ->name('.pdf');
             });
 
-            Route::prefix('/exam-marks')->as('teacher.exam-marks')->middleware('ensure.exam-marks')->group(function() {
+            Route::prefix('/exam-marks')->as('teacher.exam-marks')->middleware('ensure.exam-marks')->group(function () {
                 Route::get('', [ExamController::class, 'index'])
                     ->name('');
                 Route::get('/create/{id}', [ExamController::class, 'create'])
@@ -54,12 +54,12 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
                 Route::post('/store/{id}', [ExamController::class, 'store'])
                     ->name('.store');
                 Route::get('/generate-pdf/{id}', [ExamController::class, 'generatePdf'])
-                ->name('.pdf');
+                    ->name('.pdf');
             });
 
 
             // LiveClass Routes
-            Route::prefix('/liveclass')->as('teacher.liveclasses')->group(function() {
+            Route::prefix('/liveclass')->as('teacher.liveclasses')->group(function () {
                 Route::get('', [LiveClassController::class, 'index'])
                     ->name('');
 
@@ -75,20 +75,16 @@ Route::prefix('teacher')->middleware(['role:teacher', 'auth'])
                 Route::post('/store', [LiveClassController::class, 'store'])
                     ->name('.store');
 
-                Route::delete('/delete', [LiveClassController::class , 'destroy'])
+                Route::delete('/delete', [LiveClassController::class, 'destroy'])
                     ->name('.delete');
             });
-
-
         });
 
 
-        Route::prefix('/profile')->as('teacher.profile')->group(function() {
+        Route::prefix('/profile')->as('teacher.profile')->group(function () {
             Route::get('/create', [ProfileController::class, 'create'])
                 ->name('.create');
             Route::post('/store', [ProfileController::class, 'store'])
                 ->name('.store');
         });
-
-
-});
+    });
