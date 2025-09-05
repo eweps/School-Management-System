@@ -114,8 +114,8 @@
                 <tbody>
                     @foreach($courses as $course)
                         <tr>
-                            <td>{{ $course->name }}</td>
                             <td>{{ $course->code }}</td>
+                            <td>{{ $course->name }}</td>
                             <td>{!! $course->teachers->pluck('user.name')->implode('<br>') !!}</td>
                             <td>{{ $course->credit_value }}</td>
                             <td>{{ $course->student_ca_mark($user->student->id) }}</td>

@@ -100,7 +100,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="theading">#</th>
                         <th class="theading">Course Name</th>
                         <th class="theading">Course Code</th>
                         <th class="theading">Credit Value</th>
@@ -110,7 +109,6 @@
                 <tbody>
                     @foreach($courses as $course)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $course->name }}</td>
                         <td>{{ $course->code }}</td>
                         <td>{{ $course->credit_value }}</td>
