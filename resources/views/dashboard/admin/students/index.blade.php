@@ -187,9 +187,9 @@
                                                 </div>
                                             </x-view-modal>
 
-                                            {{-- <x-primary-linkbutton
-                                                 href="{{ route('admin.teachers.courses', $student->id) }}"> Courses
-                                             </x-primary-linkbutton> --}}
+                                            <x-primary-linkbutton
+                                                 href="{{ route('admin.students.transcript', $student->id) }}"> Transcript
+                                             </x-primary-linkbutton>
 
                                         </div>
                                     </td>

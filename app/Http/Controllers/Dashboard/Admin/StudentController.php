@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\User;
+use App\Models\Level;
+use App\Models\Diploma;
 use App\Models\Student;
+use App\Models\Semester;
+use App\Models\Department;
 use App\Enums\GenderStatus;
+use Illuminate\Support\Str;
 use App\Enums\MaritalStatus;
 use Illuminate\Http\Request;
+use App\Models\CourseSession;
 use App\Enums\SalutationStatus;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Models\CourseSession;
-use App\Models\Department;
-use App\Models\Diploma;
-use App\Models\Level;
+use Illuminate\Support\Facades\Auth;
 use App\Services\MatriculeGeneratorService;
 
 class StudentController extends Controller
@@ -168,6 +172,42 @@ class StudentController extends Controller
             return redirect()->back()->with(['error' => $e->getMessage()]);
        }
 
+    }
+
+
+    public function transcript(int $id)
+    {
+        return view('dashboard.admin.students.transcript', [
+            "semesters" => Semester::all(),
+            "student" => Student::findOrFail($id),
+        ]);
+    }
+
+     public function getPdf(Request $request, int $id) {
+
+        $validated = $request->validate([
+            'semester' => 'required'
+        ]);
+
+        $student = Student::findOrFail($id);
+
+        // check student semester courses
+        $courses = $student->courses->where("semester_id",$validated['semester']);
+
+        // get semester
+        $semester = Semester::findOrFail($validated['semester']);
+
+        if($courses->count() > 0){
+
+            $pdf = Pdf::loadView('pdf.exam_results', ['user' => $student->user, 'courses' => $courses, 'semester' => $semester, "timezone" => auth()->user()->timezone])->setPaper('a4', 'landscape');
+
+            $fileName = strtoupper(str_replace(' ', '_', $semester->name) . "_semester_exam_" . "_matricule_". $student->matricule . "_" . Str::random() . time()). ".pdf";
+
+            return $pdf->download($fileName);
+
+        }else{
+            return back()->with('error', 'No Exam Results Found For this Semester');
+        }
     }
 
 }

@@ -37,7 +37,7 @@ class ExamController extends Controller
 
         if($courses->count() > 0){
 
-            $pdf = Pdf::loadView('pdf.exam_results', ['user' => $user, 'courses' => $courses, 'semester' => $semester, "timezone" => auth()->user()->timezone])->setPaper('a4', 'portrait');
+            $pdf = Pdf::loadView('pdf.exam_results', ['user' => $user, 'courses' => $courses, 'semester' => $semester, "timezone" => auth()->user()->timezone])->setPaper('a4', 'landscape');
 
             $fileName = strtoupper(str_replace(' ', '_', $semester->name) . "_semester_exam_" . "_matricule_". $user->student->matricule . "_" . Str::random() . time()). ".pdf";
 

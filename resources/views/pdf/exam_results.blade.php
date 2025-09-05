@@ -8,11 +8,12 @@
             font-family: Arial, sans-serif;
             background: #fff;
             color: #000;
+            font-size: 16px!important;
         }
 
         .wrapper {
             width: 100%;
-            max-width: 750px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
@@ -50,22 +51,6 @@
             background-color: #f9f9f9;
         }
 
-        .info-section {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            font-size: 13px;
-        }
-
-        .info-block {
-            width: 48%;
-            margin-bottom: 10px;
-        }
-
-        .info-block p {
-            margin: 4px 0;
-        }
 
         .footer {
             position: fixed;
@@ -101,26 +86,25 @@
 
             <h2>Exam Results Report</h2>
 
-            <div class="info-section">
-                <div class="info-block">
-                    <p><strong>Name:</strong> {{ $user->name }}</p>
-                    <p><strong>Matriculation No:</strong> {{ $user->student->matricule }}</p>
-                    <p><strong>Diploma:</strong> {{ $user->student->diploma->name }}</p>
-                </div>
-                <div class="info-block">
-                    <p><strong>Department:</strong> {{ $user->student->department->name }}</p>
-                    <p><strong>Semester:</strong> {{ strtoupper( $semester->name ) }}</p>
-                    <p><strong>Academic Year:</strong> {{ getSetting('academic_year') }}</p>
-                    <p><strong>Date Generated:</strong> {{ Carbon\Carbon::parse(now())->toFormattedDayDateString() }}</p>
-                </div>
-            </div>
+             <table class="info-section">
+                <tr>
+                    <td><strong>Name:</strong> {{ $user->name }}</td>
+                    <td><strong>Matricule No:</strong> {{ $user->student->matricule }}</td>
+                    <td><strong>Diploma:</strong> {{ $user->student->diploma->name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Department:</strong> {{ $user->student->department->name }}</td>
+                    <td><strong>Semester:</strong> {{ strtoupper( $semester->name ) }}</td>
+                    <td><strong>Academic Year:</strong> {{ getSetting('academic_year') }}</td>
+                </tr>
+            </table>
 
             <table>
                 <thead>
                     <tr>
-                        <th class="theading">#</th>
-                        <th class="theading">Course Name</th>
-                        <th class="theading">Course Code</th>
+                        <th class="theading">Code</th>
+                        <th class="theading">Course Title</th>
+                        <th class="theading">Master</th>
                         <th class="theading">Credit Value</th>
                         <th class="theading">CA Mark</th>
                         <th class="theading">Exam Mark</th>
@@ -131,9 +115,9 @@
                 <tbody>
                     @foreach($courses as $course)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->code }}</td>
+                            <td>{!! $course->teachers->pluck('user.name')->implode('<br>') !!}</td>
                             <td>{{ $course->credit_value }}</td>
                             <td>{{ $course->student_ca_mark($user->student->id) }}</td>
                             <td>{{ $course->student_exam_mark($user->student->id) }}</td>

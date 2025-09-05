@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
     
             <header class="mb-8 dark:text-neutral-200 uppercase tracking-wider font-semibold">
-                <h1 class="text-base">Dashboard / <a href="{{ route('admin.teachers.create') }}" class="text-secondary">Edit
+                <h1 class="text-base">Dashboard / <a href="{{ route('admin.students.edit') }}" class="text-secondary">Edit
                         Student</a></h1>
             </header>
     

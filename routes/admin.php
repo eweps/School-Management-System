@@ -354,6 +354,11 @@ Route::prefix('admin')->middleware(['role:admin', 'auth'])->group(function() {
             [StudentController::class, 'update'])
                 ->name('.update');
 
+            Route::get('/transcript/{id}', [StudentController::class, 'transcript'])
+                ->name('.transcript');
+
+            Route::post('/transcript/pdf/{id}', [StudentController::class, 'getPdf'])->name('.transcript.pdf');
+
             Route::get('/courses/{id}', [StudentController::class, 'showCourses'])
             ->name('.courses');
 
