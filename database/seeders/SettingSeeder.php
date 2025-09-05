@@ -64,7 +64,12 @@ class SettingSeeder extends Seeder
                 "name" => "MATRICULE_PREFIX",
                 "type" => "text",
                 "value" => "SM"
-            ] 
+            ],
+            [
+                "name" => "LETTER_HEAD",
+                "type" => "file",
+                "value" => ""
+            ]
         ];
 
         foreach($settings as $setting) {
