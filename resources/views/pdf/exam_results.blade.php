@@ -109,7 +109,7 @@
                 </div>
                 <div class="info-block">
                     <p><strong>Department:</strong> {{ $user->student->department->name }}</p>
-                    <p><strong>Semester:</strong> {{ strtoupper( $courses[0]->semester->name ) }}</p>
+                    <p><strong>Semester:</strong> {{ strtoupper( $semester->name ) }}</p>
                     <p><strong>Academic Year:</strong> {{ getSetting('academic_year') }}</p>
                     <p><strong>Date Generated:</strong> {{ Carbon\Carbon::parse(now())->toFormattedDayDateString() }}</p>
                 </div>

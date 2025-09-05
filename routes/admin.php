@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Dashboard\Admin\CaController;
 use App\Http\Controllers\Dashboard\Admin\FeeController;
 use App\Http\Controllers\Dashboard\Admin\ExamController;
 use App\Http\Controllers\Dashboard\Admin\UserController;
@@ -374,6 +375,20 @@ Route::prefix('admin')->middleware(['role:admin', 'auth'])->group(function() {
             Route::post('/store/{id}', [ExamController::class, 'store'])
                 ->name('.store');
             Route::get('/generate-pdf/{id}', [ExamController::class, 'generatePdf'])
+            ->name('.pdf');
+    });
+
+
+     Route::prefix('/ca-marks')->as('admin.ca-marks')->middleware('ensure.ca-marks')->group(function() {
+            Route::get('', [CaController::class, 'index'])
+                ->name('');
+            Route::get('/courses/{id}', [CaController::class, 'courses'])
+                ->name('.courses');
+            Route::get('/create/{id}', [CaController::class, 'create'])
+                ->name('.create');
+            Route::post('/store/{id}', [CaController::class, 'store'])
+                ->name('.store');
+            Route::get('/generate-pdf/{id}', [CaController::class, 'generatePdf'])
             ->name('.pdf');
     });
 

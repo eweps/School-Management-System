@@ -28,6 +28,7 @@ class ExamController extends Controller
         $department = Department::findOrFail($id);
 
         return view('dashboard.admin.exam.course', [
+            'department' => $department,
             'courses' => $department->courses
         ]);
     }
@@ -73,7 +74,7 @@ class ExamController extends Controller
             }
         });
 
-        return redirect()->back()->with(['status' => 'ca-saved']);
+        return redirect()->back()->with(['status' => 'exam-saved']);
     }
 
     public function generatePdf(int $courseId)

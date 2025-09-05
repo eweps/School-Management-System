@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Teacher;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\CaMark;
 use App\Models\Course;
-use App\Models\ExamMark;
+use App\Models\Department;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -13,12 +13,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class ExamController extends Controller
+class CaController extends Controller
 {
     public function index()
     {
-        return view('dashboard.teacher.exam.index', [
-            'courses' => Auth::user()->teacher->courses
+        return view('dashboard.admin.ca.index', [
+           'departments' => Department::orderByDesc('id')->get()
+        ]);
+    }
+
+    public function courses(int $id) 
+    {
+        $department = Department::findOrFail($id);
+
+        return view('dashboard.admin.ca.course', [
+            'department' => $department,
+            'courses' => $department->courses
         ]);
     }
 
@@ -26,17 +36,17 @@ class ExamController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        return view('dashboard.teacher.exam.create', [
+        return view('dashboard.admin.ca.create', [
             'course' => $course,
             'students' => $course->students,
-            'caMarks' => ExamMark::where('course_id', $id)->get()->keyBy('student_id')
+            'caMarks' => CaMark::where('course_id', $id)->get()->keyBy('student_id')
         ]);
     }
 
     public function store(Request $request, int $courseId)
     {
         $validator = Validator::make($request->all(), [
-            'marks.*.mark' => ['required', 'numeric', 'max:'.getSetting('TOTAL_EXAM_MARK')]
+            'marks.*.mark' => ['required', 'numeric', 'max:'.getSetting('TOTAL_CA_MARK')]
         ]);
 
 
@@ -50,7 +60,7 @@ class ExamController extends Controller
         // if all are successfull then commit
         DB::transaction(function () use ($request, $courseId) {
             foreach ($request->marks as $key => $student) {
-                ExamMark::updateOrCreate(
+                CaMark::updateOrCreate(
                     [
                         'user_id' => Auth::user()->id,
                         'student_id' => $key,
@@ -63,26 +73,24 @@ class ExamController extends Controller
             }
         });
 
-        return redirect()->back()->with(['status' => 'exam-saved']);
+        return redirect()->back()->with(['status' => 'ca-saved']);
     }
 
     public function generatePdf(int $courseId)
     {
-        $examMarks = ExamMark::with(['student.user', 'student.level', 'course'])
+        // Fetch CA marks for the course
+        $caMarks = CaMark::with(['student', 'course'])
             ->where('course_id', $courseId)
             ->get();
 
-        $course = $examMarks->first()->course ?? null;
-        $timezone = auth()->user()->timezone ?? 'UTC';
+        // Load the view into PDF
+        $pdf = Pdf::loadView('pdf.ca_marks', [
+            'caMarks' => $caMarks,
+            'course' => $caMarks->first()?->course, // for header/title use
+            'timezone' => auth()->user()?->timezone ?? 'UTC'
+        ])->setPaper('a4', 'portrait');
 
-        if (!$course) {
-            return redirect()->back()->with('error', 'No exam marks found for this course.');
-        }
-
-        $pdf = Pdf::loadView('pdf.exam_marks', compact('examMarks', 'course', 'timezone'))
-            ->setPaper('a4', 'portrait');
-
-        $fileName = 'EXAM_MARKS_' . strtoupper(Str::slug($course->name)) . '_' . time() . '.pdf';
+        $fileName = 'CA_MARKS_' . strtoupper(Str::random(6)) . '_' . time() . '.pdf';
 
         return $pdf->download($fileName);
     }
